@@ -1,7 +1,6 @@
 import { useMutation, gql} from "@apollo/client";
-import { useState } from "react";
 
-//graphql 게시물 코드 생성
+// graphql 게시물 코드 생성
 const CREATE_BOARD = gql`
 mutation{
     createBoard(
@@ -17,7 +16,7 @@ mutation{
 `
 export default function GraphqlMyTest(){
     
-    //mutation 코드 생성
+    // mutation 코드 생성
     const [testboard] = useMutation(CREATE_BOARD)
 
     const submitboard = async() => {

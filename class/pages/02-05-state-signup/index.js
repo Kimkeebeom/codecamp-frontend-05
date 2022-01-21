@@ -17,7 +17,7 @@ export default function StateSignup(){
         setPassword(event.target.value)
     }
 
-    function ccc(event){ //회원가입 버튼을 눌렀을 때 state를 통해서 이메일과 비밀번호가 잘 저장되어있는지 확인.
+    function ccc(event){ // 회원가입 버튼을 눌렀을 때 state를 통해서 이메일과 비밀번호가 잘 저장되어있는지 확인.
         console.log('email:' + email)
         console.log('password : ' + password)
         
@@ -25,7 +25,7 @@ export default function StateSignup(){
 
         if(email.includes("@") === false){ // 사용자가 이메일 주소를 입력할 때 @를 빼먹을 경우가 있기 때문에 조건문을 사용해준다.
             setError("올바른 이메일 형식이 아닙니다!")
-            //alert("이메일에 @가 없습니다. 잘못된 이메일 주소입니다!")
+            // alert("이메일에 @가 없습니다. 잘못된 이메일 주소입니다!")
             check = false
         }
         if(password.length <= 8 === true){

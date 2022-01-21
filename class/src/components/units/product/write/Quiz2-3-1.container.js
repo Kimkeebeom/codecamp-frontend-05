@@ -1,4 +1,4 @@
-//상품 등록 페이지
+// 상품 등록 페이지
 
 import { useRouter } from "next/router"
 import { useState } from "react"
@@ -10,10 +10,8 @@ const CREATE_PROUDCT = gql`
     $seller: String
     $createProductInput: CreateProductInput!
   ) {
-    createProduct( createProductInput: $createProductInput) {
+    createProduct(seller:$seller,createProductInput:$createProductInput){
       _id
-      number
-      message
     }
   }
 `
@@ -26,8 +24,6 @@ const UPDATE_PRODUCT = gql`
       productId: $productId
       updateProductInput: $updateProductInput) {
       _id
-      number
-      message
     }
   }
 `
@@ -44,7 +40,7 @@ export default function ProductWrite(props){
     // const [aaa, setAaa] = useState("")
     const [createProduct] = useMutation(CREATE_PROUDCT)
     const [updateProduct] = useMutation(UPDATE_PRODUCT)
-    //등록하기 함수
+    // 등록하기 함수
     const onClickMoveToMynumber = async () => {
         try{
               const result = await createProduct({
@@ -57,18 +53,19 @@ export default function ProductWrite(props){
                   }
                 }
               })
-              router.push(`/08-06-Products/${router.query.mynumber}`)
+              console.log(result)
+              router.push(`/08-06-products/${result.data.createProduct._id}`)
             }catch (error){
                 console.log(error.message)
             }
         
       }
       
-    //수정하기 함수 
+    // 수정하기 함수 
     const onClickMoveToEdit = async () => {
         console.log("수정하기를 클릭하셨군요!!!");
         try{
-          await updateProduct({
+           await updateProduct({
             variables: {
               productId: router.query.mynumber,
               updateProductInput: {
@@ -78,8 +75,7 @@ export default function ProductWrite(props){
               }
             }
           })
-          console.log(result)
-          router.push(`/08-06-Products/${router.query.mynumber}`);
+          router.push(`/08-06-products/${router.query.mynumber}`);
         } catch (error){
           console.log(error.message)
         }

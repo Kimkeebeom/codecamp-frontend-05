@@ -33,11 +33,11 @@ export default function fetchProductsPage(){
             variables:{productId: event.target.id},
             refetchQueries: [{query:FETCH_PRODUCTS}]
         })
-        event.target.id
+        (event.target.id)
     }
 
 
-    return( //옵셔널체이닝을 부여해도 웹화면에 데이터가 안나타남;
+    return( // 옵셔널체이닝을 부여해도 웹화면에 데이터가 안나타남;
         <Boundary>
             {data?.fetchProducts.map((el) => (
                 <Row key={el._id}>

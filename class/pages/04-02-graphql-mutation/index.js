@@ -1,4 +1,4 @@
-import axios from 'axios'
+// import axios from 'axios'
 import {useState} from 'react'
 import {useMutation, gql} from '@apollo/client'
 
@@ -17,7 +17,7 @@ export default function GraphqlMutations(){
     const [qqq] = useMutation(CREATE_BOARD)
    
     const zzz = async() => {
-        //const result = await axios.get("https:koreanjson.com/posts/1")
+        // const result = await axios.get("https:koreanjson.com/posts/1")
         const result = await qqq()
         console.log(result.data.createBoard.message)
         setAaa(result.data.createBoard.message)

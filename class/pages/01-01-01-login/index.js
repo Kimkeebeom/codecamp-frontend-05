@@ -1,4 +1,4 @@
-import {MyTitle, MyEmail} from '../../styles/emotion'
+import {MyTitle} from '../../styles/emotion'
 
 
 export default function LoginPage(){

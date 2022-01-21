@@ -3,9 +3,9 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
-//javascript 들어가는 부분
+// javascript 들어가는 부분
 
-  return ( //html 들어가는 부분
+  return ( // html 들어가는 부분
     <div className={styles.container}>
       <Head>
         <title>Create Next App</title>

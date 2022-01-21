@@ -1,4 +1,4 @@
-import axios from 'axios'
+// import axios from 'axios'
 import {useState} from 'react'
 import {useMutation, gql} from '@apollo/client'
 
@@ -21,7 +21,7 @@ export default function GraphqlMutationProduct(){
     const [createProduct] = useMutation(CREATE_PRODUCT)
    
     const onClickSubmit = async() => {
-        //const result = await axios.get("https:koreanjson.com/posts/1")
+        // const result = await axios.get("https:koreanjson.com/posts/1")
         await createProduct({
             variables: {
                 seller: seller,

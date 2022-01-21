@@ -17,7 +17,7 @@ export default function GraphqlMutationArgsMytest(){
     const [myTitle, setMyTitle] = useState("")
     const [myContents, setMyContents] = useState("")
 
-    const [msg, setMsg] = useState(""); //등록이 잘 되었는지 페이지 화면에서 보여줌
+    const [msg, setMsg] = useState(""); // 등록이 잘 되었는지 페이지 화면에서 보여줌
     const [createMyboard] = useMutation(CREATE_BOARD);
 
     const registerMyboard = async() => {

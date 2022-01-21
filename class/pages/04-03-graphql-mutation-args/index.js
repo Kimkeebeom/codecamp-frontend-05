@@ -1,4 +1,4 @@
-import axios from 'axios'
+// import axios from 'axios'
 import {useState} from 'react'
 import {useMutation, gql} from '@apollo/client'
 
@@ -17,7 +17,7 @@ export default function GraphqlMutationsArgs(){
     const [qqq] = useMutation(CREATE_BOARD)
    
     const zzz = async() => {
-        //const result = await axios.get("https:koreanjson.com/posts/1")
+        // const result = await axios.get("https:koreanjson.com/posts/1")
         const result = await qqq({
             variables: {writer:"김기범", title:"노제란?", contents:"댄서?ㄴㄴ 노드제이에스"}
         })

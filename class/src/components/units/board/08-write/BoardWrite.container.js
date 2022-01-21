@@ -1,11 +1,11 @@
-import axios from 'axios'
+// import axios from 'axios'
 import {useState} from 'react'
 import { useMutation } from '@apollo/client'
 import BoardWriteUI from './BoardWrite.presenter'
 import { CREATE_BOARD, UPDATE_BOARD } from './BoardWrite.queries'
 import { useRouter } from 'next/router'
 
-//등록하기 페이지
+// 등록하기 페이지
 export default function BoardWrite(props){
     const router = useRouter()
     const [isActive, setIsActive] = useState(false)
@@ -17,7 +17,7 @@ export default function BoardWrite(props){
     const [aaa, setAaa] = useState("")
     const [qqq] = useMutation(CREATE_BOARD)
     const [www] = useMutation(UPDATE_BOARD)
-    //등록하기 함수
+    // 등록하기 함수
     const zzz = async () => {
         // const result = await axios.get("https://koreanjson.com/posts/1")
         const result = await qqq({ 
@@ -28,13 +28,13 @@ export default function BoardWrite(props){
 
         router.push(`/08-05-boards/${result.data.createBoard.number}`)
     }
-    //수정하기 함수 xxx
+    // 수정하기 함수 xxx
     const xxx = async () => {
         console.log('수정하기를 클릭하셨군요!!!')
-        await www({ //꼭 const result = await www 이런식으로 변수에 담지 않아도 된다.
+        await www({ // 꼭 const result = await www 이런식으로 변수에 담지 않아도 된다.
             variables: { number: Number(router.query.mynumber), writer: myWriter, title: myTitle, contents: myContents}
         })
-        //console.log(result.data.updateBoard.message)
+        // console.log(result.data.updateBoard.message)
         router.push(`/08-05-boards/${router.query.mynumber}`)
     }
 
@@ -60,8 +60,8 @@ export default function BoardWrite(props){
     return(
         <BoardWriteUI 
             bbb={aaa}
-            ccc={zzz} //등록하기
-            xxx={xxx} //수정하기 함수
+            ccc={zzz} // 등록하기
+            xxx={xxx} // 수정하기 함수
             ddd={onChangeMyWriter}
             eee={onChangeMyTitle}
             fff={onChangeMyContents}

@@ -1,4 +1,4 @@
-//상세페이지
+// 상세페이지
 import {useRouter} from 'next/router'
 import {useQuery, gql} from "@apollo/client"
 

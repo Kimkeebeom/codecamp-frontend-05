@@ -1,9 +1,9 @@
 // import {MyInput, MyButton} from './BoardWrite.styles'
-import * as S from './BoardWrite.styles' //위의 import식에서 {}안에 많은 변수를 담기 힘들때 한꺼번에 가져올 때 쓸 수 있는 코드
+import * as S from './BoardWrite.styles' // 위의 import식에서 {}안에 많은 변수를 담기 힘들때 한꺼번에 가져올 때 쓸 수 있는 코드
 
-//등록하기 페이지 HTML
+// 등록하기 페이지 HTML
 export default function BoardWriteUI(props){
-//HTML
+// HTML
     return(
     <>
         <h1>{props.isEdit ? "수정하기" : "등록하기"}</h1>

@@ -1,4 +1,4 @@
-//상품 상세페이지  
+// 상품 상세페이지  
 
 import { useRouter } from "next/router";
 import { useQuery, gql } from "@apollo/client";
@@ -6,6 +6,7 @@ import { useQuery, gql } from "@apollo/client";
 const FETCH_PRODUCT = gql`
   query fetchProduct($productId: ID) {
     fetchProduct(productId: $productId) {
+      _id
       seller
       name
       detail
@@ -24,7 +25,7 @@ export default function ProductDetailPage() {
   console.log(data)
 
   const onClickMoveToEdit = () => {
-    router.push(`/08-06-Products/${router.query.mynumber}/edit`)
+    router.push(`/08-06-products/${router.query.mynumber}/edit`)
   }
 
   return (

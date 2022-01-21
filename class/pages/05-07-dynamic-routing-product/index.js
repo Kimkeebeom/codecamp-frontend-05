@@ -1,4 +1,4 @@
-import axios from 'axios'
+// import axios from 'axios'
 import {useState} from 'react'
 import {useMutation, gql} from '@apollo/client'
 import { useRouter } from 'next/router'
@@ -24,11 +24,11 @@ export default function GraphqlMutationProduct(){
     const [createProduct] = useMutation(CREATE_PRODUCT)
    
     const onClickSubmit = async() => {
-        //const result = await axios.get("https:koreanjson.com/posts/1")
+        // const result = await axios.get("https:koreanjson.com/posts/1")
         try{
             const result = await createProduct({
                 variables: {
-                    seller: seller, //key와 value가 같으면 seller, 이렇게 쓸 수 있다.(shorthand property)
+                    seller: seller, // key와 value가 같으면 seller, 이렇게 쓸 수 있다.(shorthand property)
                     createProductInput: {
                         name: name, 
                         detail: detail,
@@ -37,15 +37,15 @@ export default function GraphqlMutationProduct(){
                 }
             })
             // console.log(result.data.createProductInput._id)
-            //Router.push('/')
-            console.log(result.data.createProduct._id) //b8b71278-df1c-40ee-a26c-83d2da281201
+            // Router.push('/')
+            console.log(result.data.createProduct._id) // b8b71278-df1c-40ee-a26c-83d2da281201
     
-            router.push(`/05-08-dynamic-routed-product/'${result.data.createProduct._id}`) //템플릿 리터럴 방식 
+            router.push(`/05-08-dynamic-routed-product/'${result.data.createProduct._id}`) // 템플릿 리터럴 방식 
         } catch(error){
             console.log(error.message)
-        } //finally {
+        } // finally {
 
-        //}//성공을 했든 실패를 했든 무조건 마지막에 실행되는 기능
+        // }// 성공을 했든 실패를 했든 무조건 마지막에 실행되는 기능
         
     }
 

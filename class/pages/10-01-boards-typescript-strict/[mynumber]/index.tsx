@@ -1,5 +1,6 @@
+//상세페이지
 import {useRouter} from 'next/router'
-import {gql, useQuery} from '@apollo/client'
+import {useQuery, gql} from "@apollo/client"
 
 const FETCH_BOARD = gql`
     query fetchBoard($number: Int){
@@ -11,22 +12,27 @@ const FETCH_BOARD = gql`
     }
 `
 
-export default function DynamicRoutedPage(){
+export default function BoardsDetailPage(){
     const router = useRouter()
 
     const { data } = useQuery(FETCH_BOARD, {
-        variables: { number: Number(router.query.board) }
-    }) // query의 변수명은 data라는 이름만 설정이 가능하다. 그리고 {}를 써야한다.
-
+        variables: {number: Number(router.query.mynumber)}
+    })
 
     console.log(data)
 
-    return(
+    const onClickMoveToEdit = () => {
+        router.push(`/09-01-boards/${router.query.mynumber}/edit`)
+    }
+
+            
+    return( 
         <div>
-            <div>{router.query.board}번 게시글 페이지 이동완료!!</div>
+            <div>{router.query.mynumber}번 게시글 페이지 이동완료!!</div>
             <div>작성자: {data?.fetchBoard.writer}</div>
             <div>제목: {data?.fetchBoard.title}</div>
             <div>내용: {data?.fetchBoard.contents}</div> 
+            <button onClick={onClickMoveToEdit}>수정하러 이동하기</button>
         </div>
     )
 }

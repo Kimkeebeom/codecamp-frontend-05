@@ -1,4 +1,4 @@
-//상품 HTML 페이지
+// 상품 HTML 페이지
 
 import * as S from "./Quiz2-3-1.styles";
 

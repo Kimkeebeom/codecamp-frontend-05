@@ -1,4 +1,4 @@
-//상품 등록페이지
+// 상품 등록페이지
 
 import ProductWrite from "../../../src/components/units/product/write/Quiz2-3-1.container";
 
