@@ -1,5 +1,6 @@
-import '../styles/globals.css' //추 후에 css가 아닌 emotion으로 변경 및 적용 가능
+import '../styles/globals.css' // 추후에 css가 아닌 emotion으로 변경 및 적용 가능
 import {ApolloClient, InMemoryCache, ApolloProvider} from '@apollo/client' 
+
 
 function MyApp({ Component, pageProps }) {
 
@@ -9,7 +10,7 @@ function MyApp({ Component, pageProps }) {
   })
   
   return(
-    <ApolloProvider client={client}> 
+    <ApolloProvider client={client}>
       <Component {...pageProps} />
     </ApolloProvider>
   )

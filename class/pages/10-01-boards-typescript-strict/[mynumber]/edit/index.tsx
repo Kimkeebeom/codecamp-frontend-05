@@ -12,11 +12,11 @@ const FETCH_BOARD = gql`
     }
 `
 
-//수정페이지
+// 수정페이지
 export default function BoardsEditPage(){
     const router = useRouter()
 
-    //1. router.query.mynumber로 해당 게시글 fetchBoard
+    // 1. router.query.mynumber로 해당 게시글 fetchBoard
     const { data } = useQuery(FETCH_BOARD, {
         variables: {number: Number(router.query.mynumber)}
     })

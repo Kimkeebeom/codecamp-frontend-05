@@ -26,7 +26,7 @@ export default function GraphqlMutationProduct(){
     const onClickSubmit = async() => {
         // const result = await axios.get("https:koreanjson.com/posts/1")
         try{
-            const result = await createProduct({
+            const result = await createProduct({ // 어떠한 변수명을 설정해줘도 상관없다.(resutl)
                 variables: {
                     seller: seller, // key와 value가 같으면 seller, 이렇게 쓸 수 있다.(shorthand property)
                     createProductInput: {

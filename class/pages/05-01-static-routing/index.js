@@ -9,7 +9,7 @@ export default function StaticRoutingPage(){
 
 
     return(
-        <button onClick={onClickMove}>페이지</button>
+        <button onClick={onClickMove}>페이지 이동하기!</button>
     )
 
 }

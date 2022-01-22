@@ -14,8 +14,9 @@ const FETCH_PRODUCT = gql`
 
 export default function DynamicRoutedPage() {
   const router = useRouter();
+
   const { data } = useQuery(FETCH_PRODUCT, {
-    variables: { productId: router.query.board },
+    variables: { productId: router.query.board }
   });
 
   console.log(data);

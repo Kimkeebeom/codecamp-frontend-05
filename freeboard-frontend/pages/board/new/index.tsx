@@ -2,13 +2,15 @@ import { useMutation,gql } from '@apollo/client'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 
-import {Label, Name, Password, Title, Content, Address, 
-    Register, Combined, Writer,Pwd, Spancombined, 
+import {Label, 
+    Name, Password, Title, Content, Address, 
+    Register, Combined, Writer, Pwd, Spancombined, 
     Wrapper, MainTitle, WrapperHeader, Youtube, WrapperAddress
-    ,Search,AddressText,WrapperAddressText, WrapperPhoto, 
+    ,Search, AddressText, WrapperAddressText, WrapperPhoto, 
     PhotoUpload, Click, SubTitle, SubContent, SubAddress, 
     SubYoutube, SubPhoto, Radio, SubRadio, NameError, PasswordError, 
     CntError, TitleError, Span} from '../../../styles/boardindex'
+import { CreatedAt } from '../../../styles/boardList'
 
     const CREATE_BOARD = gql`
     mutation createBoard($createBoardInput: CreateBoardInput!){
@@ -17,6 +19,7 @@ import {Label, Name, Password, Title, Content, Address,
             writer
             title
             contents
+            createdAt
         }
     }
 `
@@ -25,7 +28,7 @@ export default function boardPage() {
     const router = useRouter()
 
     const [createMyboard] = useMutation(CREATE_BOARD)
-    const [msg, setMsg] = useState("")
+    // const [msg, setMsg] = useState("")
 
     const [writer, setWriter] = useState("")
     const [writererror, setWritererror] = useState("")
@@ -39,7 +42,7 @@ export default function boardPage() {
     const [contents, setContents] = useState("")
     const [contentserror, setContentserror] = useState("")
 
-    //등록했을 때, 서버에 저장을 요청하는 기능
+    // 등록했을 때, 서버에 저장을 요청하는 기능
     // const regisA = async() => {
     //     const result = await createMyboard({
     //         variables:{createBoardInput:{writer:writer,password:pwd,title:title,contents:contents}}
@@ -123,7 +126,8 @@ export default function boardPage() {
                             writer:writer,
                             password:pwd,
                             title:title,
-                            contents:contents}}
+                            contents:contents,
+                            }}
                 })
                 alert("게시물이 등록되었습니다.")
                 console.log(result.data.createBoard._id)
@@ -140,9 +144,9 @@ export default function boardPage() {
         <Wrapper>
             <WrapperHeader>
                 <MainTitle>게시물 등록</MainTitle>
-            </WrapperHeader>    
-        
-           <Spancombined>
+            </WrapperHeader>
+
+            <Spancombined>
                 <Writer>작성자</Writer>
                 <Pwd>비밀번호</Pwd>
             </Spancombined>
@@ -156,7 +160,6 @@ export default function boardPage() {
                     <Span>{pwderror}</Span>
                 </PasswordError>
             </Combined>
-            
 
             <SubTitle>제목</SubTitle>
             <Title type="text" onChange={subject} placeholder='제목을 작성해주세요'/>
@@ -182,7 +185,6 @@ export default function boardPage() {
                     <AddressText type="address"/>
             </WrapperAddressText>
 
-
             <SubYoutube>유튜브</SubYoutube>
             <Youtube type="text" placeholder='링크를 복사해주세요'/>
 
@@ -200,7 +202,7 @@ export default function boardPage() {
             </Radio>
 
             <Register onClick={regis}>등록하기</Register>
-            <div>{msg}</div>
+            {/* <div>{msg}</div> */}
 
         </Wrapper>
     )

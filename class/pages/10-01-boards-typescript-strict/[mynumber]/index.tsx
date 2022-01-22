@@ -1,4 +1,4 @@
-//상세페이지
+// 상세페이지
 import {useRouter} from 'next/router'
 import {useQuery, gql} from "@apollo/client"
 
@@ -29,9 +29,9 @@ export default function BoardsDetailPage(){
     return( 
         <div>
             <div>{router.query.mynumber}번 게시글 페이지 이동완료!!</div>
-            <div>작성자: {data?.fetchBoard.writer}</div>
-            <div>제목: {data?.fetchBoard.title}</div>
-            <div>내용: {data?.fetchBoard.contents}</div> 
+                <div>작성자: {data?.fetchBoard.writer}</div>
+                <div>제목: {data?.fetchBoard.title}</div>
+                <div>내용: {data?.fetchBoard.contents}</div> 
             <button onClick={onClickMoveToEdit}>수정하러 이동하기</button>
         </div>
     )

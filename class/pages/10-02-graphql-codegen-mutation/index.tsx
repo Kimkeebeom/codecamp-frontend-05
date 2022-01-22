@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { useMutation, gql } from "@apollo/client";
-import {
-  IMutation,
-  IMutationCreateBoardArgs,
+import {IMutation,IMutationCreateBoardArgs,
 } from "../../src/commons/types/generated/types";
 
 const CREATE_BOARD = gql`
