@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import {BsPencilSquare} from 'react-icons/bs'
 import {BoundaryContents, Boundary, BoundaryHeader,BtnBox, Register,
     Number,HeaderNumber,Title,HeaderTitle,Writer,HeaderWriter,
-    CreatedAt,HeaderCreatedAt} from '../../styles/boardList'
+    CreatedAt,HeaderCreatedAt} from '../../../styles/boardList'
 
 const FETCH_BOARDS = gql`
     query fetchBoards{
