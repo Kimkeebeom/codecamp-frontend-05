@@ -1,23 +1,23 @@
-//등록 페이지
+// 등록 페이지
 import { useMutation } from '@apollo/client'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 import BoardWriteUI from './BoardWrite.presenter'
-import {CREATE_BOARD, UPDATE_BOARD} from './BoardWrite.queries'
+import { CREATE_BOARD, UPDATE_BOARD } from './BoardWrite.queries'
 
-export default function BoardWrite(props) {
-    const router = useRouter()
+export default function BoardWrite (props) {
+  const router = useRouter()
 
-    const [createMyBoard] = useMutation(CREATE_BOARD)
-    // const [msg, setMsg] = useState("")
-    const [updateMyBoard] = useMutation(UPDATE_BOARD)
+  const [createMyBoard] = useMutation(CREATE_BOARD)
+  // const [msg, setMsg] = useState("")
+  const [updateMyBoard] = useMutation(UPDATE_BOARD)
 
-    const [isActive, setIsActive] = useState(false)
+  const [isActive, setIsActive] = useState(false)
 
-    const [writer, setWriter] = useState("")
-    const [writerError, setWriterError] = useState("")
-
-    const [pwd, setPwd] = useState("")
+  const [writer, setWriter] = useState("")
+  const [writerError, setWriterError] = useState("")
+ 
+  const [pwd, setPwd] = useState("")
     const [pwdError, setPwdError] = useState("")
 
     const [title, setTitle] = useState("")
@@ -143,25 +143,33 @@ export default function BoardWrite(props) {
     }
 
     async function updateBoard(){
-        // interface IMyUpdateBoardInput {
-        //     title?: string
-        //     contents?: string
-        //   }
-        //   const myUpdateBoardInput: IMyUpdateBoardInput = {}
-        //   if(title) myUpdateBoardInput.title = title
-        //   if(contents) myUpdateBoardInput.contents = contents
-        
+        if(!title&& !contents){
+            alert("둘중 하나는 입력해야 합니다.")
+        }
+
+        if(!pwd){
+            alert("비밀번호를 입력해주세요")
+        }
+
+        interface IUpdatedBoardInput{
+            title?: string
+            contents?: string
+        }
+        const myUpdateBoardInput: IUpdatedBoardInput = {}
+        if(title !== "") myUpdateBoardInput.title = title
+        if(contents !== "") myUpdateBoardInput.contents = contents
+
+        console.log(myUpdateBoardInput)
+
         try { 
+            
             const Variables = {
-                updateBoardInput: {},
+                updateBoardInput: myUpdateBoardInput,
                 password: pwd,
                 boardId: router.query.move
               }
-        
-              if(title !== "") Variables.updateBoardInput.title = title
-              if(contents !== "") Variables.updateBoardInput.contents = contents
-        
-              await updateMyBoard({ variables: Variables })
+              
+             await updateMyBoard({ variables: Variables })
           
               alert("수정이 완료되었습니다.")
               router.push(`/board/${router.query.move}`)

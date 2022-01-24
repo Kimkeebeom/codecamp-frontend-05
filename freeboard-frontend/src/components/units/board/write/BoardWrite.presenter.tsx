@@ -30,7 +30,7 @@ export default function BoardWriteUI(props){
             </S.TitleError>
 
             <S.SubContent>내용</S.SubContent>
-            <S.Content type="textarea" onChange={props.issue} placeholder='내용을 작성해주세요'
+            <S.Content  onChange={props.issue} placeholder='내용을 작성해주세요'
                         defaultValue={props.isEdit ? props.data?.fetchBoard?.contents : ""}/>
             <S.CntError>
                 <S.Span>{props.contentsError}</S.Span>

@@ -25,7 +25,7 @@ export default function BoardDetail(){
                 variables: { boardId: String(router.query.move)}
             })
             alert('삭제가 완료되었습니다.')
-            router.push(`/board/new`)
+            router.push(`/board/list`)
         } catch(error){
             alert(error.message)
         }

@@ -280,6 +280,9 @@ export const Button = styled.button`
     left: 600px;
     top: 1695px;
     background-color: ${(props) => props.isActive === true ? "yellow" : "grey"};
+    :hover {
+        cursor: ${(props) => props.isActive === true ? "pointer" : "pointer"};
+    }
     /* width: 179px;
     height: 52px;
     border: none;
