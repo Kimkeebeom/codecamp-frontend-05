@@ -1,14 +1,16 @@
-import { useMutation, gql } from '@apollo/client'
+//등록 페이지
+import { useMutation } from '@apollo/client'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 import BoardWriteUI from './BoardWrite.presenter'
-import {CREATE_BOARD} from './BoardWrite.queries'
+import {CREATE_BOARD, UPDATE_BOARD} from './BoardWrite.queries'
 
-export default function BoardWrite() {
+export default function BoardWrite(props) {
     const router = useRouter()
 
-    const [createMyboard] = useMutation(CREATE_BOARD)
+    const [createMyBoard] = useMutation(CREATE_BOARD)
     // const [msg, setMsg] = useState("")
+    const [updateMyBoard] = useMutation(UPDATE_BOARD)
 
     const [isActive, setIsActive] = useState(false)
 
@@ -121,8 +123,8 @@ export default function BoardWrite() {
             setContentsError("내용을 입력해주세요.")
         }
         if(writer !== "" && pwd !== "" && title !== "" && contents !== ""){
-            // try{
-                const result = await createMyboard({
+            try{
+                const result = await createMyBoard({
                     variables:{
                         createBoardInput:{
                             writer:writer,
@@ -134,22 +136,56 @@ export default function BoardWrite() {
                 alert("게시물이 등록되었습니다.")
                 console.log(result.data.createBoard._id)
                 router.push(`/board/${result.data.createBoard._id}`)
-            // } catch(error) {
-            //     console.log(error.message)
-            // }
+            } catch(error) {
+                 console.log(error.message)
+            }
         }
+    }
 
+    async function updateBoard(){
+        // interface IMyUpdateBoardInput {
+        //     title?: string
+        //     contents?: string
+        //   }
+        //   const myUpdateBoardInput: IMyUpdateBoardInput = {}
+        //   if(title) myUpdateBoardInput.title = title
+        //   if(contents) myUpdateBoardInput.contents = contents
         
+        try { 
+            const Variables = {
+                updateBoardInput: {},
+                password: pwd,
+                boardId: router.query.move
+              }
+        
+              if(title !== "") Variables.updateBoardInput.title = title
+              if(contents !== "") Variables.updateBoardInput.contents = contents
+        
+              await updateMyBoard({ variables: Variables })
+          
+              alert("수정이 완료되었습니다.")
+              router.push(`/board/${router.query.move}`)
+          } catch (error) {
+            alert(error.message);
+          }
+    }
+
+    const MoveToBoardList = () => {
+        router.push("/board/list")
     }
 
     return(
         <BoardWriteUI
             isActive={isActive}
+            isEdit={props.isEdit}
+            data={props.data}
             user={user}
             password={password}
             subject={subject}
             issue={issue}
             regis={regis}
+            updateBoard={updateBoard}
+            MoveToBoardList={MoveToBoardList}
             writerError={writerError}
             pwdError={pwdError}
             titleError={titleError}

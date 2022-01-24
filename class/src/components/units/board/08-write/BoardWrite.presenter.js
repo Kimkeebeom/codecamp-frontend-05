@@ -13,10 +13,10 @@ export default function BoardWriteUI(props){
         <S.MyButton 
             onClick={props.isEdit ? props.xxx : props.ccc} 
             ggg={props.isActive}
-        >
+        > 
             {props.isEdit ? "수정하기" : "등록하기"}
         </S.MyButton>
-
+        {/* xxx : 수정하기 / zzz : 등록하기 */}
             {/* {props.isEdit ? (
                 <S.MyButton onClick={props.xxx} ggg={props.xxx}>수정하기</S.MyButton>
             ) : (

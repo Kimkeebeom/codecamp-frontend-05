@@ -268,7 +268,7 @@ export const Radio = styled.div`
     top: 1591px;
 `
 
-export const Register = styled.button`
+export const Button = styled.button`
     width: 179px;
     height: 52px;
     display: flex;
@@ -277,7 +277,43 @@ export const Register = styled.button`
     align-items: center;
     padding: 14px 60px;
     position: absolute;
-    left: 510px;
+    left: 600px;
     top: 1695px;
     background-color: ${(props) => props.isActive === true ? "yellow" : "grey"};
+    /* width: 179px;
+    height: 52px;
+    border: none;
+    font-size: 16px;
+    font-weight: 500;
+    margin-left: 12px;
+    margin-right: 12px;
+    background-color: ${(props) => props.isActive === true ? "yellow" : "grey"};
+    
+    :hover {
+        cursor: ${(props) => props.isActive === true ? "pointer" : "default"};
+    } */
+`
+export const MoveToBoardList = styled.button`
+    /* width: 179px;
+    height: 52px;
+    border: none;
+    font-size: 16px;
+    font-weight: 500;
+    margin-left: 12px;
+    margin-right: 12px; */
+    width: 179px;
+    height: 52px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 14px 60px;
+    position: absolute;
+    left: 400px;
+    top: 1695px;
+    background-color: ${(props) => props.isActive === true ? "grey" : "yellow"};
+    
+    :hover {
+        cursor: ${(props) => props.isActive === true ? "pointer" : "pointer"};
+    }
 `

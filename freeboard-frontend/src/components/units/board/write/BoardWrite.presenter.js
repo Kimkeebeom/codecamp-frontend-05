@@ -4,15 +4,15 @@ export default function BoardWriteUI(props){
     return(
         <S.Wrapper>
             <S.WrapperHeader>
-                <S.MainTitle>게시물 등록</S.MainTitle>
+                <S.MainTitle>{props.isEdit ? "게시판 수정" : "게시판 등록"}</S.MainTitle>
             </S.WrapperHeader>
-
             <S.Spancombined>
                 <S.Writer>작성자</S.Writer>
                 <S.Pwd>비밀번호</S.Pwd>
             </S.Spancombined>
             <S.Combined>
-                <S.Name type="text" onChange={props.user} placeholder='이름을 적어주세요' />
+                <S.Name type="text" onChange={props.user} placeholder='이름을 적어주세요' 
+                        defaultValue={props.isEdit ? props.data?.fetchBoard?.writer : ""}/>
                 <S.NameError>
                     <S.Span>{props.writerError}</S.Span>
                 </S.NameError>
@@ -23,13 +23,15 @@ export default function BoardWriteUI(props){
             </S.Combined>
 
             <S.SubTitle>제목</S.SubTitle>
-            <S.Title type="text" onChange={props.subject} placeholder='제목을 작성해주세요'/>
+            <S.Title type="text" onChange={props.subject} placeholder='제목을 작성해주세요'
+                    defaultValue={props.isEdit ? props.data?.fetchBoard?.title : ""}/>
             <S.TitleError>
                 <S.Span>{props.titleError}</S.Span>
             </S.TitleError>
 
             <S.SubContent>내용</S.SubContent>
-            <S.Content type="textarea" onChange={props.issue} placeholder='내용을 작성해주세요'/>
+            <S.Content type="textarea" onChange={props.issue} placeholder='내용을 작성해주세요'
+                        defaultValue={props.isEdit ? props.data?.fetchBoard?.contents : ""}/>
             <S.CntError>
                 <S.Span>{props.contentsError}</S.Span>
             </S.CntError>
@@ -62,9 +64,14 @@ export default function BoardWriteUI(props){
             <input type="radio"/>사진
             </S.Radio>
 
-            <S.Register onClick={props.regis} isActive={props.isActive}>등록하기</S.Register>
+            <S.Button 
+                onClick={props.isEdit ? props.updateBoard : props.regis} 
+                isActive={props.isActive}
+            >
+                {props.isEdit ? "게시글 수정" : "게시글 등록"}    
+            </S.Button>
             {/* <div>{msg}</div> */}
-
+            <S.MoveToBoardList onClick={props.MoveToBoardList} isActive={props.isActive}>목록으로</S.MoveToBoardList>
         </S.Wrapper>
     )
 }
