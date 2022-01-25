@@ -32,9 +32,7 @@ export default function ModalAddressPage() {
         우편번호 검색
       </Button>
       {isModalVisible && (
-        <Modal
-          title="Basic Modal"
-          visible={true}
+        <Modal visible={true}
           onOk={handleOk}
           onCancel={handleCancel}
         >

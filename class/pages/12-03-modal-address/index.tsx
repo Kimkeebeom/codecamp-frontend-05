@@ -32,7 +32,6 @@ const onCompleteDaumPostCode = (data: any) => {
         우편번호 검색
       </Button>
       <Modal
-        title="Basic Modal"
         visible={isModalVisible}
         onOk={handleOk}
         onCancel={handleCancel}

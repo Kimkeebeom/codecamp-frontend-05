@@ -1,9 +1,10 @@
+// eslint-disable-next-line no-use-before-define
 import React, { ChangeEvent, useState } from "react";
 import { Modal, Button } from "antd";
 
 export default function ModalCustomPage() {
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [password, setPassword] = useState("");
+  const [, setPassword] = useState("");
   const showModal = () => {
     setIsModalVisible(true);
   };

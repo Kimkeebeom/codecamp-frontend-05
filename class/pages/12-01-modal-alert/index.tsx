@@ -6,7 +6,7 @@ export default function ModalAlertPage() {
     }
     const onClickFail = () => {
         // console.log(Modal.error({content: "비밀번호가 틀렸습니다."}));
-     Modal.confirm({content: "게시물 등록 성공"});
+     Modal.confirm({content: "게시물 등록 실패"});
     }
   return (
     <div>
