@@ -143,13 +143,13 @@ export default function BoardWrite (props) {
     }
 
     async function updateBoard(){
-        if(!title&& !contents){
-            alert("둘중 하나는 입력해야 합니다.")
-        }
+        // if(!title&& !contents){
+        //     alert("둘중 하나는 입력해야 합니다.")
+        // }
 
-        if(!pwd){
-            alert("비밀번호를 입력해주세요")
-        }
+        // if(!pwd){
+        //     alert("비밀번호를 입력해주세요")
+        // }
 
         interface IUpdatedBoardInput{
             title?: string

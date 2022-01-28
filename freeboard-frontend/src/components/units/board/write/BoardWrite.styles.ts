@@ -15,9 +15,9 @@ export const WrapperHeader = styled.div`
     height: 53px;
     display: flex;
     justify-content: center;
-    position: absolute;
+    /*  
     left: 10px;
-    top: 60px;
+    top: 60px; */
 `
 
 export const MainTitle = styled.div`
@@ -71,7 +71,7 @@ export const Spancombined = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    position: absolute;
+     
     left: 101px;
     top: 193px;
 `
@@ -84,7 +84,7 @@ export const NameError = styled.div`
     width: 486px;
     height: 20px;
     box-sizing: border-box;
-    position: absolute;
+     
     left: 0px;
     top: 55px;
 `
@@ -96,7 +96,7 @@ export const PasswordError = styled.div`
     width: 486px;
     height: 20px;
     box-sizing: border-box;
-    position: absolute;
+     
     right: 0px;
     top: 53px;
 `
@@ -108,7 +108,7 @@ export const Combined = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    position: absolute;
+     
     left: 101px;
     top: 233px;
     
@@ -116,7 +116,7 @@ export const Combined = styled.div`
 export const Title = styled.input`
     width: 996px;
     height: 52px;
-    position: absolute;
+     
     left: 101px;
     top: 365px;
 `
@@ -124,13 +124,13 @@ export const Title = styled.input`
 export const TitleError = styled.div`
     width: 996px;
     height: 20px;
-    position: absolute;
+     
     left: 101px;
     top: 420px;
 `
 
 export const SubTitle = styled.span`
-    position: absolute;
+     
     width: 40px;
     height: 24px;
     left: 101px;
@@ -138,7 +138,7 @@ export const SubTitle = styled.span`
 `
 
 export const SubContent = styled.span`
-    position: absolute;
+     
     left: 101px;
     top: 457px;
 `
@@ -147,7 +147,7 @@ export const Content = styled.textarea`
     width: 996px;
     height: 480px;
     padding-bottom: 450px;
-    position: absolute;
+     
     left: 101px;
     top: 497px;
 `
@@ -155,13 +155,13 @@ export const Content = styled.textarea`
 export const CntError = styled.div`
     width: 996px;
     height: 20px;
-    position: absolute;
+     
     left: 101px;
     top: 520px;
 `
 
 export const SubAddress = styled.span`
-    position: absolute;
+     
     left: 101px;
     top: 993px; 
 `
@@ -172,7 +172,7 @@ export const WrapperAddress = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    position: absolute;
+     
     left: 101px;
     top: 1033px;
 `
@@ -203,7 +203,7 @@ export const WrapperAddressText = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    position: absolute;
+     
     left: 101px;
     top: 1101px;
 `
@@ -215,7 +215,7 @@ export const AddressText = styled.input`
 `
 
 export const SubPhoto = styled.span`
-    position: absolute;
+     
     left: 101px;
     top: 1393px;
 `
@@ -224,7 +224,7 @@ export const WrapperPhoto = styled.div`
     width: 282px;
     height: 94px;
     display: flex;
-    position: absolute;
+     
     left: 101px;
     top: 1433px;
 `
@@ -241,7 +241,7 @@ export const PhotoUpload = styled.button`
 `
 
 export const SubYoutube = styled.span`
-    position: absolute;
+     
     left: 101px;
     top: 1272px;
 `
@@ -249,13 +249,13 @@ export const SubYoutube = styled.span`
 export const Youtube = styled.input`
     width: 996px;
     height: 45.78px;
-    position: absolute;
+     
     left: 101px;
     top: 1307.22px;
 `
     
 export const SubRadio = styled.span`
-    position: absolute;
+     
     left: 101px;
     top: 1551px;
 `
@@ -263,7 +263,7 @@ export const SubRadio = styled.span`
 export const Radio = styled.div`
     width: 123px;
     height: 24px;
-    position: absolute;
+     
     left: 101px;
     top: 1591px;
 `
@@ -276,7 +276,7 @@ export const Button = styled.button`
     justify-content: center;
     align-items: center;
     padding: 14px 60px;
-    position: absolute;
+     
     left: 600px;
     top: 1695px;
     background-color: ${(props) => props.isActive === true ? "yellow" : "grey"};
@@ -311,7 +311,7 @@ export const MoveToBoardList = styled.button`
     justify-content: center;
     align-items: center;
     padding: 14px 60px;
-    position: absolute;
+     
     left: 400px;
     top: 1695px;
     background-color: ${(props) => props.isActive === true ? "grey" : "yellow"};
