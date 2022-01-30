@@ -84,31 +84,6 @@ export default function BoardWrite (props) {
           }
     }
 
-    // function regis(){
-        
-    //     regisA();
-        // let check = true
-
-        // if(writer.length <= 0 === true){
-        //     setWritererror("이름을 적어주세요")
-        //     check = false
-        // } 
-        // if(pwd.length < 1 === true){
-        //     setPwderror("비밀번호를 입력해주세요")
-        //     check = false
-        // }
-        // if(title.length < 1 === true){
-        //     setTitleerror("제목을 입력해주세요")
-        //     check = false
-        // }
-        // if(contents.length < 1 === true){
-        //     setContenterror("내용을 입력해주세요")
-        //     check = false
-        // }
-        // if(writer.length )
-
-    // }
-
     async function regis() {
         if(writer === ""){
             setWriterError("작성자를 입력해주세요.")
@@ -143,19 +118,21 @@ export default function BoardWrite (props) {
     }
 
     async function updateBoard(){
-        // if(!title&& !contents){
-        //     alert("둘중 하나는 입력해야 합니다.")
-        // }
+        if(!title&& !contents){
+            alert("둘중 하나는 입력해야 합니다.")
+            return
+        }
 
-        // if(!pwd){
-        //     alert("비밀번호를 입력해주세요")
-        // }
+        if(!pwd){
+            alert("비밀번호를 입력해주세요")
+            return
+        }
 
         interface IUpdatedBoardInput{
-            title?: string
+            title?: string // ?는 없을수도 있고 있을 수도있다는것을 알려주는 기능
             contents?: string
         }
-        const myUpdateBoardInput: IUpdatedBoardInput = {}
+        const myUpdateBoardInput: IUpdatedBoardInput = {} //비어있기때문에 IUpdateBoardInput타입을 추가해준다.
         if(title !== "") myUpdateBoardInput.title = title
         if(contents !== "") myUpdateBoardInput.contents = contents
 

@@ -12,7 +12,7 @@ export default function BoardWriteUI(props){
             </S.Spancombined>
             <S.Combined>
                 <S.Name type="text" onChange={props.user} placeholder='이름을 적어주세요' 
-                        defaultValue={props.isEdit ? props.data?.fetchBoard?.writer : ""}/>
+                        defaultValue={props.isEdit?props.data?.fetchBoard?.writer : ""}/>
                 <S.NameError>
                     <S.Span>{props.writerError}</S.Span>
                 </S.NameError>
@@ -71,7 +71,7 @@ export default function BoardWriteUI(props){
                 {props.isEdit ? "게시글 수정" : "게시글 등록"}    
             </S.Button>
             {/* <div>{msg}</div> */}
-            <S.MoveToBoardList onClick={props.MoveToBoardList} isActive={props.isActive}>목록으로</S.MoveToBoardList>
+            <S.MoveToBoardList onClick={props.MoveToBoardList} isActive={props.isActive? true : props.isActive}>목록으로</S.MoveToBoardList>
         </S.Wrapper>
     )
 }
