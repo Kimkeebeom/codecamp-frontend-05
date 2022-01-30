@@ -4,6 +4,7 @@ import { AppProps } from 'next/dist/shared/lib/router/router'
 import { Global } from '@emotion/react'
 import Layout from '../src/components/commons/layout'
 import { globalStyles } from '../src/commons/styles/globalStyles'
+import "antd/dist/antd.css"
 
 function MyApp({ Component, pageProps }: AppProps) {
   const client = new ApolloClient({

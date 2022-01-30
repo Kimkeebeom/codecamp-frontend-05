@@ -5,10 +5,11 @@ import { useRouter } from "next/router"
 import { ChangeEvent, useState } from "react"
 import { IMutation, IMutationCreateBoardCommentArgs } from "../../../../commons/types/generated/types"
 import { CREATE_BOARD_COMMENT } from './BoardCommentsWrite.query'
+import BoardCommentWriteUI from './BoardCommentsWrite.presenter'
 
 export default function BoardCommentWrite(){
 
-    const router = useRouter
+    const router = useRouter();
 
     const [writer, setWriter] = useState("")
     const [password, setPassword] = useState("")
@@ -38,25 +39,38 @@ export default function BoardCommentWrite(){
 
     async function onClickRegis(){
         try{
-            const result = await createBoardComment({
+            await createBoardComment({
                 variables:{
-                    CreateBoardCommentInput:{
+                    createBoardCommentInput:{
                         writer: writer,
                         password: password,
                         contents: contents,
                         rating: star
-                    }, boardId: String(router.query.move)
-                }
+                    }, boardId: String(router.query.move) 
+                },
+                // refetchQueries: [
+                //     {
+                //         query: FETCH_BOARD_COMMENTS,
+                //         variables:{ boardId: String(router.query.move)}
+                //     },
+                // ],
             })
             alert("댓글이 등록되었습니다.")
         } catch(error){
-            console.log(error.message)
+            alert(error.message)
         }
     }
     
 
     return(
-
+        <BoardCommentWriteUI
+        onChangeWriter={onChangeWriter}
+        onChangePassword={onChangePassword}
+        onChangeContents={onChangeContents}
+        onChangeStar={onChangeStar}
+        onClickRegis={onClickRegis}
+        contents={contents}
+        />
     )
 
 }

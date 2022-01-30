@@ -26,6 +26,7 @@ export default function BoardWrite (props) {
     const [contents, setContents] = useState("")
     const [contentsError, setContentsError] = useState("")
 
+
     // 등록했을 때, 서버에 저장을 요청하는 기능
     // const regisA = async() => {
     //     const result = await createMyboard({
