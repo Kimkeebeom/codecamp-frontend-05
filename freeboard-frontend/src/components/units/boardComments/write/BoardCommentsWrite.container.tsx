@@ -6,6 +6,7 @@ import { ChangeEvent, useState } from "react"
 import { IMutation, IMutationCreateBoardCommentArgs } from "../../../../commons/types/generated/types"
 import { CREATE_BOARD_COMMENT } from './BoardCommentsWrite.query'
 import BoardCommentWriteUI from './BoardCommentsWrite.presenter'
+import { FETCH_BOARD_COMMENTS } from "../list/BoardCommentsList.query"
 
 export default function BoardCommentWrite(){
 
@@ -48,13 +49,16 @@ export default function BoardCommentWrite(){
                         rating: star
                     }, boardId: String(router.query.move) 
                 },
-                // refetchQueries: [
-                //     {
-                //         query: FETCH_BOARD_COMMENTS,
-                //         variables:{ boardId: String(router.query.move)}
-                //     },
-                // ],
+                refetchQueries: [
+                    {
+                        query: FETCH_BOARD_COMMENTS,
+                        variables:{ boardId: String(router.query.move)}
+                    },
+                ],
             })
+            setWriter("")
+            setPassword("")
+            setContents("")
             alert("댓글이 등록되었습니다.")
         } catch(error){
             alert(error.message)
@@ -69,6 +73,8 @@ export default function BoardCommentWrite(){
         onChangeContents={onChangeContents}
         onChangeStar={onChangeStar}
         onClickRegis={onClickRegis}
+        writer={writer}
+        password={password}
         contents={contents}
         />
     )

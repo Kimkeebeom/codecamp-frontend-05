@@ -1,6 +1,7 @@
 import * as S from './BoardDetail.styles'
 import { getMyDate } from '../../../../commons/libraries/utils'
 import BoardCommentWrite from '../../boardComments/write/BoardCommentsWrite.container'
+import BoardCommentList from '../../boardComments/list/BoardCommentsList.container'
 
 export default function BoardDetailUI(props){
 
@@ -29,6 +30,7 @@ return( // data? : 옵셔널 체이닝(조건부랜더링) => data && data와 �
                 </S.WrapperBottom>
             </S.Wrapper>
             <BoardCommentWrite/>
+            <BoardCommentList/>
         </div>    
     )
 }

@@ -12,7 +12,8 @@ export default function BoardWriteUI(props){
             </S.Spancombined>
             <S.Combined>
                 <S.Name type="text" onChange={props.user} placeholder='이름을 적어주세요' 
-                        defaultValue={props.isEdit?props.data?.fetchBoard?.writer : ""}/>
+                        defaultValue={props.isEdit?props.data?.fetchBoard?.writer : ""}
+                        readOnly={!!props.data?.fetchBoard.writer}/>
                 <S.NameError>
                     <S.Span>{props.writerError}</S.Span>
                 </S.NameError>
