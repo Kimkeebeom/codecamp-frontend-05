@@ -21,7 +21,7 @@ export default function BoardCommentWriteUI(props: IBoardCommentsWriteUIProps){
                 <S.InputWriter 
                 placeholder="작성자" 
                 onChange={props.onChangeWriter}
-                value={props.writer || ""} // 댓글을 등록하기 눌렀을 때, 스테이트 부분이 비워져 있으면 기존에 작성했던 값이 비워진다!
+                value={props.writer} // 댓글을 등록하기 눌렀을 때, 스테이트 부분이 비워져 있으면 기존에 작성했던 값이 비워진다!
                 /> {/* value값이 없으면 뒤에 있는 defaultvalue를 보여줘! */}
                 <S.InputPassword 
                 type="password" 

@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "@apollo/client"
 import { useRouter } from "next/router"
-import { useState } from "react"
+import { MouseEvent, useState } from "react"
 import { 
     IMutation, 
     IMutationDeleteBoardCommentArgs, 
@@ -14,7 +14,7 @@ export default function BoardCommentList(){
     const router = useRouter()
 
     const [password, setPassword] = useState("")
-    const [chooseId, setChooseId] = useState("")
+    // const [chooseId, setChooseId] = useState("")
 
     const {data} = useQuery<
     Pick<IQuery,"fetchBoardComments">,
@@ -28,13 +28,13 @@ export default function BoardCommentList(){
     IMutationDeleteBoardCommentArgs
     >(DELETE_BOARD_COMMENT)
 
-    async function onClickDelete() {
+    async function onClickDelete(event: MouseEvent<HTMLImageElement>) {
         const password = prompt("비밀번호를 입력하세요.")
         try{
             await deleteBoardComment({
                 variables:{
                     password: password,
-                    boardCommentId: chooseId
+                    boardCommentId: event.currentTarget.id // 마우스 이벤트는 커런트타겟으로 받아오면 된다고 생각하자!
                 },
                 refetchQueries: [
                     { 

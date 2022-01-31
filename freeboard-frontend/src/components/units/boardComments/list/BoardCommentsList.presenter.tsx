@@ -24,7 +24,9 @@ export default function BoardCommentsListUI(props){
                             <S.ContentsBox>{el.contents}</S.ContentsBox>
                         </S.MainBox>    
                         <S.IconBox>
-                            <S.UpdateIcon/>
+                            <S.UpdateIcon
+                                src='/images/boardComment/option_update_icon.png'
+                            />
                             <S.DeleteIcon
                                 src='/images/boardComment/option_delete_icon.png'
                                 id={el._id}

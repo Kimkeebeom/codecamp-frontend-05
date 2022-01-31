@@ -53,11 +53,13 @@ export const ContentsBox = styled.div`
 `
 
 export const IconBox = styled.div`
-
+    display: flex;
 `
 
 export const UpdateIcon = styled.img`
-
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
 `
 
 export const DeleteIcon = styled.img`
