@@ -12,28 +12,28 @@ export default function BoardCommentsListUI(props){
 
     return(
         <div>
-                {props.data?.fetchBoardComments?.map((el)=>(
-                    <S.Boundary key={el._id}>
-                        <S.HeaderBox>
-                            <S.Avartar src='/images/board/detail/avatar.png'/>
-                            <S.MainBox>
-                                <S.WriterBox>
-                                    <S.Writer>{el?.writer}</S.Writer>
-                                    <S.Rating value={el?.rating} disabled />
-                                </S.WriterBox>
-                                <S.ContentsBox>{el.contents}</S.ContentsBox>
-                            </S.MainBox>
-                            
-                            <S.IconBox>
-                                <S.UpdateIcon/>
-                                <S.DeleteIcon
+            {props.data?.fetchBoardComments?.map((el)=>(
+                <S.Boundary key={el._id}>
+                    <S.HeaderBox>
+                        <S.Avartar src='/images/board/detail/avatar.png'/>
+                        <S.MainBox>
+                            <S.WriterBox>
+                                <S.Writer>{el?.writer}</S.Writer>
+                                <S.Rating value={el?.rating} disabled />
+                            </S.WriterBox>
+                            <S.ContentsBox>{el.contents}</S.ContentsBox>
+                        </S.MainBox>    
+                        <S.IconBox>
+                            <S.UpdateIcon/>
+                            <S.DeleteIcon
+                                src='/images/boardComment/option_delete_icon.png'
                                 id={el._id}
                                 onClick={props.onClickDelete}
-                                />
-                            </S.IconBox>
-                        </S.HeaderBox>    
-                        <S.CreatedAt>{getMyDate(el.createdAt)}</S.CreatedAt>
-                    </S.Boundary>
+                            />
+                        </S.IconBox>
+                    </S.HeaderBox>    
+                    <S.CreatedAt>{getMyDate(el.createdAt)}</S.CreatedAt>
+                </S.Boundary>
                 ))}
         </div>
     )
