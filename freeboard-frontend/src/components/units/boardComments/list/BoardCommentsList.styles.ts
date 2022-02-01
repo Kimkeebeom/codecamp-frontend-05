@@ -68,6 +68,11 @@ export const DeleteIcon = styled.img`
     cursor: pointer;
 `
 
+export const CommentDeletePassword = styled.input`
+    width: 100%;
+    margin-top: 10px;
+`
+
 export const CreatedAt = styled.div`
 
 `

@@ -4,6 +4,8 @@ import { ChangeEvent, useState } from 'react'
 import { useRouter } from 'next/router'
 import BoardWriteUI from './BoardWrite.presenter'
 import { CREATE_BOARD, UPDATE_BOARD } from './BoardWrite.queries'
+import { Modal } from 'antd'
+
 
 export default function BoardWrite (props) {
     const router = useRouter()
@@ -118,7 +120,7 @@ export default function BoardWrite (props) {
                             youtubeUrl:youtubeUrl
                             }}
                 })
-                alert("게시물이 등록되었습니다.")
+                Modal.success({content: "게시물이 등록되었습니다."})
                 console.log(result.data.createBoard._id)
                 router.push(`/board/${result.data.createBoard._id}`)
             } catch(error) {
@@ -129,12 +131,12 @@ export default function BoardWrite (props) {
 
     async function updateBoard(){
         if(!title && !contents && !youtubeUrl){
-            alert("하나는 입력해야 합니다.")
+            Modal.warning({content: "하나는 입력해야 합니다."})
             return
         }
 
         if(!pwd){
-            alert("비밀번호를 입력해주세요")
+            Modal.warning({content: "비밀번호를 입력해주세요"})
             return
         }
 
@@ -160,7 +162,7 @@ export default function BoardWrite (props) {
               
              await updateMyBoard({ variables: Variables })
           
-              alert("수정이 완료되었습니다.")
+              Modal.success({content: "수정이 완료되었습니다."})
               router.push(`/board/${router.query.move}`)
           } catch (error) {
             alert(error.message);

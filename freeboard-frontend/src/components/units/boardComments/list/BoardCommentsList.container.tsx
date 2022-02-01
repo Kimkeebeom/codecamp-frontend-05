@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "@apollo/client"
 import { useRouter } from "next/router"
-import { MouseEvent, useState } from "react"
+import { ChangeEvent, MouseEvent, useState } from "react"
 import { 
     IMutation, 
     IMutationDeleteBoardCommentArgs, 
@@ -13,8 +13,9 @@ import { DELETE_BOARD_COMMENT,
 export default function BoardCommentList(){
     const router = useRouter()
 
-    // const [password, setPassword] = useState("")
-    // const [chooseId, setChooseId] = useState("")
+    const [modalOpen, setModalOpen] = useState(false)
+    const [password, setPassword] = useState("")
+    const [chooseId, setChooseId] = useState("")
 
     const {data} = useQuery<
     Pick<IQuery,"fetchBoardComments">,
@@ -28,14 +29,27 @@ export default function BoardCommentList(){
     IMutationDeleteBoardCommentArgs
     >(DELETE_BOARD_COMMENT)
 
+    function onClickOpenDeleteModal(event: MouseEvent<HTMLImageElement>){
+        setModalOpen(true)
+        setChooseId(event.target.id)
+    }
+
+    function onChangeDeletePassword(event: ChangeEvent<HTMLInputElement>){
+        setPassword(event.target.value)
+    }
+
+    const onClickCancel =() =>{
+        setModalOpen(false)
+    }
+
     // 댓글 삭제 기능
-    async function onClickDelete(event: MouseEvent<HTMLImageElement>) {
-        const password = prompt("비밀번호를 입력하세요.")
+    async function onClickDelete() {
         try{
             await deleteBoardComment({
                 variables:{
                     password: password,
-                    boardCommentId: event.currentTarget.id // onClick 이벤트는 커런트타겟으로 받아오면 된다고 생각하자!
+                    // boardCommentId: event.currentTarget.id // onClick 이벤트는 커런트타겟으로 받아오면 된다고 생각하자!
+                    boardCommentId: chooseId
                 },
                 refetchQueries: [
                     { 
@@ -44,6 +58,7 @@ export default function BoardCommentList(){
                     }
                 ]
             })
+            setModalOpen(false)
         } catch(error) {
             alert(error.message);
         }
@@ -52,7 +67,11 @@ export default function BoardCommentList(){
     return(
         <BoardCommentsListUI
             data={data}
+            modalOpen={modalOpen}
             onClickDelete={onClickDelete}
+            onClickCancel={onClickCancel}
+            onClickOpenDeleteModal={onClickOpenDeleteModal}
+            onChangeDeletePassword={onChangeDeletePassword}
         />
     )
 

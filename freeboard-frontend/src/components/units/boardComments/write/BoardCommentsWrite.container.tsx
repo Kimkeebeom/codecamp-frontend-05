@@ -7,6 +7,7 @@ import { IMutation, IMutationCreateBoardCommentArgs } from "../../../../commons/
 import { CREATE_BOARD_COMMENT } from './BoardCommentsWrite.query'
 import BoardCommentWriteUI from './BoardCommentsWrite.presenter'
 import { FETCH_BOARD_COMMENTS } from "../list/BoardCommentsList.query"
+import {Modal} from "antd"
 
 export default function BoardCommentWrite(){
 
@@ -59,7 +60,7 @@ export default function BoardCommentWrite(){
             setWriter("")
             setPassword("")
             setContents("")
-            alert("댓글이 등록되었습니다.")
+            Modal.success({content: "댓글이 등록되었습니다."})
         } catch(error){
             alert(error.message)
         }

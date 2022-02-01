@@ -2,11 +2,23 @@ import * as S from './BoardDetail.styles'
 import { getMyDate } from '../../../../commons/libraries/utils'
 import BoardCommentWrite from '../../boardComments/write/BoardCommentsWrite.container'
 import BoardCommentList from '../../boardComments/list/BoardCommentsList.container'
+import {ExclamationCircleOutlined} from '@ant-design/icons'
+import { Modal } from 'antd';
 
-export default function BoardDetailUI(props){
+export default function BoardDetailUI(props: any){
 
 return( // data? : 옵셔널 체이닝(조건부랜더링) => data && data와 같은 의미로 데이터가 있을 때 데이터를 보여줘라는 기능
         <div>
+            {props.modalOpen && (
+                <Modal
+                    visible={true}
+                    title="이 게시물을 정말 삭제하시겠습니까?"
+                    onOk={props.onClickDelete}
+                    onCancel={props.onClickCancel}
+                >
+                    <div>제목: {props.data?.fetchBoard?.title}</div>
+                </Modal>
+            )}    
             <S.Wrapper>
                 <S.WrapperBox>
                     <S.WrapperHeader>
@@ -43,7 +55,7 @@ return( // data? : 옵셔널 체이닝(조건부랜더링) => data && data와 �
                 <S.WrapperBottom>
                     <S.Button onClick={props.MoveToBoardList}>목록으로</S.Button>
                     <S.Button onClick={props.MoveToBoardEdit}>수정하기</S.Button>
-                    <S.Button onClick={props.onClickDelete}>삭제하기</S.Button>
+                    <S.Button onClick={props.onClickOpenDeleteModal}>삭제하기</S.Button>
                 </S.WrapperBottom>
             </S.Wrapper>
             <BoardCommentWrite/>
