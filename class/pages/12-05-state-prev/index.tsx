@@ -4,7 +4,7 @@ export default function StatePrevPage() {
   const [count, setCount] = useState(0);
 
   const onClickCountUp = () => {
-      setCount((prev) => (prev + 1));  // 저장소에 저장된 값을 불러와주는 기능
+      setCount((prev) => (prev + 1));  // 이전값을 가져와서 이전값에 현재 값을 더해줘!
       setCount((prev) => (prev + 1));
       setCount((prev) => (prev + 1));
       setCount((prev) => (prev + 1));
