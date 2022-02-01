@@ -27,6 +27,8 @@ export default function BoardWrite (props) {
     const [contentsError, setContentsError] = useState("")
 
     const [youtubeUrl, setYoutubeUrl] = useState("")
+    // const [likeCount, setLikeCount] = useState("")
+    // const [dislikeCount, setDisLikeCount] = useState("")
 
 
     // 등록했을 때, 서버에 저장을 요청하는 기능

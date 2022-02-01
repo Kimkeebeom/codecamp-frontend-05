@@ -3,6 +3,7 @@ import * as S from './BoardWrite.styles'
 
 export interface IBoardWriteUIProps{
     onChangeYoutubeUrl: (event: ChangeEvent<HTMLInputElement>) => void;
+    isActive: boolean;
 }
 
 export default function BoardWriteUI(props){
@@ -30,7 +31,9 @@ export default function BoardWriteUI(props){
 
             <S.SubTitle>제목</S.SubTitle>
             <S.Title type="text" onChange={props.subject} placeholder='제목을 작성해주세요'
-                    defaultValue={props.isEdit ? props.data?.fetchBoard?.title : ""}/>
+                    //defaultValue={props.isEdit ? props.data?.fetchBoard?.title : ""}
+                    defaultValue={props.data?.fetchBoard.title}
+                    />
             <S.TitleError>
                 <S.Span>{props.titleError}</S.Span>
             </S.TitleError>

@@ -21,15 +21,24 @@ return( // data? : 옵셔널 체이닝(조건부랜더링) => data && data와 �
                     <S.WrapperBody>
                         <S.BodyTitle>{props.data?.fetchBoard?.title}</S.BodyTitle>
                         <S.BodyContents>
-                            {props.data?.fetchBoard?.contents}
-                            <S.Youtube 
-                                url={props.data?.fetchBoard.youtubeUrl}
-                                width="800px"
-                                // height="500px"
-                            />
-                        </S.BodyContents>
-                        
+                            {props.data?.fetchBoard?.contents}   
+                        </S.BodyContents>  
+                        <S.Youtube 
+                            url={props.data?.fetchBoard.youtubeUrl}
+                            width="800px"
+                            // height="500px"
+                        />  
                     </S.WrapperBody>
+                    <S.IconBox>
+                        <S.LikeBox>
+                            <S.LikeIcon onClick={props.onClickLike}/>
+                            <S.LikeCount>{props.data?.fetchBoard?.likeCount}</S.LikeCount>
+                        </S.LikeBox>
+                        <S.DisLikeBox>
+                            <S.DisLikeIcon onClick={props.onClickDisLike}/>
+                            <S.DisLikeCount>{props.data?.fetchBoard?.dislikeCount}</S.DisLikeCount>
+                        </S.DisLikeBox>
+                    </S.IconBox>
                 </S.WrapperBox>
                 <S.WrapperBottom>
                     <S.Button onClick={props.MoveToBoardList}>목록으로</S.Button>

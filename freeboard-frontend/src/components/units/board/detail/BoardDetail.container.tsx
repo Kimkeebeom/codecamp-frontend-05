@@ -1,8 +1,8 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import { FETCH_BOARD, DELETE_BOARD } from "./BoardDetail.queries";
+import { FETCH_BOARD, DELETE_BOARD, LIKE_BOARD, DISLIKE_BOARD } from "./BoardDetail.queries";
 import BoardDetailUI from "./BoardDetail.presenter";
-import { IQuery, IQueryFetchBoardArgs } from "../../../../commons/types/generated/types";
+import { IMutation, IMutationDislikeBoardArgs, IMutationLikeBoardArgs, IQuery, IQueryFetchBoardArgs } from "../../../../commons/types/generated/types";
 
 export default function BoardDetail(){
     const router = useRouter();
@@ -11,6 +11,18 @@ export default function BoardDetail(){
     const { data } = useQuery<Pick<IQuery, "fetchBoard">, IQueryFetchBoardArgs>(FETCH_BOARD,{
         variables: { boardId: String(router.query.move)}
     })
+    console.log(data)
+
+
+    const [likeBoard] = useMutation<
+    Pick<IMutation, "likeBoard">,
+    IMutationLikeBoardArgs
+    >(LIKE_BOARD)
+
+    const [dislikeBoard] = useMutation<
+    Pick<IMutation, "dislikeBoard">,
+    IMutationDislikeBoardArgs
+    >(DISLIKE_BOARD)
 
     const MoveToBoardList = () => {
         router.push("/board/list")
@@ -32,12 +44,32 @@ export default function BoardDetail(){
         }
     }
 
+    const onClickLike = () => {
+        likeBoard({
+            variables: { boardId: String(router.query.move)},
+            refetchQueries: [
+                { query: FETCH_BOARD, variables: { boardId: String(router.query.move)}}
+            ]
+        })
+    }
+
+    const onClickDisLike = () => {
+        dislikeBoard({
+            variables: { boardId: String(router.query.move)},
+            refetchQueries: [
+                { query: FETCH_BOARD, variables: { boardId: String(router.query.move)}}
+            ]
+        })
+    }
+
     return(
         <BoardDetailUI
             data={data}
             MoveToBoardList={MoveToBoardList}
             MoveToBoardEdit={MoveToBoardEdit}
             onClickDelete={onClickDelete}
+            onClickLike={onClickLike}
+            onClickDisLike={onClickDisLike}
         />
     )
 
