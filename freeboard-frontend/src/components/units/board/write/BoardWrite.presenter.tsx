@@ -19,7 +19,9 @@ export default function BoardWriteUI(props){
             <S.Combined>
                 <S.Name type="text" onChange={props.user} placeholder='이름을 적어주세요' 
                         defaultValue={props.isEdit?props.data?.fetchBoard?.writer : ""}
-                        readOnly={!!props.data?.fetchBoard.writer}/>
+                        readOnly={!!props.data?.fetchBoard.writer}/> 
+                        {/* 작성자(boolean타입임) 안에 내용이 차있으면 안의 내용을 true 안차있으면 false 
+                        // !! : 이중부정연산자이며 불린타입에 쓰임 원래값을 부정해주고 부정해서 나온값을 또 부정해주면 원래값으로 되돌아옴*/}
                 <S.NameError>
                     <S.Span>{props.writerError}</S.Span>
                 </S.NameError>
