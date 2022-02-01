@@ -20,7 +20,15 @@ return( // data? : 옵셔널 체이닝(조건부랜더링) => data && data와 �
                     </S.WrapperHeader>
                     <S.WrapperBody>
                         <S.BodyTitle>{props.data?.fetchBoard?.title}</S.BodyTitle>
-                        <S.BodyContents>{props.data?.fetchBoard?.contents}</S.BodyContents>
+                        <S.BodyContents>
+                            {props.data?.fetchBoard?.contents}
+                            <S.Youtube 
+                                url={props.data?.fetchBoard.youtubeUrl}
+                                width="800px"
+                                // height="500px"
+                            />
+                        </S.BodyContents>
+                        
                     </S.WrapperBody>
                 </S.WrapperBox>
                 <S.WrapperBottom>

@@ -1,23 +1,23 @@
 // 등록 페이지
 import { useMutation } from '@apollo/client'
-import { useState } from 'react'
+import { ChangeEvent, useState } from 'react'
 import { useRouter } from 'next/router'
 import BoardWriteUI from './BoardWrite.presenter'
 import { CREATE_BOARD, UPDATE_BOARD } from './BoardWrite.queries'
 
 export default function BoardWrite (props) {
-  const router = useRouter()
+    const router = useRouter()
 
-  const [createMyBoard] = useMutation(CREATE_BOARD)
-  // const [msg, setMsg] = useState("")
-  const [updateMyBoard] = useMutation(UPDATE_BOARD)
+    const [createMyBoard] = useMutation(CREATE_BOARD)
+    // const [msg, setMsg] = useState("")
+    const [updateMyBoard] = useMutation(UPDATE_BOARD)
 
-  const [isActive, setIsActive] = useState(false)
+    const [isActive, setIsActive] = useState(false)
 
-  const [writer, setWriter] = useState("")
-  const [writerError, setWriterError] = useState("")
- 
-  const [pwd, setPwd] = useState("")
+    const [writer, setWriter] = useState("")
+    const [writerError, setWriterError] = useState("")
+    
+    const [pwd, setPwd] = useState("")
     const [pwdError, setPwdError] = useState("")
 
     const [title, setTitle] = useState("")
@@ -25,6 +25,8 @@ export default function BoardWrite (props) {
 
     const [contents, setContents] = useState("")
     const [contentsError, setContentsError] = useState("")
+
+    const [youtubeUrl, setYoutubeUrl] = useState("")
 
 
     // 등록했을 때, 서버에 저장을 요청하는 기능
@@ -85,6 +87,10 @@ export default function BoardWrite (props) {
           }
     }
 
+    function onChangeYoutubeUrl(event: ChangeEvent<HTMLInputElement>){
+        setYoutubeUrl(event.target.value)
+    }
+
     async function regis() {
         if(writer === ""){
             setWriterError("작성자를 입력해주세요.")
@@ -107,6 +113,7 @@ export default function BoardWrite (props) {
                             password:pwd,
                             title:title,
                             contents:contents,
+                            youtubeUrl:youtubeUrl
                             }}
                 })
                 alert("게시물이 등록되었습니다.")
@@ -119,8 +126,8 @@ export default function BoardWrite (props) {
     }
 
     async function updateBoard(){
-        if(!title&& !contents){
-            alert("둘중 하나는 입력해야 합니다.")
+        if(!title && !contents && !youtubeUrl){
+            alert("하나는 입력해야 합니다.")
             return
         }
 
@@ -132,10 +139,12 @@ export default function BoardWrite (props) {
         interface IUpdatedBoardInput{
             title?: string // ?는 없을수도 있고 있을 수도있다는것을 알려주는 기능
             contents?: string
+            youtubeUrl?: string
         }
         const myUpdateBoardInput: IUpdatedBoardInput = {} //비어있기때문에 IUpdateBoardInput타입을 추가해준다.
         if(title !== "") myUpdateBoardInput.title = title
         if(contents !== "") myUpdateBoardInput.contents = contents
+        if(youtubeUrl !== "") myUpdateBoardInput.youtubeUrl = youtubeUrl;
 
         console.log(myUpdateBoardInput)
 
@@ -176,6 +185,7 @@ export default function BoardWrite (props) {
             pwdError={pwdError}
             titleError={titleError}
             contentsError={contentsError}
+            onChangeYoutubeUrl={onChangeYoutubeUrl}
         />
     )
 }

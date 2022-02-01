@@ -1,4 +1,9 @@
+import { ChangeEvent } from 'react'
 import * as S from './BoardWrite.styles'
+
+export interface IBoardWriteUIProps{
+    onChangeYoutubeUrl: (event: ChangeEvent<HTMLInputElement>) => void;
+}
 
 export default function BoardWriteUI(props){
     return(
@@ -50,7 +55,12 @@ export default function BoardWriteUI(props){
             </S.WrapperAddressText>
 
             <S.SubYoutube>유튜브</S.SubYoutube>
-            <S.Youtube type="text" placeholder='링크를 복사해주세요'/>
+            <S.Youtube 
+            type="text" 
+            placeholder='링크를 복사해주세요'
+            onChange={props.onChangeYoutubeUrl}
+            defaultValue={props.data?.fetchBoard.youtubeUrl} // 수정할 때 기존에 입력했던 값을 보여주기 위한 값!
+            />
 
             <S.SubPhoto>사진 첨부</S.SubPhoto>
             <S.WrapperPhoto>

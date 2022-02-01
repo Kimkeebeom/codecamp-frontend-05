@@ -249,7 +249,6 @@ export const SubYoutube = styled.span`
 export const Youtube = styled.input`
     width: 996px;
     height: 45.78px;
-     
     left: 101px;
     top: 1307.22px;
 `

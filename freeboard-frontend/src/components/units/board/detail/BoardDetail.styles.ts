@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import ReactPlayer from 'react-player'
 
 export const Wrapper = styled.div`
     width: 1200px;
@@ -96,8 +97,14 @@ export const BodyTitle = styled.div`
 export const BodyContents = styled.div`
     width: 996px;
     height: 480px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
     background-color: #F2F2F2;
 `
+
+export const Youtube = styled(ReactPlayer)``
 
 export const WrapperBottom = styled.div`
     display: flex;

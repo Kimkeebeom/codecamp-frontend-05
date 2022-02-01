@@ -13,7 +13,7 @@ import { DELETE_BOARD_COMMENT,
 export default function BoardCommentList(){
     const router = useRouter()
 
-    const [password, setPassword] = useState("")
+    // const [password, setPassword] = useState("")
     // const [chooseId, setChooseId] = useState("")
 
     const {data} = useQuery<
@@ -28,13 +28,14 @@ export default function BoardCommentList(){
     IMutationDeleteBoardCommentArgs
     >(DELETE_BOARD_COMMENT)
 
+    // 댓글 삭제 기능
     async function onClickDelete(event: MouseEvent<HTMLImageElement>) {
         const password = prompt("비밀번호를 입력하세요.")
         try{
             await deleteBoardComment({
                 variables:{
                     password: password,
-                    boardCommentId: event.currentTarget.id // 마우스 이벤트는 커런트타겟으로 받아오면 된다고 생각하자!
+                    boardCommentId: event.currentTarget.id // onClick 이벤트는 커런트타겟으로 받아오면 된다고 생각하자!
                 },
                 refetchQueries: [
                     { 
