@@ -6,6 +6,7 @@ export default function ModalCustomPage() {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [, setPassword] = useState("");
   const [, setId] = useState("")
+  
   const showModal = () => {
     setIsModalVisible(true);
   };
