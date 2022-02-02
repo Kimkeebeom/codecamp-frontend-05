@@ -4,8 +4,9 @@ import styled from "@emotion/styled"
 const Wrapper = styled.div`
     height: 200px;
     background-color: skyblue;
+    font-size: 50px;
 `
 
 export default function LayoutHeader() {
-   return <Wrapper>헤더 영역</Wrapper>
+   return <Wrapper>두상 영역</Wrapper>
 }

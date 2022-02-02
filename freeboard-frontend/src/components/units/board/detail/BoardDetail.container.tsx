@@ -7,6 +7,9 @@ import { IMutation, IMutationDislikeBoardArgs,
     from "../../../../commons/types/generated/types";
 import { useState } from "react";
 
+import confirm from "antd/lib/modal/confirm";
+import { ExclamationCircleOutlined } from '@ant-design/icons';
+
 export default function BoardDetail(){
     const router = useRouter();
     const [modalOpen, setModalOpen] = useState(false);
@@ -42,6 +45,24 @@ export default function BoardDetail(){
         console.log("123123")
     }
 
+    // 모달에서 가져온 기능을 적용하고 싶은데 안된다 ㅠㅠ
+    // function showDeleteConfirm() {
+    //     confirm({
+    //       title: "이 게시물을 정말 삭제하시겠습니까?",
+    //       icon: <ExclamationCircleOutlined />,
+    //       content: 'Some descriptions',
+    //       okText: '삭제',
+    //       okType: 'danger',
+    //       cancelText: '취소',
+    //       onOk() {
+    //         console.log('OK');
+    //       },
+    //       onCancel() {
+    //         console.log('Cancel');
+    //       },
+    //     });
+    //   }
+
     const onClickCancel = () => {
         setModalOpen(false);
     }
@@ -52,23 +73,6 @@ export default function BoardDetail(){
                 variables: { boardId: String(router.query.move)}
             })
             setModalOpen(false);
-            // const showDeleteConfirm:any = () => {
-            //     confirm({
-            //       title: '정말 이 게시물을 삭제하시겠습니까?',
-            //       icon: <ExclamationCircleOutlined />,
-            //       content: 'Some descriptions',
-            //       okText: 'Yes',
-            //       okType: 'danger',
-            //       cancelText: 'No',
-            //       onOk() {
-            //         console.log('OK');
-            //       },
-            //       onCancel() {
-            //         console.log('Cancel');
-            //       },
-            //     });
-            //   }
-            // alert('삭제가 완료되었습니다.')
             router.push(`/board/list`)
         } catch(error){
             alert(error.message)
@@ -104,6 +108,7 @@ export default function BoardDetail(){
             onClickDisLike={onClickDisLike}
             onClickOpenDeleteModal={onClickOpenDeleteModal}
             onClickCancel={onClickCancel}
+            // showDeleteConfirm={showDeleteConfirm}
         />
     )
 

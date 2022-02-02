@@ -8,8 +8,14 @@ import styled from "@emotion/styled";
 
 const BodyWrapper = styled.div`
     display: flex;
+    justify-content: center;
+    background-image: url(/images/layout/1643803471874.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
 `
 const Div = styled.div`
+    max-width: 3000px;
+    width: 100%;
     display: flex;
     flex-direction: column;
 `

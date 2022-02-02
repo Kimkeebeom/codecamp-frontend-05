@@ -9,6 +9,7 @@ import {
 import BoardCommentsListUI from "./BoardCommentsList.presenter"
 import { DELETE_BOARD_COMMENT, 
     FETCH_BOARD_COMMENTS } from "./BoardCommentsList.query"
+import { Modal } from "antd"
 
 export default function BoardCommentList(){
     const router = useRouter()
@@ -60,7 +61,7 @@ export default function BoardCommentList(){
             })
             setModalOpen(false)
         } catch(error) {
-            alert(error.message);
+            Modal.warning({content: "비밀번호를 입력해주세요!"});
         }
     }
 
