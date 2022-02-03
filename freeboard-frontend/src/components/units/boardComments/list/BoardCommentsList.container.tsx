@@ -61,7 +61,7 @@ export default function BoardCommentList(){
             })
             setModalOpen(false)
         } catch(error) {
-            Modal.warning({content: "비밀번호를 입력해주세요!"});
+            // Modal.error({content: "비밀번호를 입력해주세요!"});
         }
     }
 
