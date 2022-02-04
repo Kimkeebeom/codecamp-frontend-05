@@ -24,7 +24,7 @@ export default function BoardCommentsListUI(props){
                     onCancel={props.onClickCancel}
                 >  
                     <div>비밀번호 입력: </div>
-                    <S.CommentDeletePassword type="password"/>  
+                    <S.CommentDeletePassword onChange={props.onChangeDeletePassword} type="password"/>  
                 </Modal>
             )}
             {props.data?.fetchBoardComments?.map((el)=>(

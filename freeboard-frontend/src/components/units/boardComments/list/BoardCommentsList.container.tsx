@@ -46,6 +46,8 @@ export default function BoardCommentList(){
     // 댓글 삭제 기능
     async function onClickDelete() {
         try{
+            console.log(password)
+            console.log(chooseId)
             await deleteBoardComment({
                 variables:{
                     password: password,
