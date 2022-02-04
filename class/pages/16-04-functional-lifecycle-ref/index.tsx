@@ -20,7 +20,8 @@ export default function FunctionLifecycleRefPage(){
         return () => {
             console.log("여기서 나갈래요!!")
         }
-    }, []) // 의존성 배열 : dipendence array / count가 바뀌었을때만 다시 실행되는 것! / 리턴부분 html 부분이 다 실행되고 나서 한번만 실행이 되는 부분!
+    }, []) // [] 의존성 배열 : dipendence array / count가 바뀌었을때만 다시 실행되는 것! 
+    // 리턴부분 html 부분이 다 실행되고 나서 한번만 실행이 되는 부분!
 
     // componentDidUpdate 기능과 비슷!!!
     useEffect(() => {
