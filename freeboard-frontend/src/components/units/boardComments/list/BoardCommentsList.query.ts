@@ -17,3 +17,12 @@ mutation deleteBoardComment($password: String, $boardCommentId: ID!){
     deleteBoardComment(password: $password, boardCommentId: $boardCommentId)
 }
 `
+
+export const UPDATE_BOARD_COMMENT = gql`
+mutation updateBoardComment($boardCommentId: ID!, $password: String, $updateBoardCommentInput: UpdateBoardCommentInput!
+ ){
+    updateBoardComment(boardCommentId: $boardCommentId, password: $password, updateBoardCommentInput: $updateBoardCommentInput){
+        _id
+    }
+}
+`
