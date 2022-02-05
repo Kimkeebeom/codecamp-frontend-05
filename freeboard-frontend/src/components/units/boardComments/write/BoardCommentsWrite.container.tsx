@@ -57,9 +57,9 @@ export default function BoardCommentWrite(){
                     },
                 ],
             })
-            setWriter("")
-            setPassword("")
-            setContents("")
+            setWriter("") // 댓글을 등록하고 나서 기존의 작성자가 남아 있지 않게 빈값으로 초기화 시켜줌
+            setPassword("") // 댓글을 등록하고 나서 기존의 비밀번호가 남아 있지 않게 빈값으로 초기화 시켜줌
+            setContents("") // 댓글을 등록하고 나서 기존의 내용이 남아 있지 않게 빈값으로 초기화 시켜줌
             Modal.success({content: "댓글이 등록되었습니다."})
         } catch(error){
             alert(error.message)
