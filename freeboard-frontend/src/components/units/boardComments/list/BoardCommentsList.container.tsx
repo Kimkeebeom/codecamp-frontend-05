@@ -9,7 +9,6 @@ import {
 import BoardCommentsListUI from "./BoardCommentsList.presenter"
 import { DELETE_BOARD_COMMENT, 
     FETCH_BOARD_COMMENTS } from "./BoardCommentsList.query"
-import { Modal } from "antd"
 
 export default function BoardCommentList(){
     const router = useRouter()
