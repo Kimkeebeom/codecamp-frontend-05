@@ -13,7 +13,7 @@ export default function BoardWrite(){
 
     const zzz = async () => {
         const result = await qqq({ 
-            variables: { ...inputs //writer: myWriter, title: myTitle, contents: myContents } 
+            variables: { ...inputs } //writer: myWriter, title: myTitle, contents: myContents
         })
     }
 
@@ -24,7 +24,7 @@ export default function BoardWrite(){
     //         // title: inputs.title, // 기존의 것을 유지시켜줘야함
     //         // contents: inputs.contents // 기존의 것을 유지시켜줘야함
     //         ...inputs,
-    //         // 여기서 대괄호를 지정해주는건 배열이 아님을 주의!
+    //         // 여기서 대괄호를 지정해주는건 배열이 아님을 주의! []로 감싸주면 키가 된다!
     //         [event.target.id]: event.target.value
     //     })
     //     event.target.id // writer

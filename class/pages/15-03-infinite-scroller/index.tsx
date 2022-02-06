@@ -22,7 +22,7 @@ export default function CommentEdit() {
         updateQuery: (prev, { fetchMoreResult }) => {
             if(!fetchMoreResult.fetchBoards) {
                 return {fetchBoards: [...prev.fetchBoards]}
-            }
+            } // if 안에 한줄밖에 없으면 {} 생략 가능하나 내겐 아직 생략하기엔 헷갈림 ㅋ
 
             return{
                 fetchBoards: [...prev.fetchBoards, ...fetchMoreResult.fetchBoards]
