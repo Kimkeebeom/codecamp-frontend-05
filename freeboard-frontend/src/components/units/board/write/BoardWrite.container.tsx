@@ -5,6 +5,8 @@ import { useRouter } from 'next/router'
 import BoardWriteUI from './BoardWrite.presenter'
 import { CREATE_BOARD, UPDATE_BOARD } from './BoardWrite.queries'
 import { Modal } from 'antd'
+// import { getFirestore, collection  } from 'firebase/firestore/lite'
+// import { firebaseApp } from '../../../../../pages/_app'
 
 
 export default function BoardWrite (props) {
@@ -96,6 +98,7 @@ export default function BoardWrite (props) {
     }
 
     async function regis() {
+        // const board = collection(getFirestore(firebaseApp), "board")
         if(writer === ""){
             setWriterError("작성자를 입력해주세요.")
         }
