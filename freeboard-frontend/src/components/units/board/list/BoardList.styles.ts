@@ -2,13 +2,13 @@ import styled from '@emotion/styled'
 
 // export const TopLine = styled.div`
 //     display: flex;
-//     box-sizing: border-box;
+//     
 //     flex-direction: row;
 //     justify-content: space-between;
 //     /* padding-right: 5%; */
 // `
 export const Boundary = styled.div`
-    box-sizing: border-box;
+    
     /* position: absolute; */
     width: 1200px;
     /* height: 583px; */
@@ -33,7 +33,7 @@ export const BoundaryContents = styled.div`
 //     border-bottom: 1px solid black;
 // `
 export const BoundaryHeader = styled.div`
-    box-sizing: border-box;
+    
     width: 1200px;
     display: flex;
     flex-direction: row;
@@ -60,7 +60,7 @@ export const HeaderNumber = styled.div`
 `
 
 export const Title = styled.div`
-    box-sizing: border-box;
+    
     width: 70%;
     text-align: center;
     cursor: pointer;
@@ -68,7 +68,7 @@ export const Title = styled.div`
     /* background-color: red; */
 `
 export const HeaderTitle = styled.div`
-    box-sizing: border-box;
+    
     width: 70%;
     font-family: Noto Sans CJK KR;
     font-style: normal;
@@ -79,13 +79,13 @@ export const HeaderTitle = styled.div`
 `
 
 export const Writer = styled.div`
-    box-sizing: border-box;
+    
     width: 10%;
     text-align: center;
     /* background-color: yellow; */
 `
 export const HeaderWriter = styled.div`
-    box-sizing: border-box;
+    
     width: 10%;
     font-family: Noto Sans CJK KR;
     font-style: bold;
@@ -96,13 +96,13 @@ export const HeaderWriter = styled.div`
 `
 
 export const CreatedAt = styled.div`
-    box-sizing: border-box;
+    
     width: 11%;
     text-align: center;
     /* background-color: green; */
 `
 export const HeaderCreatedAt = styled.div`
-    box-sizing: border-box;
+    
     width: 11%;
     font-family: Noto Sans CJK KR;
     font-style: normal;

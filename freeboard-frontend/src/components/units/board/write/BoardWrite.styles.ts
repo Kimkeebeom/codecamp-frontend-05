@@ -71,7 +71,6 @@ export const Spancombined = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-     
     left: 101px;
     top: 193px;
 `

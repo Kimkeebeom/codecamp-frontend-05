@@ -7,8 +7,8 @@ export default function FirebasePage(){
 
     const onClickSubmit = async () => {
         // firebase에 한줄 등록하기
-        const board = collection(getFirestore(firebaseApp), "board")
-        await addDoc(board, {
+        const board = collection(getFirestore(firebaseApp), "board") // 접속정보, 컬렉션이름
+        await addDoc(board, { // board, : board 안에다가 document를 추가해줘
             wirter: "철수",
             title: "제목입니다!",
             contetns: "아야어여오요우유"
