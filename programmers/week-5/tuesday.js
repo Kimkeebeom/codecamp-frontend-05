@@ -32,6 +32,7 @@ function solution(a, b) {
 const week = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"]
 
 function solution(a, b) {
+    // new Date() 기능 아주 유용하게 쓰이니 공부해두자
     const answer = new Date(2016, a - 1, b).getDay()
     return week[ answer ]
     // console.log(answer)
