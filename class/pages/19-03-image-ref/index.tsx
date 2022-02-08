@@ -25,7 +25,7 @@ export default function ImageValidationPage(){
         console.log(file)
 
         const isValid = checkFileValidation(file)
-        if(!isValid) return
+        if(!isValid) return // validation 컴포넌트에서 어느 함수라도 false로 리턴(반환)되면 종료
 
         try {
             const result = await uploadFile({ 
