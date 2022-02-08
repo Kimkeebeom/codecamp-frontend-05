@@ -3,6 +3,7 @@ import { Modal } from "antd";
 import { useRouter } from "next/router";
 import { useState, MouseEvent, ChangeEvent } from "react";
 import * as S from './BoardCommentsList.styles'
+import * as E from './BoardCommentList.presenterEdit.styles'
 import { IMutation, IMutationDeleteBoardCommentArgs, 
     IMutationUpdateBoardCommentArgs, IQuery, 
     IUpdateBoardCommentInput } from "../../../../commons/types/generated/types";
@@ -19,7 +20,7 @@ export interface IBoardCommentListUIProps{
     onLoadMore: () => void
     onClickDelete: (event: MouseEvent<HTMLImageElement>) => void;
     onClickOpenDeleteModal: (event: MouseEvent<HTMLImageElement>) => void;
-    onChangeDeletePassword: (event: ChangeEvent<HTMLInputElement>) => void;
+    onChangePassword: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
 export default function BoardCommentListEditUI(props){
@@ -48,7 +49,7 @@ export default function BoardCommentListEditUI(props){
 
     function onClickOpenDeleteModal(event: MouseEvent<HTMLImageElement>){
         setModalOpen(true)
-        setChooseId(event.target.id)
+        setChooseId(event.currentTarget.id)
     }
 
     function onChangeDeletePassword(event: ChangeEvent<HTMLInputElement>){
@@ -92,11 +93,22 @@ export default function BoardCommentListEditUI(props){
     function onClickUpdateButton(event: MouseEvent<HTMLImageElement>){
         setCommentEdit(true)
         setChooseId(event.currentTarget.id)
-        alert("수정하기버튼클릭")
-        console.log(event.currentTarget.id) // 아이디가 콘솔창에 안뜬다.
+        // console.log(event.currentTarget.id) // 아이디가 콘솔창에 안뜬다.
     }
 
-    async function onClickUpdate(event) {
+    function onChangePassword(event: ChangeEvent<HTMLInputElement>){
+        setEditPassword(event.target.value)
+    }
+
+    function onChangeContents(event:ChangeEvent<HTMLInputElement>){
+        setEditContents(event.target.value)
+    }
+
+    function onChangeStar(event: number){
+        setEditStar(event)
+    }
+
+    async function onClickUpdate(event: any) {
 
         try{
             const updateBoardCommentInput: IUpdateBoardCommentInput = {};
@@ -118,7 +130,9 @@ export default function BoardCommentListEditUI(props){
             })
             setCommentEdit(false)
         } catch (error){
-            Modal.error({content:"에러입니다."})
+            Modal.error({content:"비밀번호가 틀려요~"})
+            // alert(error.message)
+            // console.log(editPassword)
         }
     }
 
@@ -136,6 +150,7 @@ export default function BoardCommentListEditUI(props){
                 <S.CommentDeletePassword onChange={onChangeDeletePassword} type="password"/>  
             </Modal>
         )}
+        {!commentEdit && (
             <S.Boundary key={props.el._id}>
                 <S.HeaderBox>
                     <S.Avartar src='/images/board/detail/avatar.png'/>
@@ -160,6 +175,36 @@ export default function BoardCommentListEditUI(props){
                 </S.HeaderBox>    
                 <S.CreatedAt>{getMyDate([props.el.createdAt])}</S.CreatedAt>
             </S.Boundary>
+        )}
+        {commentEdit && (
+            <E.Boundary key={props.el._id}>
+                <E.HeaderBox>
+                    <E.Avartar src='/images/board/detail/avatar.png'/>
+                    <E.MainBox>
+                        <E.WriterBox>
+                            <E.Writer>{props.el?.writer}</E.Writer>
+                            <E.Rating defaultValue={props.el?.rating} onChange={onChangeStar} />
+                            <E.Password type="password" onChange={onChangePassword} placeholder="비밀번호를 입력해주세요"/>
+                        </E.WriterBox>
+                        <E.ContentsBox type="text" defaultValue={props.el.contents} onChange={onChangeContents}/>
+                        
+                    </E.MainBox>    
+                    <E.IconBox>
+                        <E.UpdateIcon
+                            src='/images/boardComment/option_update_icon.png'
+                            onClick={onClickUpdateButton}
+                        />
+                        <E.DeleteIcon
+                            src='/images/boardComment/option_delete_icon.png'
+                            id={props.el._id}
+                            onClick={onClickOpenDeleteModal}
+                        />
+                        <E.UpdateButton id={props.el._id} onClick={onClickUpdate}>수정하기</E.UpdateButton>
+                    </E.IconBox>
+                </E.HeaderBox>    
+                <E.CreatedAt>{getMyDate([props.el.createdAt])}</E.CreatedAt>
+            </E.Boundary>
+        )}
     </div>
     )
 }

@@ -46,7 +46,11 @@ export const Rating = styled(Rate)`
     padding-left: 10px;
 `;
 
-export const ContentsBox = styled.div`
+export const Password = styled.input`
+    width: 100px;
+`
+
+export const ContentsBox = styled.input`
     width: 100%;
     padding-left: 10px;
     /* padding-bottom: 20px;
@@ -67,6 +71,12 @@ export const UpdateIcon = styled.img`
 export const DeleteIcon = styled.img`
     width: 24px;
     height: 24px;
+    cursor: pointer;
+`
+
+export const UpdateButton = styled.button`
+    width: 70px;
+    height: 70px;
     cursor: pointer;
 `
 
