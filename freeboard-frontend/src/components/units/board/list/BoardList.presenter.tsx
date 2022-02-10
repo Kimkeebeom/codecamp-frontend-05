@@ -1,6 +1,7 @@
 import {getMyDate} from "../../../../commons/libraries/utils"
 import * as S from "./BoardList.styles"
 import {BsPencilSquare} from 'react-icons/bs'
+import Pagination from "../../pagination/pagination.container"
 
 export default function BoardListUI(props){
     
@@ -20,12 +21,15 @@ export default function BoardListUI(props){
                         <S.Writer>{el.writer}</S.Writer>
                         <S.CreatedAt>{getMyDate(el.createdAt)}</S.CreatedAt>
                     </S.BoundaryContents> //{Array.from(el.createdAt).slice(0,10).join("")}
-                ))}
-            
+                ))}        
         </S.Boundary>
-        <S.BtnBox>
-            <S.Register onClick={props.boardRegister}>게시물 등록하기<BsPencilSquare size="44" color='blue'/></S.Register>
-        </S.BtnBox>
+        <S.Footer>
+            <Pagination refetch={props.refetch} count={props.count} />
+            {/* <S.BtnBox> */}
+            <S.Register onClick={props.boardRegister}>게시물 등록하기<BsPencilSquare size="44" color='skyblue'/></S.Register>
+            {/* </S.BtnBox> */}
+        </S.Footer>
+        
         </>
     )
 

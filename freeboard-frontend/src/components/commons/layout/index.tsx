@@ -14,7 +14,7 @@ const BodyWrapper = styled.div`
     background-size: cover;
 `
 const Div = styled.div`
-    max-width: 3000px;
+    max-width: 3500px;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -25,7 +25,11 @@ const HIDDEN_BANNER = [
     "/board/[move]/edit"
 ]
 
-const LayoutBody = styled.div``
+const LayoutBody = styled.div`
+    max-height: 2700px;
+    height: 100%;
+    padding-bottom: 100px;
+`
 
 interface Iprops {
     children: ReactChild

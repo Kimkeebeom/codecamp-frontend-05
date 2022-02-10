@@ -1,17 +1,7 @@
 import styled from '@emotion/styled'
 
-// export const TopLine = styled.div`
-//     display: flex;
-//     
-//     flex-direction: row;
-//     justify-content: space-between;
-//     /* padding-right: 5%; */
-// `
 export const Boundary = styled.div`
-    
-    /* position: absolute; */
     width: 1200px;
-    /* height: 583px; */
     margin: 100px;
     border-bottom: 3px solid black;
 `
@@ -27,13 +17,8 @@ export const BoundaryContents = styled.div`
     height: 70px;
     line-height: 62px; //div안에 있는 글씨 높이를 정렬
 `
-// export const Column = styled.div`
-//     width: 20%;
-//     height: auto;
-//     border-bottom: 1px solid black;
-// `
-export const BoundaryHeader = styled.div`
-    
+
+export const BoundaryHeader = styled.div`   
     width: 1200px;
     display: flex;
     flex-direction: row;
@@ -59,16 +44,14 @@ export const HeaderNumber = styled.div`
     text-align: center;
 `
 
-export const Title = styled.div`
-    
+export const Title = styled.div`   
     width: 70%;
     text-align: center;
     cursor: pointer;
     :hover {color: gold;}
     /* background-color: red; */
 `
-export const HeaderTitle = styled.div`
-    
+export const HeaderTitle = styled.div`   
     width: 70%;
     font-family: Noto Sans CJK KR;
     font-style: normal;
@@ -78,14 +61,12 @@ export const HeaderTitle = styled.div`
     text-align: center;
 `
 
-export const Writer = styled.div`
-    
+export const Writer = styled.div`  
     width: 10%;
     text-align: center;
     /* background-color: yellow; */
 `
-export const HeaderWriter = styled.div`
-    
+export const HeaderWriter = styled.div`   
     width: 10%;
     font-family: Noto Sans CJK KR;
     font-style: bold;
@@ -95,14 +76,12 @@ export const HeaderWriter = styled.div`
     text-align: center;
 `
 
-export const CreatedAt = styled.div`
-    
+export const CreatedAt = styled.div`   
     width: 11%;
     text-align: center;
     /* background-color: green; */
 `
-export const HeaderCreatedAt = styled.div`
-    
+export const HeaderCreatedAt = styled.div`   
     width: 11%;
     font-family: Noto Sans CJK KR;
     font-style: normal;
@@ -112,10 +91,17 @@ export const HeaderCreatedAt = styled.div`
     text-align: center;
 `
 
+export const Footer = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 100px;
+    padding-left: 90px;
+`
+
 export const Register = styled.button`
-    /* position: absolute; */
-    /* bottom: 0px
-    right: 0px */
+    border-radius: 10px;
     display: flex;
     flex-direction: row-reverse;
     width: 172px;
@@ -123,16 +109,17 @@ export const Register = styled.button`
     line-height: 46px;
     font-weight: 500;
     font-size: 15px;
+    background-color: #FFFFFF;
     cursor: pointer;
-    :hover {background-color: greenyellow;}
+    :hover {background-color: #E0F8F7;}
 `
 
-export const BtnBox = styled.div`
-    width: 1200px;
-    height: 100px;
-    padding-top: 24px;
-    /* bottom: 0px
-    right: 0px */
-    display: flex;
-    flex-direction: row-reverse;
-`
+// export const BtnBox = styled.div`
+//     width: 1200px;
+//     height: 100px;
+//     padding-top: 24px;
+//     /* bottom: 0px
+//     right: 0px */
+//     display: flex;
+//     flex-direction: row-reverse;
+// `
