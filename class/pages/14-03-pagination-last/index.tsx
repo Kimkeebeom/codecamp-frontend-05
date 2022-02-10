@@ -36,7 +36,7 @@ export default function PaginationLastPage(){
     const onClickNextPage = () => {
         if(startPage + 10 > lastPage) return //  if(startPage + 10 > lastPage) return === if(startPage + 10 <= lastPage)
         setStartPage((prev) => prev + 10)
-        refetch({ page: startPage + 10 }) // 다음페이지 누를때마다 해당하는 페이지에(ex: 11페이지, 21페이지 등) 대한 목록을 보여줌!
+        refetch({ page: startPage + 10 }) // 다음페이지 누를때마다 해당하는 페이지에 대한 목록을 보여줌!
     }
 
     return(

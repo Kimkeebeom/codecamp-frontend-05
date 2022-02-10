@@ -13,7 +13,7 @@ const BodyWrapper = styled.div`
 const LayoutSidebar = styled.div`
     width: 400px;
     height: 2000px;
-    background-color: blue;
+    background-color: #3636a7;
 `
 
 const LayoutBody = styled.div``

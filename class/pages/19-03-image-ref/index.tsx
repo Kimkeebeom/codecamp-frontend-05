@@ -59,7 +59,7 @@ export default function ImageValidationPage(){
             </div>
             <img src={`https:/storage.googleapis.com/${image}`}/>
             {/* // 여러파일을 동시에 드래그해서 업로드 하고 싶을 땐 multiple */}
-            <input style={{display: "none"}} type="file" ref={fileRef} onChange={onChangeFile}/>
+            <input style={{display: "none"}} type="file" ref={fileRef} onChange={onChangeFile} multiple/>
         </div>
     )
 }
