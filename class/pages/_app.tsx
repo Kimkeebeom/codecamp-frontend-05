@@ -30,7 +30,8 @@ interface IGlobalContext{
   setAccessToken?: Dispatch<SetStateAction<string>>
 }
 
-export const GlobalContext = createContext<IGlobalContext>({})
+export const GlobalContext = createContext<IGlobalContext>({}) // ()안에는 Context 초기값이 들어간다, 에러가 뜨길래 초기값에 빈 객체를 넣어줌
+
 function MyApp({ Component, pageProps }: AppProps) {
   const [accessToken, setAccessToken] = useState("")
   const Value = {
@@ -51,7 +52,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return(
     // shortandproperty로 accesstoken을 하나로 작성가능, 
     // 하지만 setAccessToken 등 다른 기능들을 추가하게 되면 길어지기 때문에 하나의 변수인 Value 담아서 넣어준다!
-    <GlobalContext.Provider value={{Value}}>
+    <GlobalContext.Provider value={Value}>
       <ApolloProvider client={client}>
         <Global styles={globalStyles}/> {/* 모든페이지 모든컴포넌트에 적용되는 css */}
         <Layout>

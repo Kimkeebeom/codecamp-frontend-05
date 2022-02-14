@@ -17,11 +17,11 @@ export default function LoginPage(){
     const {setAccessToken} = useContext(GlobalContext)
     const router = useRouter()
 
-    const [email, setEmail] = useState("")
+    const [email, setEmail] = useState("") // 타입추론이 자동으로 된다.
     const [password, setPassword] = useState("")
     
-    const [loginUser] = useMutation<
-    Pick<IMutation, "loginUser">, 
+    const [loginUser] = useMutation< // Mutation 같은 애들은 타입추론이 안돼서 타입을 입력해줘야 한다.
+    Pick<IMutation, "loginUser">, // Omit => 특정 데이터 빼고 나머지 다 가져와줘! Partial => 부분적으로 필요하고 필요 없을 수도 있다! ':' 앞에 ?를 붙여서 가져와줘!(유틸리티 타입)
     IMutationLoginUserArgs
     >(LOGIN_USER)
 
@@ -38,12 +38,12 @@ export default function LoginPage(){
     const onClickLogin = async () => {
         try {
             const result = await loginUser({
-                variables: {
+                variables: { 
                     email,
                     password
                 }
             })
-            console.log(result.data?.loginUser.accessToken)
+            console.log(result.data?.loginUser.accessToken) // result 안에는 data가 있을거고 data안에 loginUser가 있고 그 안에 accessToken이 있다.
             // setAccessToken이 있으면 보여줘! token이 없으면 ""에 넣어주세요!
             if(setAccessToken) setAccessToken(result.data?.loginUser.accessToken || "")
 
