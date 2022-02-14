@@ -41,16 +41,14 @@ export default function LoginPage(){
             console.log(result.data?.loginUser.accessToken) 
             if(setAccessToken){
                 setAccessToken(result.data?.loginUser.accessToken || "")
-            } 
-
+            }
             router.push("/22-002-quiz")
         } catch (error) {
-            Modal.error({content: "로그인을 먼저 해주세요!"})
-            setEmail("")
-            setPassword("")
+            if( email === "" || password === "" ){
             router.push("/22-001-quiz")
-        }
-        
+            Modal.error({content: "로그인을 먼저 해주세요!"})
+            }          
+        }        
     }
 
     return(
