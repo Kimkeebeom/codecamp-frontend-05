@@ -6,10 +6,6 @@ export default function BoardListUI(props){
     return(
         <>
         <S.Boundary>
-            <S.BoundaryHeader>
-                    <S.HeaderTitle>제목</S.HeaderTitle>
-                    <S.HeaderCreatedAt>날짜</S.HeaderCreatedAt>
-            </S.BoundaryHeader>
             <InfiniteScroll pageStart={0} loadMore={props.onLoadMore} hasMore={true || false}>
                 {props.data?.fetchBoards?.map((el) => (
                     <S.BoundaryContents key={el._id} el={el}>
