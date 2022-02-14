@@ -13,7 +13,6 @@ export default function BoardWrite (props) {
     const router = useRouter()
 
     const [createMyBoard] = useMutation(CREATE_BOARD)
-    // const [msg, setMsg] = useState("")
     const [updateMyBoard] = useMutation(UPDATE_BOARD)
 
     const [isActive, setIsActive] = useState(false)
@@ -31,19 +30,8 @@ export default function BoardWrite (props) {
     const [contentsError, setContentsError] = useState("")
 
     const [youtubeUrl, setYoutubeUrl] = useState("")
-    // const [likeCount, setLikeCount] = useState("")
-    // const [dislikeCount, setDisLikeCount] = useState("")
 
-
-    // 등록했을 때, 서버에 저장을 요청하는 기능
-    // const regisA = async() => {
-    //     const result = await createMyboard({
-    //         variables:{createBoardInput:{writer:writer,password:pwd,title:title,contents:contents}}
-    //     })
-        // console.log(result.data.createBoard.message)
-        // setMsg(result.data.createBoard.message)
-    //}
-
+    const [fileUrls, setFileUrls] = useState([])
 
     function user(event){
         setWriter(event.target.value)
@@ -97,6 +85,13 @@ export default function BoardWrite (props) {
         setYoutubeUrl(event.target.value)
     }
 
+    function onChangeFileUrls(fileUrl: string, index: number){
+        const newFileUrls = [...fileUrls];
+        newFileUrls[index] = fileUrl;
+        setFileUrls(newFileUrls);
+        console.log("image:",newFileUrls)
+      };
+
     async function regis() {
         // const board = collection(getFirestore(firebaseApp), "board")
         if(writer === ""){
@@ -120,11 +115,13 @@ export default function BoardWrite (props) {
                             password:pwd,
                             title:title,
                             contents:contents,
-                            youtubeUrl:youtubeUrl
+                            youtubeUrl:youtubeUrl,
+                            images: fileUrls,
                             }}
                 })
                 Modal.success({content: "게시물이 등록되었습니다."})
                 console.log(result.data.createBoard._id)
+                console.log(result.data.createBoard.fileUrls)
                 router.push(`/board/${result.data.createBoard._id}`)
             } catch(error) {
                  console.log(error.message)
@@ -181,6 +178,7 @@ export default function BoardWrite (props) {
             isActive={isActive}
             isEdit={props.isEdit}
             data={props.data}
+            fileUrls={fileUrls}
             user={user}
             password={password}
             subject={subject}
@@ -193,6 +191,7 @@ export default function BoardWrite (props) {
             titleError={titleError}
             contentsError={contentsError}
             onChangeYoutubeUrl={onChangeYoutubeUrl}
+            onChangeFileUrls={onChangeFileUrls}
         />
     )
 }

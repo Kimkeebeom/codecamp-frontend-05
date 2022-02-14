@@ -8,6 +8,7 @@ mutation createBoard($createBoardInput: CreateBoardInput!){
         title
         contents
         createdAt
+        images
     }
 }
 `

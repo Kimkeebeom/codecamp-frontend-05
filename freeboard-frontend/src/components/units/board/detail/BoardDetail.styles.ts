@@ -70,7 +70,6 @@ export const HeaderWriter = styled.div`
 
 export const CreatedAt = styled.div`
     width: 150px;
-    /* background-color: red; */
 `
 
 export const WrapperBody = styled.div`
@@ -143,6 +142,16 @@ export const DisLikeIcon = styled(DislikeOutlined)`
 
 export const DisLikeCount = styled.div`
     color: #828282;
+`
+
+export const BodayImageWrapper = styled.div`
+    display: flex;
+    justify-content: space-between;
+`
+
+export const Image = styled.img`
+    width: 300px;
+    height: 300px;
 `
 
 export const WrapperBottom = styled.div`

@@ -1,5 +1,7 @@
 import { ChangeEvent } from 'react'
+import UploadImage from '../../../../commons/upload/image/uploadImage.container'
 import * as S from './BoardWrite.styles'
+import { v4 as uuidv4 } from "uuid"
 
 export interface IBoardWriteUIProps{
     onChangeYoutubeUrl: (event: ChangeEvent<HTMLInputElement>) => void;
@@ -67,11 +69,17 @@ export default function BoardWriteUI(props){
             defaultValue={props.data?.fetchBoard.youtubeUrl} // 수정할 때 기존에 입력했던 값을 보여주기 위한 값!
             />
 
-            <S.SubPhoto>사진 첨부</S.SubPhoto>
+            <S.SubPhoto>이미지</S.SubPhoto>
             <S.WrapperPhoto>
-                <S.PhotoUpload>+</S.PhotoUpload>
-                <S.PhotoUpload>+</S.PhotoUpload>
-                <S.PhotoUpload>+</S.PhotoUpload>
+                {props.fileUrls?.map((el: any, index: any) => (
+                    <UploadImage
+                        key={uuidv4()}
+                        index={index}
+                        fileUrl={el} 
+                        defaultFileUrl={props.data?.fetchBoard.images?.[index]}
+                        onChangeFileUrls={props.onChangeFileUrls}   
+                    />
+                ))}
             </S.WrapperPhoto>
 
             <S.SubRadio>메인 설정</S.SubRadio>

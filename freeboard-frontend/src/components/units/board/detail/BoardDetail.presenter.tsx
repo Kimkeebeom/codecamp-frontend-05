@@ -2,8 +2,8 @@ import * as S from './BoardDetail.styles'
 import { getMyDate } from '../../../../commons/libraries/utils'
 import BoardCommentWrite from '../../boardComments/write/BoardCommentsWrite.container'
 import BoardCommentList from '../../boardComments/list/BoardCommentsList.container'
-import {ExclamationCircleOutlined} from '@ant-design/icons'
 import { Modal } from 'antd';
+import { Key } from 'react'
 
 export default function BoardDetailUI(props: any){
 
@@ -39,7 +39,15 @@ return( // data? : 옵셔널 체이닝(조건부랜더링) => data && data와 �
                             url={props.data?.fetchBoard.youtubeUrl}
                             width="800px"
                             // height="500px"
-                        />  
+                        />
+                        <S.BodayImageWrapper>
+                            {props.data?.fetchBoard.images
+                                ?.filter((el: any) => el) // el이 빈문자열이면 false여서 사진을 업로드 안한 부분은 보여지지 않게 됨
+                                .map((el: Key) => (
+                                    <S.Image key={el}
+                                        src={`https://storage.googleapis.com/${el}`}/>
+                                 ))}
+                        </S.BodayImageWrapper>  
                     </S.WrapperBody>
                     <S.IconBox>
                         <S.LikeBox>
