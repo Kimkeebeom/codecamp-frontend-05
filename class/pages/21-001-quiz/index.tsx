@@ -1,4 +1,4 @@
-// 1-1 / 1번
+// 1-1.1
 
 // container 부분
 export default function Container() {
@@ -10,7 +10,7 @@ export default function Container() {
     return <div>{props.child}</div>;
   }
   
-  // 1-1 / 2번
+  // 1-1.2
   
   // container 부분
   export default function Container() {
@@ -26,12 +26,12 @@ export default function Container() {
     );
   }
   
-  // 1-1 / 3번
+  // 1-1.3
   ["철수", "영희", "훈이", "맹구"].map((_, index) => {
     console.log(`영희는 ${index}번째 칸에 들어있습니다.`);
   });
   
-  // 1-1 / 4번
+  // 1-1.4
   const [state, setState] = useState(0);
   
   setState((qwer) => qwer + 1);

@@ -8,6 +8,7 @@ import { createUploadLink } from 'apollo-upload-client'
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import { createContext, Dispatch, SetStateAction, useState } from 'react';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -24,10 +25,22 @@ const firebaseConfig = {
 // Initialize Firebase
 export const firebaseApp = initializeApp(firebaseConfig);
 
+interface IGlobalContext{
+  accessToken?: string
+  setAccessToken?: Dispatch<SetStateAction<string>>
+}
+
+export const GlobalContext = createContext<IGlobalContext>({})
 function MyApp({ Component, pageProps }: AppProps) {
+  const [accessToken, setAccessToken] = useState("")
+  const Value = {
+    accessToken,
+    setAccessToken
+  }
 
   const uploadLink = createUploadLink({
     uri: "http://backend05.codebootcamp.co.kr/graphql",
+    headers: {Authorization: `Bearer ${accessToken}`}
   })
 
   const client = new ApolloClient({
@@ -36,12 +49,17 @@ function MyApp({ Component, pageProps }: AppProps) {
   })
   
   return(
-    <ApolloProvider client={client}>
-      <Global styles={globalStyles}/> {/* 모든페이지 모든컴포넌트에 적용되는 css */}
-      <Layout>
-        <Component {...pageProps} />
-      </Layout> 
-    </ApolloProvider>
+    // shortandproperty로 accesstoken을 하나로 작성가능, 
+    // 하지만 setAccessToken 등 다른 기능들을 추가하게 되면 길어지기 때문에 하나의 변수인 Value 담아서 넣어준다!
+    <GlobalContext.Provider value={{Value}}>
+      <ApolloProvider client={client}>
+        <Global styles={globalStyles}/> {/* 모든페이지 모든컴포넌트에 적용되는 css */}
+        <Layout>
+          <Component {...pageProps} />
+        </Layout> 
+      </ApolloProvider>
+    </GlobalContext.Provider>
+    
   )
 }
 
