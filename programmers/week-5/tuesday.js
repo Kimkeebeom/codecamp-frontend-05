@@ -1,39 +1,41 @@
-// 1. 2016년
-
-const month = {
-    1 : 31,
-    2 : 29,
-    3 : 31,
-    4 : 30,
-    5 : 31,
-    6 : 30,
-    7 : 31,
-    8 : 31,
-    9 : 30,
-    10 : 31,
-    11 : 30,
-    12 : 31
-}
-const week = [ "FRI", "SAT", "SUN", "MON", "TUE", "WED", "THU" ]
-
-function solution(a, b) {
-    // 총 일수를 저장하는 변수
-    let days = 0;
+// 1. 폰켓몬
+function solution(nums) {
+    const answer = []
     
-    for( let i = 1; i < a; i++){
-        // console.log(i, month[i])
-        days += month[i]
+    const limit = nums.length / 2; 
+    for(let i = 0; i < nums.length; i++){
+        // 중복이 되지 않으면서
+        // n/2를 넘지 않을 때만 push
+        if(answer.includes(nums[i]) === false 
+            && answer.length !== limit
+          ){ 
+           answer.push(nums[i])
+        }
     }
-    days += (b - 1)
-    // console.log(days % 7)
-    return week[days % 7]
-}
+     // console.log(answer)
+     return answer.length
+ }
 
-const week = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"]
+ function solution(nums) {
+    const answer = new Set([])
+    
+    nums.forEach(monster => {
+         if(nums.length / 2 > answer.size) {
+             answer.add(monster)
+         }
+    })
+     // console.log(answer)
+     return answer.size
+ }
 
-function solution(a, b) {
-    // new Date() 기능 아주 유용하게 쓰이니 공부해두자
-    const answer = new Date(2016, a - 1, b).getDay()
-    return week[ answer ]
-    // console.log(answer)
-}
+ function solution(nums) {
+    const answer = new Set(nums).size // ()안에 nums를 넣어주면 중복값을 없애준다
+    // 폰켓몬을 넣을 수 있는 최대수
+    const limit = nums.length / 2
+    
+    if( limit >= answer){
+        return answer
+    }
+    // console.log(answer, limit)
+     return limit;
+ }
