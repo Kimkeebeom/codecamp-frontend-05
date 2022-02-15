@@ -44,7 +44,9 @@ export default function LoginPage(){
                 }
             })
             const accessToken = result.data?.loginUser.accessToken || ""
-            console.log(result.data?.loginUser.accessToken) // result 안에는 data가 있을거고 data안에 loginUser가 있고 그 안에 accessToken이 있다.
+            // result 안에는 data가 있을거고 
+            // data안에 loginUser가 있고 그 안에 accessToken이 있다.
+            console.log(result.data?.loginUser.accessToken) 
             // setAccessToken이 있으면 보여줘! token이 없으면 ""에 넣어주세요!
             if(setAccessToken) { 
                 setAccessToken(accessToken) // 새로고침하게 되면 로그인 데이터가 사라짐! 유지방법은 추후에 배울 예정!
