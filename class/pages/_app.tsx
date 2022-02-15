@@ -8,7 +8,7 @@ import { createUploadLink } from 'apollo-upload-client'
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { createContext, Dispatch, SetStateAction, useState } from 'react';
+import { createContext, Dispatch, SetStateAction, useEffect, useState } from 'react';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -30,6 +30,7 @@ interface IGlobalContext{
   setAccessToken?: Dispatch<SetStateAction<string>>
 }
 
+
 export const GlobalContext = createContext<IGlobalContext>({}) // ()안에는 Context 초기값이 들어간다, 에러가 뜨길래 초기값에 빈 객체를 넣어줌
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -38,6 +39,30 @@ function MyApp({ Component, pageProps }: AppProps) {
     accessToken,
     setAccessToken
   }
+
+  // if(localStorage.getItem("accessToken")) {
+  //   setAccessToken(localStorage.getItem("accessToken") || "")
+  // } // 이 코드를 작성해주니 localStorage가 없다고 오류가 나옴 ? next.js에서 렌더링이 어떻게 되는지 이해할 필요가 있다.
+
+  // // 1. localStorage 별로 좋지 못한 방법
+  // if(process.browser){
+  //   if(localStorage.getItem("accessToken")) {
+  //     setAccessToken(localStorage.getItem("accessToken") || "")
+  //   }
+  // }
+  // // 2. localStorage 별로 좋지 못한 방법
+  // if(typeof window !== "undefined") { // window=browser 라는게 있을 때, 실행해줘!
+  //   if(localStorage.getItem("accessToken")) {
+  //     setAccessToken(localStorage.getItem("accessToken") || "")
+  //   }
+  // }
+  // 3. localStorage 이 방법이 제일 좋은 방법
+  useEffect(() => {
+    if(localStorage.getItem("accessToken")) {
+      setAccessToken(localStorage.getItem("accessToken") || "")
+    }
+  }, []) // 토큰을 로컬스토리지에 저장하고 새로고침 했을 경우 다시 그 토큰을 꺼내와 로그인을 유지하는 방법!
+ 
 
   const uploadLink = createUploadLink({
     uri: "http://backend05.codebootcamp.co.kr/graphql",

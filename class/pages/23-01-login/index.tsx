@@ -48,9 +48,16 @@ export default function LoginPage(){
             // setAccessToken이 있으면 보여줘! token이 없으면 ""에 넣어주세요!
             if(setAccessToken) { 
                 setAccessToken(accessToken) // 새로고침하게 되면 로그인 데이터가 사라짐! 유지방법은 추후에 배울 예정!
+                // localStorage.setItem("aaa","철수")
+                // localStorage.getItem("aaa") // key만 작성 => 로컬 스토리지에서 뽑아오는 것!
+                localStorage.setItem("accessToken",accessToken || "")
+
+                console.log("==========================")
+                console.log(localStorage.getItem("accessToken"))
+                console.log("==========================")
             }    
             // 로그인 성공 페이지로 이동하기!!
-            router.push("/22-02-login-success")
+            router.push("/23-02-login-localstorage-success")
         } catch (error) {
             // 타입스크립트 버젼에 따라 error부분에 밑줄이 그어져서 아래처럼 작성
             if(error instanceof Error) Modal.error({content: error.message})
