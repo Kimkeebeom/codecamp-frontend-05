@@ -31,6 +31,10 @@ export default function LoginPage(){
     }
 
     const onClickLogin = async () => {
+        if( email === "" || password === "" ){
+            Modal.error({content: "로그인을 먼저 해주세요!"})
+            return
+        }
         try {
             const result = await loginUser({
                 variables: { 
@@ -44,10 +48,7 @@ export default function LoginPage(){
             }
             router.push("/22-002-quiz")
         } catch (error) {
-            if( email === "" || password === "" ){
-            router.push("/22-001-quiz")
-            Modal.error({content: "로그인을 먼저 해주세요!"})
-            }          
+               alert('error.message')
         }        
     }
 
