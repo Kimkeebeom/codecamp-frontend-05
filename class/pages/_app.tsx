@@ -25,9 +25,17 @@ const firebaseConfig = {
 // Initialize Firebase
 export const firebaseApp = initializeApp(firebaseConfig);
 
+interface IUserInfo{
+  name?: string;
+  email?: string;
+  picture?: string
+}
+
 interface IGlobalContext{
   accessToken?: string
   setAccessToken?: Dispatch<SetStateAction<string>>
+  userInfo?: IUserInfo
+  setUserInfo?: Dispatch<SetStateAction<IUserInfo>>
 }
 
 
@@ -35,9 +43,12 @@ export const GlobalContext = createContext<IGlobalContext>({}) // ()안에는 Co
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [accessToken, setAccessToken] = useState("")
+  const [userInfo, setUserInfo] = useState<IUserInfo>({}) // 초기값은{} 비어있지만 빈객체로 타입이 추론되는것을 방치하기 위해 <IUserInfo>로 타입을 알려주기!
   const Value = {
     accessToken,
-    setAccessToken
+    setAccessToken,
+    userInfo,
+    setUserInfo
   }
 
   // if(localStorage.getItem("accessToken")) {
