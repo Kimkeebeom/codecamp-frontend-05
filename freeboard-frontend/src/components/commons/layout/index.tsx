@@ -9,7 +9,7 @@ import styled from "@emotion/styled";
 const BodyWrapper = styled.div`
     display: flex;
     justify-content: center;
-    background-image: url(/images/layout/1643803471874.jpeg);
+    background-image: url(/images/Login/배경사진.png);
     background-repeat: no-repeat;
     background-size: cover;
 `

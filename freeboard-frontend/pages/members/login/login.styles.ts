@@ -6,6 +6,7 @@ export const Wrapper = styled.form`
     /* max-width: 100%; */
     max-height: fit-content;
     margin: 10px;
+    border-radius: 6px;
     background-image: url(/images/Login/배경사진.png);
 `
 
