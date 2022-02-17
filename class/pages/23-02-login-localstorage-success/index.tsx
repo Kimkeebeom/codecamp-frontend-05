@@ -13,7 +13,7 @@ export default function LoginSuccessPage(){
     const {data} = useQuery<
     Pick<IQuery, 'fetchUserLoggedIn'>
     >(FETCH_USER_LOGGED_IN)
-    
+     
     return(
         <div>
             {data?.fetchUserLoggedIn.name}님 환영합니다!!!
