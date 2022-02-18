@@ -16,7 +16,7 @@ export default function loginMainPage(){
                 <L.RadioBodx>
                     <input type="radio"/> 로그인 상태 유지
                 </L.RadioBodx>
-                <L.LoginBtn>로그인</L.LoginBtn>
+                <L.LoginBtn onClick={onClickLogin}>로그인</L.LoginBtn>
                 <L.BottomBox>
                     비밀번호 찾기 | 이메일 찾기 | 회원가입
                 </L.BottomBox>
