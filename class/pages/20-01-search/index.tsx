@@ -50,7 +50,7 @@ export default function searchPage(){
                 <span key={index} onClick={onClickPage} id={String(index + 1)}>
                 {` ${index+1} `}
                 </span>
-      ))}
+            ))}
         </div>
     )
 }
