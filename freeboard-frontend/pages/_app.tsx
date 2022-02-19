@@ -9,6 +9,7 @@ import { createUploadLink } from 'apollo-upload-client'
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import { createContext, Dispatch, SetStateAction, useEffect, useState } from 'react'
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -25,10 +26,40 @@ const firebaseConfig = {
 // Initialize Firebase
 export const firebaseApp = initializeApp(firebaseConfig);
 
+interface IUserInfo{
+  name?: string;
+  email?: string;
+  picture?: string
+}
+
+interface IGlobalContext{
+  accessToken?: string
+  setAccessToken?: Dispatch<SetStateAction<string>>
+  userInfo?: IUserInfo
+  setUserInfo?: Dispatch<SetStateAction<IUserInfo>>
+}
+
+export const GlobalContext = createContext<IGlobalContext>({})
+
 function MyApp({ Component, pageProps }: AppProps) {
+  const [accessToken, setAccessToken] = useState("")
+  const [userInfo, setUserInfo] = useState<IUserInfo>({}) // 초기값은{} 비어있지만 빈객체로 타입이 추론되는것을 방치하기 위해 <IUserInfo>로 타입을 알려주기!
+  const Value = {
+    accessToken,
+    setAccessToken,
+    userInfo,
+    setUserInfo
+  }
+
+  useEffect(() => {
+    if(localStorage.getItem("accessToken")) {
+      setAccessToken(localStorage.getItem("accessToken") || "")
+    }
+  }, [])
 
   const uploadLink = createUploadLink({
     uri: "http://backend05.codebootcamp.co.kr/graphql",
+    headers: {Authorization: `Bearer ${accessToken}`}
   })
 
   const client = new ApolloClient({
@@ -37,12 +68,14 @@ function MyApp({ Component, pageProps }: AppProps) {
   })
   
  return(
+   <GlobalContext.Provider value={Value}>
     <ApolloProvider client={client}>
       <Global styles={globalStyles} />
       <Layout>
         <Component {...pageProps} />
       </Layout>
     </ApolloProvider>
+    </GlobalContext.Provider>
   )
 }
 
