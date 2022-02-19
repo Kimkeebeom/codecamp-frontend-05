@@ -1,5 +1,10 @@
 import styled from '@emotion/styled'
 
+export const H1 = styled.div`
+ color: white;
+ font-size: 30px;
+`
+
 export const Boundary = styled.div`
     width: 1200px;
     margin: 100px;
@@ -16,6 +21,7 @@ export const BoundaryContents = styled.div`
     padding-left: 40px;
     height: 70px;
     line-height: 62px; //div안에 있는 글씨 높이를 정렬
+    color: white;
 `
 
 export const BoundaryHeader = styled.div`   
@@ -28,6 +34,7 @@ export const BoundaryHeader = styled.div`
     padding-left: 40px;
     border-top: 3px solid black;
     border-bottom: 2px solid gray;
+    color: white;
 `
 export const Number = styled.div`
     width: 10%;

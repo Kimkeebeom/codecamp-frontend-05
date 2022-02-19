@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const Wrapper = styled.form`
+export const Wrapper = styled.div`
     /* background-color: yellow; */
     box-sizing: border-box;
     /* max-width: 100%; */
@@ -10,7 +10,7 @@ export const Wrapper = styled.form`
     /* background-image: url(/images/Login/배경사진.png); */
 `
 
-export const InnerWrapper = styled.form`
+export const InnerWrapper = styled.div`
     /* background-color: #FDFDFD; */
     border-radius: 6px;
 `
@@ -27,6 +27,10 @@ export const LogoBox = styled.div`
     border-radius: 6px;
     margin-bottom: 10px;
     cursor: pointer;
+`
+
+export const LoginBox = styled.form`
+    border-radius: 6px;
 `
 
 export const EmailBox = styled.input`
@@ -52,7 +56,7 @@ export const PwdBox = styled.input`
     margin-bottom: 10px;
 `
 
-export const RadioBodx = styled.div`
+export const RadioBox = styled.div`
     /* background-color: #FDFDFD; */
     color: #FDFDFD;
     width: 100%;

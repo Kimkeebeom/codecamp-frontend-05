@@ -2,11 +2,13 @@ import {getMyDate} from "../../../../commons/libraries/utils"
 import * as S from "./BoardList.styles"
 import {BsPencilSquare} from 'react-icons/bs'
 import Pagination from "../../pagination/pagination.container"
+import { withAuth } from "../../../commons/hocs/withAuth"
 
-export default function BoardListUI(props){
+const BoardListUI = (props) => {
     
     return(
         <>
+        <S.H1>{props.userInfo?.name}님 환영합니다!!</S.H1>
         <S.Boundary>
             <S.BoundaryHeader>
                     <S.HeaderNumber>번호</S.HeaderNumber>
@@ -14,13 +16,13 @@ export default function BoardListUI(props){
                     <S.HeaderWriter>작성자</S.HeaderWriter>
                     <S.HeaderCreatedAt>날짜</S.HeaderCreatedAt>
             </S.BoundaryHeader>
-                {props.data?.fetchBoards?.map((el, index) => (
-                    <S.BoundaryContents key={el._id}>
-                        <S.Number>{index + 1}</S.Number>
-                        <S.Title id={el._id} onClick={props.MoveToDetailBoard}>{el.title}</S.Title>
-                        <S.Writer>{el.writer}</S.Writer>
-                        <S.CreatedAt>{getMyDate(el.createdAt)}</S.CreatedAt>
-                    </S.BoundaryContents> //{Array.from(el.createdAt).slice(0,10).join("")}
+        {props.data?.fetchBoards?.map((el, index) => (
+            <S.BoundaryContents key={el._id}>
+                <S.Number>{index + 1}</S.Number>
+                <S.Title id={el._id} onClick={props.MoveToDetailBoard}>{el.title}</S.Title>
+                <S.Writer>{el.writer}</S.Writer>
+                <S.CreatedAt>{getMyDate(el.createdAt)}</S.CreatedAt>
+            </S.BoundaryContents> //{Array.from(el.createdAt).slice(0,10).join("")}
                 ))}        
         </S.Boundary>
         <S.Footer>
@@ -28,9 +30,9 @@ export default function BoardListUI(props){
             {/* <S.BtnBox> */}
             <S.Register onClick={props.boardRegister}>게시물 등록하기<BsPencilSquare size="44" color='skyblue'/></S.Register>
             {/* </S.BtnBox> */}
-        </S.Footer>
-        
+        </S.Footer>        
         </>
     )
-
 }
+
+export default withAuth(BoardListUI)

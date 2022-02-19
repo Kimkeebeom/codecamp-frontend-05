@@ -1,5 +1,7 @@
 import {useQuery} from '@apollo/client'
 import { useRouter } from 'next/router'
+import { useContext } from 'react'
+import { GlobalContext } from '../../../../../pages/_app'
 import { IQuery, IQueryFetchBoardsArgs, IQueryFetchBoardsCountArgs } from '../../../../commons/types/generated/types'
 import BoardListUI from './BoardList.presenter'
 import { FETCH_BOARDS, FETCH_BOARDS_COUNT } from './BoardList.queries'
@@ -7,6 +9,7 @@ import { FETCH_BOARDS, FETCH_BOARDS_COUNT } from './BoardList.queries'
 
 export default function BoardList(){
     const router = useRouter()
+    const {userInfo} = useContext(GlobalContext)
 
     const {data, refetch} = useQuery<
     Pick<IQuery, "fetchBoards">,
@@ -28,6 +31,7 @@ export default function BoardList(){
 
     return(
         <BoardListUI
+            userInfo={userInfo}
             data={data}
             refetch={refetch}
             count={dataBoardsCount?.fetchBoardsCount}
