@@ -48,6 +48,7 @@ export default function LoginPage(){
     // LoginUser Api 요청하는 함수
     const onClickLogin = async () => {
         try {
+            // 로그인하기
             const result = await loginUser({
                 variables: { 
                     email,
@@ -62,9 +63,12 @@ export default function LoginPage(){
              const resultUserInfo = await client.query({ 
                 // axios와 똑같이 사용이 가능 하다! 자동으로 데이터를 쓸 수 있는것이 아니기 때문에
                 // 변수에 데이터를 담아주고 async-await로 데이터를 받아올때까지 기다려줘야 한다.
-                query: FETCH_USER_LOGGED_IN
+                query: FETCH_USER_LOGGED_IN,
+                context: {
+                    headers: {Authorization: `Bearer ${accessToken}`}
+                }
                 })
-                const userInfo = resultUserInfo.data.fetchUserLoggedIn
+            const userInfo = resultUserInfo.data.fetchUserLoggedIn
             
             // 글로벌스테이트에 저장하기
             if(setAccessToken) setAccessToken(accessToken)
@@ -72,17 +76,18 @@ export default function LoginPage(){
 
             // refreshToken 배우기 전까지 임시로 저장해놓기
             localStorage.setItem("accessToken",accessToken || "")
-            localStorage.setItem("userInfo",JSON.stringify(userInfo) || "")
+            localStorage.setItem("userInfo",JSON.stringify(userInfo) || "") // userInfo는 객체형태기 때문에 로컬스토리지에 객체 형태 그대로 못들어감. 
+                                                                            //문자열로 바꿔서 들여보내줘야함
 
             // 잘 들어가 있는지 확인하기
             console.log("==========================")
             console.log(localStorage.getItem("accessToken"))
-            console.log(JSON.parse(localStorage.getItem("userInfo") || "{"))
+            console.log(JSON.parse(localStorage.getItem("userInfo") || "{}"))
             console.log("==========================")
             
            
             // 로그인 성공 페이지로 이동하기!!
-            router.push("/24-02-login-check-success")
+            router.push("/24-02-login-use-apollo-client-success")
         } catch (error) {
             // 타입스크립트 버젼에 따라 error부분에 밑줄이 그어져서 아래처럼 작성
             if(error instanceof Error) Modal.error({content: error.message})
