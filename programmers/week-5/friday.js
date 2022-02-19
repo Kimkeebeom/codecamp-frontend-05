@@ -10,7 +10,7 @@ function solution(participant, completion) {
       // console.log(completion[i])
       if(participant.includes(completion[i])) {
             participant.splice(
-              participant.indexOf( competion[i]),
+              participant.indexOf( completion[i]),
               1
           )
       }
