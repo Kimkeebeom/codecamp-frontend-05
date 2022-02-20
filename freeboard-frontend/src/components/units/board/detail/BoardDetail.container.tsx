@@ -7,9 +7,6 @@ import { IMutation, IMutationDislikeBoardArgs,
     from "../../../../commons/types/generated/types";
 import { useState } from "react";
 
-import confirm from "antd/lib/modal/confirm";
-import { ExclamationCircleOutlined } from '@ant-design/icons';
-
 export default function BoardDetail(){
     const router = useRouter();
     const [modalOpen, setModalOpen] = useState(false);

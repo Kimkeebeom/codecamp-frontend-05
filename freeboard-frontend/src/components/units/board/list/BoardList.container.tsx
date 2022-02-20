@@ -1,6 +1,6 @@
 import {useQuery} from '@apollo/client'
 import { useRouter } from 'next/router'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { GlobalContext } from '../../../../../pages/_app'
 import { IQuery, IQueryFetchBoardsArgs, IQueryFetchBoardsCountArgs } from '../../../../commons/types/generated/types'
 import BoardListUI from './BoardList.presenter'
@@ -10,13 +10,14 @@ import { FETCH_BOARDS, FETCH_BOARDS_COUNT } from './BoardList.queries'
 export default function BoardList(){
     const router = useRouter()
     const {userInfo} = useContext(GlobalContext)
+    const [keyword, setKeyword] = useState("")
 
     const {data, refetch} = useQuery<
     Pick<IQuery, "fetchBoards">,
     IQueryFetchBoardsArgs
     >(FETCH_BOARDS, {variables: { page: 1 }})
 
-    const {data: dataBoardsCount} = useQuery<
+    const {data: dataBoardsCount, refetch: refetchBoardsCount} = useQuery<
     Pick<IQuery,"fetchBoardsCount">,
     IQueryFetchBoardsCountArgs
     >(FETCH_BOARDS_COUNT)
@@ -25,8 +26,12 @@ export default function BoardList(){
         router.push("/board/new")
     }
 
-    const MoveToDetailBoard = (event) => {
+    const MoveToDetailBoard = (event: { target: { id: any } }) => {
         router.push(`/board/${event.target.id}`)
+    }
+
+    const onChangeKeyword = (value: string) => {
+        setKeyword(value)
     }
 
     return(
@@ -34,9 +39,12 @@ export default function BoardList(){
             userInfo={userInfo}
             data={data}
             refetch={refetch}
+            refetchBoardsCount={refetchBoardsCount}
             count={dataBoardsCount?.fetchBoardsCount}
+            keyword={keyword}
             boardRegister={boardRegister}
-            MoveToDetailBoard={MoveToDetailBoard}   
+            MoveToDetailBoard={MoveToDetailBoard}
+            onChangeKeyword={onChangeKeyword}   
         />
     )
 

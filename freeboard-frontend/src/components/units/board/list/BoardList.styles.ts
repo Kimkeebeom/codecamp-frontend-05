@@ -1,5 +1,9 @@
 import styled from '@emotion/styled'
 
+interface IWordProps{
+    isMatched: boolean
+}
+
 export const H1 = styled.div`
  color: white;
  font-size: 30px;
@@ -58,6 +62,10 @@ export const Title = styled.div`
     :hover {color: gold;}
     /* background-color: red; */
 `
+export const Word = styled.span`
+    color: ${(props: IWordProps) => (props.isMatched ? "gold" : "black")};
+`
+
 export const HeaderTitle = styled.div`   
     width: 70%;
     font-family: Noto Sans CJK KR;

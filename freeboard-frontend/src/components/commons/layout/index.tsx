@@ -6,15 +6,8 @@ import LayoutHeader from "./header";
 import LayoutNavigation from "./navigation";
 import styled from "@emotion/styled";
 
-const BodyWrapper = styled.div`
-    display: flex;
-    justify-content: center;
-    background-image: url(/images/Login/배경사진.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-`
 const Div = styled.div`
-    max-width: 3500px;
+    max-width: 3000px;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -22,12 +15,28 @@ const Div = styled.div`
 
 const HIDDEN_BANNER = [
     "/board/new",
-    "/board/[move]/edit"
+    "/board/[move]/edit",
+    "/members/login/login.container"
 ]
 
-const LayoutBody = styled.div`
-    max-height: 2700px;
+const HIDDEN_NAVIGATION = [
+    "/members/login/login.container"
+]
+
+const BodyWrapper = styled.div`
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
     height: 100%;
+    padding: 30px 0px 0px 0px;
+    background-image: url(/images/Login/배경사진.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+`
+
+const LayoutBody = styled.div`
+    /* max-height: 5000px; */
+    /* height: 100%; */
     padding-bottom: 100px;
 `
 
@@ -39,12 +48,13 @@ export default function Layout(props : Iprops){
     console.log(router);
 
     const isHiddenBanner = HIDDEN_BANNER.includes(router.asPath)
+    const isHiddenNavigation = HIDDEN_NAVIGATION.includes(router.asPath)
     
     return(
         <Div>
             <LayoutHeader/>
             {!isHiddenBanner && <LayoutBanner/>}
-            <LayoutNavigation/>
+            {!isHiddenNavigation && <LayoutNavigation/>}
             <BodyWrapper>
                 <LayoutBody>{props.children}</LayoutBody>
             </BodyWrapper>
