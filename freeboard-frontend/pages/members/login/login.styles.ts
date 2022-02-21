@@ -7,6 +7,7 @@ export const Wrapper = styled.div`
     max-height: fit-content;
     margin: 10px;
     border-radius: 6px;
+    height: 100vh;
     /* background-image: url(/images/Login/배경사진.png); */
 `
 
