@@ -11,7 +11,7 @@ export const H1 = styled.div`
 
 export const Boundary = styled.div`
     width: 1200px;
-    margin: 100px;
+    margin: 20px;
     border-bottom: 3px solid black;
 `
 
@@ -58,8 +58,9 @@ export const HeaderNumber = styled.div`
 export const Title = styled.div`   
     width: 70%;
     text-align: center;
+    color: white;
     cursor: pointer;
-    :hover {color: gold;}
+    :hover {color: white;}
     /* background-color: red; */
 `
 export const Word = styled.span`
@@ -111,8 +112,8 @@ export const Footer = styled.div`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding-right: 100px;
-    padding-left: 90px;
+    /* padding-right: 100px;
+    padding-left: 90px; */
 `
 
 export const Register = styled.button`

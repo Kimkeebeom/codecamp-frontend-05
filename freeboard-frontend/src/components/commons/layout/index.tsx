@@ -29,7 +29,8 @@ const BodyWrapper = styled.div`
     justify-content: center;
     height: 100%;
     padding: 30px 0px 0px 0px;
-    background-image: url(/images/Login/배경사진.png);
+    margin-bottom: 10px;
+    background-image: url(/images/layout/background/애플배경.png);
     background-repeat: no-repeat;
     background-size: cover;
 `

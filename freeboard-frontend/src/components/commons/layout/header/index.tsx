@@ -1,20 +1,48 @@
 import styled from "@emotion/styled"
 import { useRouter } from "next/router"
-// import Slider from "react-slick"
 
 const Wrapper = styled.div`
+    box-sizing: border-box;
     display: flex;
-    justify-content: flex-end;
-    height: 30px;
-    /* background-color: skyblue; */
+    flex-direction: column;
+    /* justify-content: flex-start; */
+    height: 50px;
+    background-color: #feffff;
     font-size: 20px;
 `
 
+const TopWrapper = styled.div`
+    height: 10px;
+    background-color: #d3d9ec;
+`
+//#faedc9
+//#d3d9ec
+
 const NaviWrapper = styled.div`
     display: flex;
-    cursor: pointer;
-    /* :hover {color:#69e6a7;} */
+    /* justify-content: space-around; */
+    justify-content: space-between;
+    background-color: #eccce1;
+    padding: 0px 15px 0px 15px;
 `
+
+const SpanBox = styled.div`
+    display: flex;
+    justify-content: space-between;
+    width: 250px;
+    /* background-color: red; */
+`
+
+const Span = styled.span`
+    display: flex;
+    /* word-spacing: 5px; */
+    cursor: pointer;
+    :hover {color:#dbc356;}
+`
+
+const LogoBox = styled.div``
+
+const LoginAuthBox = styled.div``
 
 export default function LayoutHeader() {
 
@@ -25,10 +53,15 @@ export default function LayoutHeader() {
     }
    return (
     <Wrapper>
+        <TopWrapper/>
         <NaviWrapper>
-            <span> 회원가입 | </span>
-            <span onClick={moveToLoginPage}> 로그인 | </span>
-            <span> 마이페이지 </span>
+            <SpanBox>
+                <Span> Join </Span>
+                <Span onClick={moveToLoginPage}> Login </Span>
+                <Span> Mypage </Span>
+            </SpanBox>
+            <LogoBox></LogoBox>
+            <LoginAuthBox>님 환영합니다!</LoginAuthBox>
         </NaviWrapper>   
     </Wrapper>
     )
