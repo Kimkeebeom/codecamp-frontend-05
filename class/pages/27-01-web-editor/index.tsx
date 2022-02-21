@@ -15,7 +15,7 @@ export default function WebEditorPage() {
         <br />
         제목 : <input type="text" />
         <br />
-        내용 : <ReactQuill onChange={}/>
+        내용 : <ReactQuill onChange={hanndleChange}/>
         <br />
         <button>등록하기</button>
       </div>
