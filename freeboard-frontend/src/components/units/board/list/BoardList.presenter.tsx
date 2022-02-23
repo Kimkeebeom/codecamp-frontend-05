@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from "uuid";
 import SearchPage from "../../search/search.container"
 import { ReactChild, ReactFragment, ReactPortal, MouseEventHandler } from "react"
 
-const BoardListUI = (props: { userInfo: { name: boolean | ReactChild | ReactFragment | ReactPortal }; refetch: (arg0: { page: number }) => void; refetchBoardsCount: any; onChangeKeyword: any; data: { fetchBoards: any[] }; MoveToDetailBoard: MouseEventHandler<HTMLDivElement>; keyword: any; count: number; boardRegister: MouseEventHandler<HTMLButtonElement> }) => {
+const BoardListUI = (props) => {
     
     return(
         <>
@@ -27,7 +27,7 @@ const BoardListUI = (props: { userInfo: { name: boolean | ReactChild | ReactFrag
         {props.data?.fetchBoards?.map((el, index) => (
             <S.BoundaryContents key={el._id}>
                 <S.Number>{index + 1}</S.Number>
-                <S.Title id={el._id} style={{color:"white;"}} onClick={props.MoveToDetailBoard}>
+                <S.Title id={el._id} style={{color:"white"}} onClick={props.MoveToDetailBoard}>
                     {/* 👇검색했을때 검색한 키워드 fetch값을 보여주는 코드 */}
                     {el.title.replaceAll(props.keyword, `#$%${props.keyword}#$%`).split("#$%").map((el)=>(
                         <S.Word key={uuidv4()} isMatched={el === props.keyword ? true : false}> 

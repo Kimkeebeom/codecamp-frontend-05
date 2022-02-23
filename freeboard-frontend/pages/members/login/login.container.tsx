@@ -61,15 +61,15 @@ export default function loginMainPage(){
     IMutationLoginUserArgs
     >(LOGIN_USER)
 
-    // const onChangeEmail = (event: ChangeEvent<HTMLInputElement>) => {
-    //     setEmail(event.target.value)
-    //     // console.log(event.target.value)
-    // }
+    const onChangeEmail = (event: ChangeEvent<HTMLInputElement>) => {
+        setEmail(event.target.value)
+        // console.log(event.target.value)
+    }
 
-    // const onChangePassword = (event: ChangeEvent<HTMLInputElement>) => {
-    //     setPassword(event.target.value)
-    //     // console.log(event.target.value,"외안되 눈참많이오네")
-    // }
+    const onChangePassword = (event: ChangeEvent<HTMLInputElement>) => {
+        setPassword(event.target.value)
+        // console.log(event.target.value,"외안되 눈참많이오네")
+    }
 
     const onClickLogin = async () => {
         try {
@@ -112,9 +112,9 @@ export default function loginMainPage(){
                     KB LOGO
                 </L.LogoBox>
                 <L.LoginBox onSubmit={handleSubmit(onClickLogin)}>
-                    <L.EmailBox type="text" {...register("email")} placeholder="E-mail"/>    
+                    <L.EmailBox type="text" onChange={onChangeEmail} {...register("email")} placeholder="E-mail"/>    
                         <div style={{color:"white"}}>{formState.errors.email?.message}</div>     
-                    <L.PwdBox  type="password" {...register("password")} placeholder="Password"/>
+                    <L.PwdBox  type="password" onChange={onChangePassword} {...register("password")} placeholder="Password"/>
                         <div style={{color:"white"}}>{formState.errors.password?.message}</div>  
                     <L.RadioBox>
                         <input type="radio"/> 로그인 상태 유지

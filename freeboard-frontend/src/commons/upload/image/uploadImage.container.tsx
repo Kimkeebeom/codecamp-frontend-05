@@ -41,10 +41,10 @@ export default function UploadImage(props){
 
     return (
         <>
-        {props.fileUrl ? (
+        {image ? (
           <S.ImageUpload
             onClick={onClickImage}
-            src={`https://storage.googleapis.com/${props.fileUrl}`}
+            src={`https://storage.googleapis.com/${image}`}
           />
         ) : (
           <S.UploadImage onClick={onClickImage}>

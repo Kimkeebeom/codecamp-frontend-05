@@ -22,11 +22,16 @@ const IMG = styled.img`
 `
 
 const SliderDesign = styled(Slider)`
+width: 100%;
+height: 450px;
     img{
-        max-width: 2000px;
-        max-height: 650px;
+        width: 100%;
+        /* max-height */
     }
 	display: flex;
+	div{
+		width: 100%;
+	}
 `
 
 export default function SimpleSlider() {
@@ -48,16 +53,16 @@ export default function SimpleSlider() {
 				<style>{cssstyle}</style>
 				<SliderDesign {...settings}>
 					<div>
-						<IMG src="/images/layout/banner/Xs(4).png" />
+						<img src="/images/layout/banner/Xs(4).png" />
 					</div>
 					<div>
-						<IMG src="/images/layout/banner/Xr이미지(3).jpg" />
+						<img src="/images/layout/banner/Xr이미지(3).jpg" />
 					</div>
 					<div>
-						<IMG src="/images/layout/banner/아이폰11.jpg" />
+						<img src="/images/layout/banner/아이폰11.jpg" />
 					</div>
 					<div>
-						<IMG src="/images/layout/banner/아이폰13.png" />
+						<img src="/images/layout/banner/아이폰13.png" />
 					</div>
 				</SliderDesign>
 			</div>

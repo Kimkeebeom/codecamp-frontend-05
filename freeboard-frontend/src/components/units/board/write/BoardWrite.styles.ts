@@ -15,9 +15,6 @@ export const WrapperHeader = styled.div`
     height: 53px;
     display: flex;
     justify-content: center;
-    /*  
-    left: 10px;
-    top: 60px; */
 `
 
 export const MainTitle = styled.div`
@@ -83,7 +80,6 @@ export const NameError = styled.div`
     width: 486px;
     height: 20px;
     box-sizing: border-box;
-     
     left: 0px;
     top: 55px;
 `
@@ -95,7 +91,6 @@ export const PasswordError = styled.div`
     width: 486px;
     height: 20px;
     box-sizing: border-box;
-     
     right: 0px;
     top: 53px;
 `
@@ -107,7 +102,6 @@ export const Combined = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-     
     left: 101px;
     top: 233px;
     
@@ -115,7 +109,6 @@ export const Combined = styled.div`
 export const Title = styled.input`
     width: 996px;
     height: 52px;
-     
     left: 101px;
     top: 365px;
 `
@@ -123,13 +116,11 @@ export const Title = styled.input`
 export const TitleError = styled.div`
     width: 996px;
     height: 20px;
-     
     left: 101px;
     top: 420px;
 `
 
 export const SubTitle = styled.span`
-     
     width: 40px;
     height: 24px;
     left: 101px;
@@ -137,7 +128,6 @@ export const SubTitle = styled.span`
 `
 
 export const SubContent = styled.span`
-     
     left: 101px;
     top: 457px;
 `
@@ -146,7 +136,6 @@ export const Content = styled.textarea`
     width: 996px;
     height: 480px;
     padding-bottom: 450px;
-     
     left: 101px;
     top: 497px;
 `
@@ -154,13 +143,11 @@ export const Content = styled.textarea`
 export const CntError = styled.div`
     width: 996px;
     height: 20px;
-     
     left: 101px;
     top: 520px;
 `
 
 export const SubAddress = styled.span`
-     
     left: 101px;
     top: 993px; 
 `
@@ -171,7 +158,6 @@ export const WrapperAddress = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-     
     left: 101px;
     top: 1033px;
 `
@@ -202,7 +188,6 @@ export const WrapperAddressText = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-     
     left: 101px;
     top: 1101px;
 `
@@ -214,7 +199,6 @@ export const AddressText = styled.input`
 `
 
 export const SubPhoto = styled.span`
-     
     left: 101px;
     top: 1393px;
 `
@@ -223,23 +207,11 @@ export const WrapperPhoto = styled.div`
     width: 282px;
     height: 94px;
     display: flex;
-     
     left: 101px;
     top: 1433px;
 `
 
-// export const PhotoUpload = styled.button`
-//     width: 78px;
-//     height: 78px;
-//     background-color: #bdbdbd;
-//     margin-right: 24px;
-//     outline: none;
-//     border: none;
-//     cursor: pointer;
-// `
-
 export const SubYoutube = styled.span`
-     
     left: 101px;
     top: 1272px;
 `
@@ -252,7 +224,6 @@ export const Youtube = styled.input`
 `
     
 export const SubRadio = styled.span`
-     
     left: 101px;
     top: 1551px;
 `
@@ -260,9 +231,9 @@ export const SubRadio = styled.span`
 export const Radio = styled.div`
     width: 123px;
     height: 24px;
-     
     left: 101px;
     top: 1591px;
+    margin-bottom: 100px;
 `
 
 export const Button = styled.button`
@@ -280,27 +251,8 @@ export const Button = styled.button`
     :hover {
         cursor: ${(props) => props.isActive === true ? "pointer" : "pointer"};
     }
-    /* width: 179px;
-    height: 52px;
-    border: none;
-    font-size: 16px;
-    font-weight: 500;
-    margin-left: 12px;
-    margin-right: 12px;
-    background-color: ${(props) => props.isActive === true ? "yellow" : "grey"};
-    
-    :hover {
-        cursor: ${(props) => props.isActive === true ? "pointer" : "default"};
-    } */
 `
 export const MoveToBoardList = styled.button`
-    /* width: 179px;
-    height: 52px;
-    border: none;
-    font-size: 16px;
-    font-weight: 500;
-    margin-left: 12px;
-    margin-right: 12px; */
     width: 179px;
     height: 52px;
     display: flex;

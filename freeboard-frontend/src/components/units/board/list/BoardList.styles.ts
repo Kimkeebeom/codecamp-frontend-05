@@ -60,7 +60,7 @@ export const Title = styled.div`
     text-align: center;
     color: white;
     cursor: pointer;
-    :hover {color: white;}
+    /* :hover {color: white} */
     /* background-color: red; */
 `
 export const Word = styled.span`

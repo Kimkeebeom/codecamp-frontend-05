@@ -39,11 +39,13 @@ interface IGlobalContext{
   setUserInfo?: Dispatch<SetStateAction<IUserInfo>>
 }
 
+// ()안에는 Context 초기값이 들어간다, 에러가 뜨길래 초기값에 빈 객체를 넣어줌
 export const GlobalContext = createContext<IGlobalContext>({})
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [accessToken, setAccessToken] = useState("")
-  const [userInfo, setUserInfo] = useState<IUserInfo>({}) // 초기값은{} 비어있지만 빈객체로 타입이 추론되는것을 방치하기 위해 <IUserInfo>로 타입을 알려주기!
+  const [userInfo, setUserInfo] = useState<IUserInfo>({}) // 초기값은{} 비어있지만 빈객체로 타입이 추론되는것을 
+                                                          // 방치하기 위해 <IUserInfo>로 타입을 알려주기!
   const Value = {
     accessToken,
     setAccessToken,
@@ -63,7 +65,8 @@ function MyApp({ Component, pageProps }: AppProps) {
   })
 
   const client = new ApolloClient({
-    link: ApolloLink.from([uploadLink as unknown as ApolloLink]), // from([]): 어떤걸 링크할건데?
+    // from([]): 어떤걸 링크할건데?
+    link: ApolloLink.from([uploadLink as unknown as ApolloLink]), 
     cache: new InMemoryCache()
   })
   

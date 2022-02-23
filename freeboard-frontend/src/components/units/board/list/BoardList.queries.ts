@@ -33,3 +33,12 @@ export const FETCH_BOARDS_COUNT = gql`
         fetchBoardsCount(search: $search)
     }
 `
+
+export const FETCH_USER_LOGGED_IN = gql`   
+    query fetchUserLoggedIn {
+        fetchUserLoggedIn{
+            email
+            name
+        }
+    }
+`
