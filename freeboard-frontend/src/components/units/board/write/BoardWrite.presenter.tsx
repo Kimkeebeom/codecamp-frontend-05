@@ -1,11 +1,14 @@
 import { ChangeEvent } from 'react'
-import UploadImage from '../../../../commons/upload/image/uploadImage.container'
 import * as S from './BoardWrite.styles'
 import { v4 as uuidv4 } from "uuid"
+// import { UploadImage } from '../../../../commons/upload/image/uploadImage.styles'
+import UploadImage from '../../../../commons/upload/image/uploadImage.container'
 
 export interface IBoardWriteUIProps{
     onChangeYoutubeUrl: (event: ChangeEvent<HTMLInputElement>) => void;
     isActive: boolean;
+    onChangeFileUrls: (fileUrls: string, index: number) => void;
+    fileUrls: string[];
 }
 
 export default function BoardWriteUI(props){
@@ -75,8 +78,8 @@ export default function BoardWriteUI(props){
                     <UploadImage
                         key={uuidv4()}
                         index={index}
-                        fileUrl={el} 
-                        defaultFileUrl={props.data?.fetchBoard.images?.[index]}
+                        fileUrls={el} 
+                        // defaultFileUrl={props.data?.fetchBoard.images?.[index]}
                         onChangeFileUrls={props.onChangeFileUrls}   
                     />
                 ))}

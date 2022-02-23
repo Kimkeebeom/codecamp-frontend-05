@@ -42,8 +42,8 @@ return( // data? : 옵셔널 체이닝(조건부랜더링) => data && data와 �
                         />
                         <S.BodayImageWrapper>
                             {props.data?.fetchBoard.images
-                                ?.filter((el: any) => el) // el이 빈문자열이면 false여서 사진을 업로드 안한 부분은 보여지지 않게 됨
-                                .map((el: Key) => (
+                                ?.filter((el: string) => el) // el이 빈문자열이면 false여서 사진을 업로드 안한 부분은 보여지지 않게 됨
+                                .map((el: string) => (
                                     <S.Image key={el}
                                         src={`https://storage.googleapis.com/${el}`}/>
                                  ))}

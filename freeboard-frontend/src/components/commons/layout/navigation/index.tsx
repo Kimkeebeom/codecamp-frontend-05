@@ -31,7 +31,7 @@ export default function LayoutNavigation() {
     }
 
     const onClickMoveToProductRegistPage = () => {
-        router.push("/product")
+        router.push("/product/new")
     }
 
     const onClickMoveToMypage = () => {

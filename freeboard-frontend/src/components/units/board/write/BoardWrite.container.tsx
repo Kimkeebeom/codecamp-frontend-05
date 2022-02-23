@@ -31,7 +31,7 @@ export default function BoardWrite (props) {
 
     const [youtubeUrl, setYoutubeUrl] = useState("")
 
-    const [fileUrls, setFileUrls] = useState([])
+    const [fileUrls, setFileUrls] = useState(["","",""])
 
     function user(event){
         setWriter(event.target.value)

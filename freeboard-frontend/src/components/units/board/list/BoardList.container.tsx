@@ -28,6 +28,8 @@ export default function BoardList(){
 
     const MoveToDetailBoard = (event: { target: { id: any } }) => {
         router.push(`/board/${event.target.id}`)
+        // router.push(`/board/[event.target.id]`)
+        // router.push("/board/new")
     }
 
     const onChangeKeyword = (value: string) => {
