@@ -24,7 +24,7 @@ export default function ImageValidationPage(){
         console.log(file)
 
         const isValid = checkFileValidation(file)
-        if(isValid) return
+        if(!isValid) return
 
         // if(!file?.size){ // !file?.size: 파일 사이즈가 없을 때 튕겨내기!
         //     Modal.error({content: "파일이 존재하지 않습니다"})
