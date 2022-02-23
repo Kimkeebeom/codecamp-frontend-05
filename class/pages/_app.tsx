@@ -9,6 +9,7 @@ import { createUploadLink } from 'apollo-upload-client'
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { createContext, Dispatch, SetStateAction, useEffect, useState } from 'react';
+import Head from 'next/head';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -89,6 +90,12 @@ function MyApp({ Component, pageProps }: AppProps) {
     // shortandproperty로 accesstoken을 하나로 작성가능, 
     // 하지만 setAccessToken 등 다른 기능들을 추가하게 되면 길어지기 때문에 하나의 변수인 Value 담아서 넣어준다!
     <GlobalContext.Provider value={Value}>
+      {/* <Head> 모든 페이지에서 카카오맵을 다운으로 받으므로 비효율 적임
+        <script 
+        type="text/javascript" 
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=09aad3d1435f13d9e7ab61e68249432d"
+        ></script>
+      </Head> */}
       <ApolloProvider client={client}>
         <Global styles={globalStyles}/> {/* 모든페이지 모든컴포넌트에 적용되는 css */}
         <Layout>
