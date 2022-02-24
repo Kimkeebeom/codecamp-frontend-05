@@ -26,8 +26,8 @@ export default function BoardList(){
         router.push("/board/new")
     }
 
-    const MoveToDetailBoard = (event: { target: { id: any } }) => {
-        router.push(`/board/${event.target.id}`)
+    const MoveToDetailBoard = (event) => {
+        router.push(`/board/${event.currentTarget.id}`)
         // router.push(`/board/[event.target.id]`)
         // router.push("/board/new")
     }

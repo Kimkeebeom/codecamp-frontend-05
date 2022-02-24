@@ -1,11 +1,12 @@
 import { gql, useMutation } from "@apollo/client"
+import { Modal } from "antd"
 import { ChangeEvent, useState } from "react"
 import { useForm } from "react-hook-form"
 import { IMutation, IMutationCreateUseditemArgs } from "../../../../commons/types/generated/types"
 
 const CREATE_USED_ITEM = gql`
     mutation createUseditem($createUseditemInput: CreateUseditemInput!){
-        createUsedItem(createUseditemInput: $createUseditemInput){
+        createUseditem(createUseditemInput: $createUseditemInput){
             _id
             name
             remarks
@@ -17,7 +18,7 @@ const CREATE_USED_ITEM = gql`
 `
 interface IFormdata{
     name?: string,
-    title?: string,
+    remarks?: string,
     price?: number,
     contents?: string
     images?: any
@@ -33,27 +34,27 @@ export default function ProductWrite(){
     IMutationCreateUseditemArgs
     >(CREATE_USED_ITEM)
 
-    const [name, setName] = useState("")
-    const [remarks, setRemarks] = useState("")
-    const [price, setPrice] = useState(0)
-    const [contents, setContents] = useState("")
+    // const [name, setName] = useState("")
+    // const [remarks, setRemarks] = useState("")
+    // const [price, setPrice] = useState(0)
+    // const [contents, setContents] = useState("")
     const [images, setImages] = useState(["","",""])
 
-    function productWriter(event: ChangeEvent<HTMLInputElement>){
-        setName(event.target.value)
-    }
+    // function productWriter(event: ChangeEvent<HTMLInputElement>){
+    //     setName(event.target.value)
+    // }
 
-    function productTitle(event: ChangeEvent<HTMLInputElement>){
-        setRemarks(event.target.value)
-    }
+    // function productTitle(event: ChangeEvent<HTMLInputElement>){
+    //     setRemarks(event.target.value)
+    // }
 
-    function productPrice(event: ChangeEvent<HTMLInputElement>){
-        setPrice(event.target.valueAsNumber)
-    }
+    // function productPrice(event: ChangeEvent<HTMLInputElement>){
+    //     setPrice(event.target.valueAsNumber)
+    // }
 
-    function productContents(event: ChangeEvent<HTMLTextAreaElement>){
-        setContents(event.target.value)
-    }
+    // function productContents(event: ChangeEvent<HTMLTextAreaElement>){
+    //     setContents(event.target.value)
+    // }
 
     function onChangeImages(image: string, index: number){
         const newImages = [...images];
@@ -63,21 +64,27 @@ export default function ProductWrite(){
     }
 
     const onClickSubmit = async (data: IFormdata) => {
+        // if(!(data.name && data.remarks && data.price && data.contents)){
+        //     Modal.warn({content: "필수 입력 사항입니다!"})
+        //     return
+        //   }
         try {
             const result = await createUseditem({
                 variables: {
                     createUseditemInput:{
-                        name,
-                        remarks,
-                        price,
-                        contents,
-                        images
+                        name: data.name,
+                        remarks: data.remarks,
+                        price: Number(data.price),
+                        contents: data.contents,
+                        // images: data.images
                     }
                 }
             })
+            console.log(result)
         } catch (error) {
-            
+            Modal.error({content:error.message})
         }
+
         console.log(data)
         // setValue("images", value === "url" ? "": value)
     }
@@ -86,13 +93,13 @@ export default function ProductWrite(){
         <form onSubmit={handleSubmit(onClickSubmit)}>
             {/* 이미지: <input type="url" {...register("Image")}/>
             <br/> */}
-            작성자: <input type="text" onChange={productWriter} {...register("Writer")}/>
+            작성자: <input type="text" {...register("name")}/>
             <br/>
-            제목: <input type="text" onChange={productTitle} {...register("Remarks")}/>
+            제목: <input type="text" {...register("remarks")}/>
             <br/>
-            가격: <input type="number" onChange={productPrice} {...register("Price")}/>
+            가격: <input type="number" {...register("price")}/>
             <br/>
-            상품상세: <input type="textarea" onChange={productContents} {...register("Contents")}/>
+            상품상세: <input type="textarea" {...register("contents")}/>
             <br/>
             <button>등록하기</button>
         </form>

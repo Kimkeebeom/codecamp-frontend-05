@@ -14,7 +14,7 @@ const UPLOAD_FILE = gql`
 
 export default function ImageProductWrite(){
     const fileRef = useRef<HTMLInputElement>(null)
-    const [images, setImages] = useState(["","",""])
+    const [images, setImages] = useState([])
     const [uploadFile] = useMutation<
     Pick<IMutation, 'uploadFile'>,
     IMutationUploadFileArgs
@@ -37,8 +37,8 @@ export default function ImageProductWrite(){
                 }
             })
             console.log("result:", result.data.uploadFile.url)
-            setImages([result.data.uploadFile.url])
-            // setImages(prev => [result.data.uploadFile.url, ...prev])
+            // setImages([result.data.uploadFile.url])
+            setImages(prev => [result.data.uploadFile.url, ...prev])
             // setImages(images)
             
         } catch (error) {
