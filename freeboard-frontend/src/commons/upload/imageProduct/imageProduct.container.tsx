@@ -12,9 +12,9 @@ const UPLOAD_FILE = gql`
     }
 `
 
-export default function ImageProductWrite(){
+export default function ImageProductWrite(props){
     const fileRef = useRef<HTMLInputElement>(null)
-    const [images, setImages] = useState([])
+    // const [image, setImage] = useState("")
     const [uploadFile] = useMutation<
     Pick<IMutation, 'uploadFile'>,
     IMutationUploadFileArgs
@@ -29,23 +29,28 @@ export default function ImageProductWrite(){
 
     const onChangeFile = async (event: ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0]
-        console.log(file)
+        console.log("첫번째 콘솔:", file)
         try {
             const result = await uploadFile({
                 variables: {
                     file: file
                 }
             })
-            console.log("result:", result.data.uploadFile.url)
+            console.log("두번째 콘솔 - result:",result.data.uploadFile.url)
+            console.log("이미지 등록이 왜 안되니")
             // setImages([result.data.uploadFile.url])
-            setImages(prev => [result.data.uploadFile.url, ...prev])
-            // setImages(images)
+            // setImage(prev => [result.data.uploadFile.url, ...prev])
+            // props.setImages([...]])
+            const newImages = [...props.images];
+            newImages[props.index] = result.data.uploadFile.url;
+            props.setImages(newImages)
+            console.log("images:", newImages)
             
         } catch (error) {
             Modal.error({content: error.message})
         }
     }
-    console.log(images)
+    console.log("세번째 콘솔:",props.images)
     const onClickImage = () => {
         fileRef.current?.click(); // 이미지를 클릭했지만 fileRef가 
                                   // 클릭되게끔 해야하기 때문에 fileRef를 쓴다.
@@ -53,11 +58,10 @@ export default function ImageProductWrite(){
 
     return(
         <>
-        {images ? (
+        {props.images[props.index] ? (
           <S.ImageUpload
             onClick={onClickImage}
-            src={`https://storage.googleapis.com/${images}`}
-            
+            src={`https://storage.googleapis.com/${props.images[props.index]}`}    
           />
         ) : (
           <S.UploadImage onClick={onClickImage}>

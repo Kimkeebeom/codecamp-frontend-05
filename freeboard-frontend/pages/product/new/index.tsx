@@ -12,7 +12,7 @@ export default function productWrite(){
         //     /> 
         // )}
         <div>
-            <ImageProductWrite/>
+            {/* <ImageProductWrite/> */}
             <ProductWrite/>
         </div>
         

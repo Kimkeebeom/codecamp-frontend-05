@@ -117,7 +117,7 @@ export default function BoardWrite (props) {
                             contents:contents,
                             youtubeUrl:youtubeUrl,
                             images: fileUrls,
-                            }}
+                    }}
                 })
                 Modal.success({content: "게시물이 등록되었습니다."})
                 console.log(result.data.createBoard._id)

@@ -13,9 +13,13 @@ export default function BoardDetail(){
 
     const [deleteBoard] = useMutation(DELETE_BOARD)
 
-    const { data } = useQuery<Pick<IQuery, "fetchBoard">, IQueryFetchBoardArgs>(FETCH_BOARD,{
+    const { data } = useQuery<
+    Pick<IQuery, "fetchBoard">, 
+    IQueryFetchBoardArgs
+    >(FETCH_BOARD,
+        {
         variables: { boardId: String(router.query.move)}
-    })
+        })
     console.log(data)
 
 
