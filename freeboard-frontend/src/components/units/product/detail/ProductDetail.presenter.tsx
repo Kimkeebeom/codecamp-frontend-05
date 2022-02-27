@@ -1,9 +1,14 @@
 import { ReactChild, ReactFragment, ReactPortal } from 'react'
+import { getMyDate } from '../../../../commons/libraries/utils'
+import BoardCommentList from '../../boardComments/list/BoardCommentsList.container'
+import BoardCommentWrite from '../../boardComments/write/BoardCommentsWrite.container'
 import * as P from './ProductDetail.styles'
 
 export default function ProductDetailUI(props){
     return(
+        <>
         <P.Wrapper>
+            <P.CreatedAt>{getMyDate(props.data?.fetchUseditem?.createdAt)}</P.CreatedAt>
             <P.ImagesWrapper>
                 {props.data?.fetchUseditem?.images
                     ?.filter((el:string)=>el)
@@ -11,7 +16,6 @@ export default function ProductDetailUI(props){
                          <P.Images key={el}
                             src={`https://storage.googleapis.com/${el}`}/>
                      ))}
-                     
             </P.ImagesWrapper>
             <P.Name>
                 {props.data?.fetchUseditem?.name}
@@ -29,5 +33,8 @@ export default function ProductDetailUI(props){
                 그냥 버튼
             </P.Button>
         </P.Wrapper>
+        <BoardCommentWrite/>
+        <BoardCommentList/>
+        </>
     )
 }

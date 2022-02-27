@@ -10,13 +10,15 @@ import { FETCH_BOARDS, FETCH_BOARDS_COUNT } from './BoardList.queries'
 export default function BoardList(){
     const router = useRouter()
     const {userInfo} = useContext(GlobalContext)
-    const [keyword, setKeyword] = useState("")
+    const [keyword, setKeyword] = useState("") // 검색
 
+    //게시판 목록 불러오기
     const {data, refetch} = useQuery<
     Pick<IQuery, "fetchBoards">,
     IQueryFetchBoardsArgs
     >(FETCH_BOARDS, {variables: { page: 1 }})
 
+    // 검색
     const {data: dataBoardsCount, refetch: refetchBoardsCount} = useQuery<
     Pick<IQuery,"fetchBoardsCount">,
     IQueryFetchBoardsCountArgs
@@ -32,6 +34,7 @@ export default function BoardList(){
         // router.push("/board/new")
     }
 
+    // 검색
     const onChangeKeyword = (value: string) => {
         setKeyword(value)
     }

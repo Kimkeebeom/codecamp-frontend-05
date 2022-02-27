@@ -5,7 +5,7 @@ import Pagination from "../../pagination/pagination.container"
 import { withAuth } from "../../../commons/hocs/withAuth"
 import { v4 as uuidv4 } from "uuid";
 import SearchPage from "../../search/search.container"
-import { ReactChild, ReactFragment, ReactPortal, MouseEventHandler } from "react"
+// import { ReactChild, ReactFragment, ReactPortal, MouseEventHandler } from "react"
 
 const BoardListUI = (props) => {
     

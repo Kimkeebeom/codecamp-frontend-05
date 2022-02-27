@@ -5,6 +5,10 @@ export const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
 `
+export const CreatedAt = styled.div`
+    width: 150px;
+    color: white;
+`
 export const Name = styled.div`
     /* width: 100px;
     height: 50px; */
@@ -26,4 +30,6 @@ export const Contents = styled.div`
 `
 // export const AddressWrapper = styled.div``
 // export const Tags = styled.div``
-export const Button = styled.button``
+export const Button = styled.button`
+    width: 100px;
+`
