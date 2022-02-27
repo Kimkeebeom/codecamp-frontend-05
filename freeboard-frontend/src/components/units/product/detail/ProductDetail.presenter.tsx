@@ -1,7 +1,6 @@
-import { ReactChild, ReactFragment, ReactPortal } from 'react'
 import { getMyDate } from '../../../../commons/libraries/utils'
-import BoardCommentList from '../../boardComments/list/BoardCommentsList.container'
-import BoardCommentWrite from '../../boardComments/write/BoardCommentsWrite.container'
+import ProductCommentsList from '../../productComments/list/ProductCommentsList.container'
+import ProductCommentsWrite from '../../productComments/write/ProductCommentsWrite.container'
 import * as P from './ProductDetail.styles'
 
 export default function ProductDetailUI(props){
@@ -33,8 +32,8 @@ export default function ProductDetailUI(props){
                 그냥 버튼
             </P.Button>
         </P.Wrapper>
-        <BoardCommentWrite/>
-        <BoardCommentList/>
+        <ProductCommentsWrite/>
+        <ProductCommentsList/>
         </>
     )
 }

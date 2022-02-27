@@ -150,7 +150,7 @@ export default function BoardCommentListEditUI(props){
                 <S.CommentDeletePassword onChange={onChangeDeletePassword} type="password"/>  
             </Modal>
         )}
-        {!commentEdit && (
+        {!commentEdit && ( // 수정하기전의 기본 댓글 목록(수정하지 않을 때!)
             <S.Boundary key={props.el._id}>
                 <S.HeaderBox>
                     <S.Avartar src='/images/board/detail/avatar.png'/>
@@ -176,7 +176,7 @@ export default function BoardCommentListEditUI(props){
                 <S.CreatedAt>{getMyDate([props.el.createdAt])}</S.CreatedAt>
             </S.Boundary>
         )}
-        {commentEdit && (
+        {commentEdit && ( // 수정하기 아이콘을 눌렀을 때!(수정할 때!)
             <E.Boundary key={props.el._id}>
                 <E.HeaderBox>
                     <E.Avartar src='/images/board/detail/avatar.png'/>
@@ -186,8 +186,7 @@ export default function BoardCommentListEditUI(props){
                             <E.Rating defaultValue={props.el?.rating} onChange={onChangeStar} />
                             <E.Password type="password" onChange={onChangePassword} placeholder="비밀번호를 입력해주세요"/>
                         </E.WriterBox>
-                        <E.ContentsBox type="text" defaultValue={props.el.contents} onChange={onChangeContents}/>
-                        
+                        <E.ContentsBox type="text" defaultValue={props.el.contents} onChange={onChangeContents}/>    
                     </E.MainBox>    
                     <E.IconBox>
                         <E.UpdateIcon
