@@ -1,8 +1,9 @@
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
+import { Modal } from "antd";
 import { useRouter } from "next/router";
-import { IQuery, IQueryFetchUseditemQuestionsArgs } from "../../../../commons/types/generated/types";
+import { IMutation, IMutationDeleteUseditemQuestionArgs, IQuery, IQueryFetchUseditemQuestionsArgs } from "../../../../commons/types/generated/types";
 import ProductCommentsListUI from "./ProductCommentsList.presenter";
-import { FETCH_USED_ITEM_QUESTIONS } from "./ProductCommentsList.query";
+import { DELETE_USED_ITEM_QUESTION, FETCH_USED_ITEM_QUESTIONS } from "./ProductCommentsList.query";
 
 export default function ProductCommentsList(){
     const router = useRouter()
@@ -13,6 +14,27 @@ export default function ProductCommentsList(){
     >(FETCH_USED_ITEM_QUESTIONS, {
         variables: {useditemId: String(router.query.move), page:1}
     })  
+
+    const [deleteUseditemQuestion] = useMutation<
+    Pick<IMutation,"deleteUseditemQuestion">,
+    IMutationDeleteUseditemQuestionArgs
+    >(DELETE_USED_ITEM_QUESTION)
+
+    const onClickDelete = (event) => {
+        try {
+            deleteUseditemQuestion({
+                variables: {
+                    useditemQuestionId: event.target.id
+                },
+                refetchQueries: [{
+                    query: FETCH_USED_ITEM_QUESTIONS,
+                    variables: { useditemId: router.query.move, page: 1 }
+                }]
+            })
+        } catch (error) {
+            Modal.error({content: error.message})
+        }
+    }
 
     // function onLoadMore() {
     //     if (!data) return;
@@ -32,10 +54,10 @@ export default function ProductCommentsList(){
     //     });
     //   }
     
-
     return(
         <ProductCommentsListUI
             data={data}
+            onClickDelete={onClickDelete}
         />
     )
 }
