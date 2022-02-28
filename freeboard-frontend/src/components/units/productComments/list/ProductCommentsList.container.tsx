@@ -35,24 +35,6 @@ export default function ProductCommentsList(){
             Modal.error({content: error.message})
         }
     }
-
-    // function onLoadMore() {
-    //     if (!data) return;
-    
-    //     fetchMore({
-    //       variables: { page: Math.ceil(data?.fetchUseditemQuestions.length / 10) + 1 },
-    //       updateQuery: (prev, { fetchMoreResult }) => {
-    //         if (!fetchMoreResult?.fetchUseditemQuestions)
-    //           return { fetchBoardComments: [...prev.fetchUseditemQuestions] };
-    //         return {
-    //           fetchBoardComments: [
-    //             ...prev.fetchUseditemQuestions,
-    //             ...fetchMoreResult.fetchUseditemQuestions,
-    //           ],
-    //         };
-    //       },
-    //     });
-    //   }
     
     return(
         <ProductCommentsListUI

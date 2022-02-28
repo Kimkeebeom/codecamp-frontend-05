@@ -1,4 +1,4 @@
-export default function ProductCommentsEditUI(props: any){
+export default function ProductCommentsAnswerEditUI(props: any){
     return(
         <>
             {!props.isEdit && (

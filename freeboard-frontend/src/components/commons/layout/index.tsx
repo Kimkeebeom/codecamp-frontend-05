@@ -46,7 +46,7 @@ interface Iprops {
 }
 export default function Layout(props : Iprops){
     const router = useRouter();
-    console.log(router);
+    // console.log(router);
 
     const isHiddenBanner = HIDDEN_BANNER.includes(router.asPath)
     const isHiddenNavigation = HIDDEN_NAVIGATION.includes(router.asPath)

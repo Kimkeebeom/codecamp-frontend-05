@@ -25,7 +25,7 @@ export default function ProductCommentsWrite(){
                 variables:{
                     createUseditemQuestionInput:{
                         contents: contents
-                    }, useditemId: String(router.query.move) 
+                    }, useditemId: String(router.query.move) // 게시글에 대한 ID값!
                 },
                 refetchQueries: [
                     {
