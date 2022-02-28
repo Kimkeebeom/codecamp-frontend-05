@@ -29,7 +29,7 @@ interface Iprops {
 }
 export default function Layout(props: Iprops){
     const router = useRouter();
-    console.log(router);
+    // console.log(router);
 
     const isHiddneHeader = HIDDEN_HEADERS.includes(router.asPath)
 
