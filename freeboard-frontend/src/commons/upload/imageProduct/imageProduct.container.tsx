@@ -36,8 +36,8 @@ export default function ImageProductWrite(props){
                     file: file
                 }
             })
-            console.log("두번째 콘솔 - result:",result.data.uploadFile.url)
-            console.log("이미지 등록이 왜 안되니")
+            // console.log("두번째 콘솔 - result:",result.data.uploadFile.url)
+            // console.log("이미지 등록이 왜 안되니")
             // setImages([result.data.uploadFile.url])
             // setImage(prev => [result.data.uploadFile.url, ...prev])
             // props.setImages([...]])
@@ -50,7 +50,7 @@ export default function ImageProductWrite(props){
             Modal.error({content: error.message})
         }
     }
-    console.log("세번째 콘솔:",props.images)
+    // console.log("세번째 콘솔:",props.images)
     const onClickImage = () => {
         fileRef.current?.click(); // 이미지를 클릭했지만 fileRef가 
                                   // 클릭되게끔 해야하기 때문에 fileRef를 쓴다.
