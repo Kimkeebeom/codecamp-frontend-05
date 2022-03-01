@@ -18,7 +18,7 @@ export default function BrowserStoragePage(){
         // console.log(aaa) // aaa=철수; zzz=맹구 => 세미콜론(;)이 붙어서 나옴
         const aaa = document.cookie
                 .split("; ") // ["aaa=철수", "zzz=맹구"]
-                .filter((el) => el.startsWith("aaa="))[0] // ["aaa=철수"][0] 
+                .filter((el) => el.startsWith("aaa="))[0] // ["aaa=철수"][0] => el이 aaa로 시작한다면 나머지는 버려줘~[0]번째 인덱스
         const result = aaa.replace("aaa=", "") // ➡ 수업 다시 듣고 제대로 이해하자 
         console.log(result)
     }
