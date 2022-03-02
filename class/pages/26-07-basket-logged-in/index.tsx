@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react"
 import { IBoard } from "../../src/commons/types/generated/types"
 
+// 담긴 장바구니 보여주는 page
 export default function BasketLoggedInPage(){
     const [basketItems, setBasketItems] = useState([])
 
+    // if(typeof window !== "undefined")
+    // if(process.browser)
     useEffect(() => {
         const baskets = JSON.parse(localStorage.getItem("basket") ||  "[]") // basket에 불러올 목록이 없으면 "[]" 빈 배열로 보여줘!
         setBasketItems(baskets)
@@ -20,4 +23,4 @@ export default function BasketLoggedInPage(){
             ))}
         </div>
     )
-}
+} 
