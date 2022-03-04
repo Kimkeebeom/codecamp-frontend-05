@@ -1,5 +1,6 @@
 import { gql, useQuery } from "@apollo/client"
 import { IBoard } from "../../src/commons/types/generated/types"
+import {getMyDate} from '../../../freeboard-frontend/src/commons/libraries/utils'
 
 const FETCH_BOARDS = gql`
     query fetchBoards {
@@ -17,10 +18,12 @@ export default function BasketPage(){
     const onClickBasket = (el: IBoard) => () => {
         console.log(el)
 
+        const todayDate = getMyDate(new Date())
+
         // 장바구니를 담는데 마지막에 클릭한 정보만 담겨서 클릭한 정보들을 계속해서 쌓고 싶을 때 =>
         // 기존에 있는걸 가지고 와서 새롭게 들어온 el을 추가하고(push) 최종 결과물을 setItem해보자~
         // 3단계: (정보를 가져온다 - push한다 - setItem에 저장한다)
-        const baskets = JSON.parse(localStorage.getItem("basket") || "[]") // JSON.parse 문자열을 객체로 돌려놓기! 
+        const baskets = JSON.parse(localStorage.getItem(todayDate) || "[]") // JSON.parse 문자열을 객체로 돌려놓기! 
                                                                            // 장바구니안에 정보가 있으면 정보를 보여주고 정보가 없으면 빈 배열을 보여줘!
 
         // el의 값(onClickBasket)이 장바구니에 담긴 baskets 값과 중복 될 경우 return해주기
@@ -34,7 +37,7 @@ export default function BasketPage(){
         const {__typename, ...newEl } = el // typename이 굳이 필요하지 않아서 지우고 나머지 값을 보여줘! => typename이 삭제된 newEl
                                             // delete.el__typename으로도 작성이 가능하지만 별로 좋지 못한 방법
         baskets.push(newEl)
-        localStorage.setItem("basket", JSON.stringify(baskets))
+        localStorage.setItem(todayDate, JSON.stringify(baskets))
     }
 
     return(
