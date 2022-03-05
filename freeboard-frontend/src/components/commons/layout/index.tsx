@@ -5,6 +5,7 @@ import LayoutFooter from "./footer";
 import LayoutHeader from "./header";
 import LayoutNavigation from "./navigation";
 import styled from "@emotion/styled";
+import LayoutSidebarBasketPick from "./sidebar";
 
 const Div = styled.div`
     max-width: 3000px;
@@ -12,17 +13,6 @@ const Div = styled.div`
     display: flex;
     flex-direction: column;
 `
-
-const HIDDEN_BANNER = [
-    "/board/new",
-    "/board/[move]/edit",
-    "/members/login/login.container"
-]
-
-const HIDDEN_NAVIGATION = [
-    "/members/login/login.container"
-]
-
 const BodyWrapper = styled.div`
     box-sizing: border-box;
     display: flex;
@@ -41,6 +31,16 @@ const LayoutBody = styled.div`
     padding-bottom: 100px;
 `
 
+const HIDDEN_BANNER = [
+    "/board/new",
+    "/board/[move]/edit",
+    "/members/login/login.container"
+]
+
+const HIDDEN_NAVIGATION = [
+    "/members/login/login.container"
+]
+
 interface Iprops {
     children: ReactChild
 }
@@ -57,7 +57,10 @@ export default function Layout(props : Iprops){
             {!isHiddenBanner && <LayoutBanner/>}
             {!isHiddenNavigation && <LayoutNavigation/>}
             <BodyWrapper>
-                <LayoutBody>{props.children}</LayoutBody>
+                <LayoutBody>
+                    <LayoutSidebarBasketPick/>
+                    {props.children}
+                    </LayoutBody>
             </BodyWrapper>
             <LayoutFooter/>
         </Div>

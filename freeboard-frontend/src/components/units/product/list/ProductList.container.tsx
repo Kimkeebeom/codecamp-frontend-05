@@ -8,9 +8,8 @@ import ProductListUI from "./ProductList.presenter";
 import { FETCH_USED_ITEMS } from "./ProductList.queries";
 
 export default function ProductList(){
-    const {basketItem, setBasketItem} = useContext(GlobalContext)
+    const {basketItem, setBasketItem, userInfo} = useContext(GlobalContext) // 모든 페이지에 로그인한 사실을 알려주기 위해!
     const router = useRouter()
-    const {userInfo} = useContext(GlobalContext) // 모든 페이지에 로그인한 사실을 알려주기 위해!
 
     const {data, fetchMore} = useQuery<
     Pick<IQuery, "fetchUseditems">,
@@ -20,18 +19,25 @@ export default function ProductList(){
     const todayPick = getMyDate(new Date())
 
     // 오늘 본 상품 목록에 등록
-    const MoveToProductDetail = (event)  => {
+    const MoveToProductDetail = (el) => ()  => {
+      console.log("event:", el)
       // console.log("event: ",event)
         const baskets = JSON.parse(localStorage.getItem(todayPick) || "[]")
-        const temp = baskets.filter((basketEl: IBoard) => basketEl._id === event.currentTarget.id)
+        const temp = baskets.filter((basketEl: IBoard) => basketEl._id === el._id)
 
-        const {__typename, ...newPick} = event.currentTarget.id
+        // if(temp.length === 1){
+        //   alert("이미 담으신 물품입니다.")
+        //   return
+        // }
+
+        const {__typename, ...newPick} = el
         baskets.push(newPick)
-        localStorage.setItem(todayPick, JSON.stringify(temp))
-        setBasketItem(temp)
-        
-        router.push(`/product/${event.currentTarget.id}`)
         // console.log(el)
+        localStorage.setItem(todayPick, JSON.stringify(baskets))
+        setBasketItem(baskets)
+        
+        router.push(`/product/${el._id}`)
+
     }
 
     function onLoadMore() {

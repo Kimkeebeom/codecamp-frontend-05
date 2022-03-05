@@ -1,6 +1,6 @@
 import InfiniteScroll from "react-infinite-scroller"
 import { getMyDate } from "../../../../commons/libraries/utils"
-import { withAuth } from "../../../commons/hocs/withAuth"
+// import { withAuth } from "../../../commons/hocs/withAuth"
 import * as P from './ProductList.styles'
 
 export default function ProductListUI (props){
@@ -15,7 +15,7 @@ export default function ProductListUI (props){
                         <P.Listitems key={el._id}>
                             <div 
                             id={el._id}
-                            onClick={props.MoveToProductDetail}
+                            onClick={props.MoveToProductDetail(el)}
                             style={{ cursor: 'pointer' }}
                             >
                                 <img src={`https://storage.googleapis.com/${el.images[0]}`}

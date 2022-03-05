@@ -1,6 +1,6 @@
 import styled from "@emotion/styled"
 import router from "next/router"
-import { MouseEvent, useContext, useEffect } from "react"
+import { useContext, useEffect } from "react"
 import { GlobalContext } from "../../../../../pages/_app"
 import { getMyDate, getPrice } from "../../../../commons/libraries/utils"
 
