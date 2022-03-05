@@ -33,7 +33,6 @@ export default function BasketPage(){
             alert("이미 담으신 물품입니다.")
             return 
         }
-
         const {__typename, ...newEl } = el // typename이 굳이 필요하지 않아서 지우고 나머지 값을 보여줘! => typename이 삭제된 newEl
                                             // delete.el__typename으로도 작성이 가능하지만 별로 좋지 못한 방법
         baskets.push(newEl)
