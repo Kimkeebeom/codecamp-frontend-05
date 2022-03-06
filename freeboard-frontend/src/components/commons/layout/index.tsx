@@ -34,7 +34,8 @@ const LayoutBody = styled.div`
 const HIDDEN_BANNER = [
     "/board/new",
     "/board/[move]/edit",
-    "/members/login/login.container"
+    "/members/login/login.container",
+    "/members/signup"
 ]
 
 const HIDDEN_NAVIGATION = [

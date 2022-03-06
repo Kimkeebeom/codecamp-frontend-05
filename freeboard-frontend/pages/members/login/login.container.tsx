@@ -99,7 +99,7 @@ export default function loginMainPage(){
             console.log(localStorage.getItem("accessToken"))
             console.log(JSON.parse(localStorage.getItem("userInfo") || "{}"))
 
-            router.push("/board/list")
+            router.push("/members/mypage")
         } catch (error) {
             if(error instanceof Error) Modal.error({content: error.message})
         }

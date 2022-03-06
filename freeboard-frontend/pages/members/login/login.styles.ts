@@ -14,6 +14,8 @@ export const Wrapper = styled.div`
 export const InnerWrapper = styled.div`
     /* background-color: #FDFDFD; */
     border-radius: 6px;
+    padding: 30px 35px;
+    box-shadow: 0.1rem 0.1rem 1.5rem #FDFDFD, -0.1rem -0.1rem 1.5rem #03c75a;
 `
 
 export const LogoBox = styled.div`

@@ -51,14 +51,23 @@ export default function LayoutHeader() {
     const moveToLoginPage = () => {
         router.push("/members/login/login.container")
     }
+
+    const moveToSignUpPage = () => {
+        router.push("/members/signup")
+    }
+
+    const moveToMyPage = () => {
+        router.push("/members/mypage")
+    }
+
    return (
     <Wrapper>
         <TopWrapper/>
         <NaviWrapper>
             <SpanBox>
-                <Span> Join </Span>
+                <Span onClick={moveToSignUpPage}> Join </Span>
                 <Span onClick={moveToLoginPage}> Login </Span>
-                <Span> Mypage </Span>
+                <Span onClick={moveToMyPage}> Mypage </Span>
             </SpanBox>
             <LogoBox></LogoBox>
             <LoginAuthBox>님 환영합니다!</LoginAuthBox>

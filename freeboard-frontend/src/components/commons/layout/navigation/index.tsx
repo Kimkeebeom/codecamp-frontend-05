@@ -38,9 +38,9 @@ export default function LayoutNavigation() {
         router.push("/product/list")
     }
 
-    const onClickMoveToMypage = () => {
-        router.push("/members/mypage")
-    }
+    // const onClickMoveToMypage = () => {
+    //     router.push("/members/mypage")
+    // }
 
 
     return (
@@ -49,7 +49,7 @@ export default function LayoutNavigation() {
             <Span onClick={onClickMoveToFreeboardPage}>자유게시판</Span>
             <Span onClick={onClickMoveToProductRegistPage}>상품등록</Span>
             <Span onClick={onClickMoveToProductList}>상품목록게시판</Span>
-            <Span onClick={onClickMoveToMypage}>마이페이지</Span>
+            {/* <Span onClick={onClickMoveToMypage}>마이페이지</Span> */}
         </Wrapper>
     )
 }
