@@ -10,6 +10,24 @@ export const FETCH_USED_ITEM = gql`
             price
             images
             createdAt
+            buyer {
+                _id
+                name
+            }
+            seller {
+                _id
+                name
+            }
         }
     }
+`
+
+export const CREATE_POINT_TRANSACTION_OF_BUYING_AND_SELLING = gql`
+  mutation createPointTransactionOfBuyingAndSelling($useritemId: ID!) {
+    createPointTransactionOfBuyingAndSelling(useritemId: $useritemId) {
+      _id
+      name
+      remarks
+    }
+  }
 `

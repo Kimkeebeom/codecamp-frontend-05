@@ -25,10 +25,10 @@ export default function ProductList(){
         const baskets = JSON.parse(localStorage.getItem(todayPick) || "[]")
         const temp = baskets.filter((basketEl: IBoard) => basketEl._id === el._id)
 
-        // if(temp.length === 1){
-        //   alert("이미 담으신 물품입니다.")
-        //   return
-        // }
+        if(temp.length === 1){
+          alert("이미 담으신 물품입니다.")
+          return
+        }
 
         const {__typename, ...newPick} = el
         baskets.push(newPick)
