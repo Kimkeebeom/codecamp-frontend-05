@@ -1,9 +1,9 @@
 import { useMutation, useQuery } from "@apollo/client"
 import { useRouter } from "next/router"
 import { useState } from "react"
-import { IMutation, IMutationCreatePointTransactionOfBuyingAndSellingArgs, IQuery, IQueryFetchUseditemArgs } from "../../../../commons/types/generated/types"
+import { IMutation, IMutationDeleteUseditemArgs, IQuery, IQueryFetchUseditemArgs } from "../../../../commons/types/generated/types"
 import ProductDetailUI from "./ProductDetail.presenter"
-import { CREATE_POINT_TRANSACTION_OF_BUYING_AND_SELLING, FETCH_USED_ITEM } from "./ProductDetail.queries"
+import { CREATE_POINT_TRANSACTION_OF_BUYING_AND_SELLING, DELETE_USED_ITEM, FETCH_USED_ITEM } from "./ProductDetail.queries"
 
 export default function ProductDetail(){
     const router = useRouter()
@@ -15,12 +15,28 @@ export default function ProductDetail(){
     {
         variables: {useditemId: String(router.query.move)}
     })
-    // console.log("데이터:",data)
+
+    const [deleteUseditem] = useMutation<
+    Pick<IMutation,"deleteUseditem">,
+    IMutationDeleteUseditemArgs
+    >(DELETE_USED_ITEM)
 
     const [createPointTransactionOfBuyingAndSelling] = useMutation/* <
     Pick<IMutation, "createPointTransactionOfBuyingAndSelling">,
     IMutationCreatePointTransactionOfBuyingAndSellingArgs
     > */(CREATE_POINT_TRANSACTION_OF_BUYING_AND_SELLING)
+
+    const onClickDelete = async () => {
+        try {
+          await deleteUseditem({
+            variables: { useditemId: String(router.query.move) },
+          })
+          alert('삭제 성공')
+          router.push('/product/list')
+        } catch (error) {
+          console.log(error.message)
+        }
+      }
 
     const [modalOpen, setModalOpen] = useState(false)
     const onClickCancel = () => {
@@ -31,7 +47,7 @@ export default function ProductDetail(){
     }
 
   const onClickUsePoint = async () => {
-      console.log("제발 떠라")
+    //   console.log("제발 떠라")
     try {
       await createPointTransactionOfBuyingAndSelling({
         variables: { useritemId: router.query.move },
@@ -47,6 +63,7 @@ export default function ProductDetail(){
         <ProductDetailUI
             data={data}
             modalOpen={modalOpen}
+            onClickDelete={onClickDelete}
             onClickModalOpenUsePoint={onClickModalOpenUsePoint}
             onClickUsePoint={onClickUsePoint}
             onClickCancel={onClickCancel}

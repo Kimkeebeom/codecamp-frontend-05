@@ -42,6 +42,11 @@ export default function ProductDetailUI(props){
                 <P.Button onClick={props.onClickModalOpenUsePoint}>
                     구매하기
                 </P.Button>
+                <>
+                    <P.Button onClick={props.onClickDelete}>삭제</P.Button>
+                    <P.Button>수정</P.Button>
+                    <P.Button>목록</P.Button>
+                </>
             </P.Wrapper>
             <ProductCommentsWrite/>
             <ProductCommentsList/>

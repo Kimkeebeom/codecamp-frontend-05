@@ -28,7 +28,7 @@ export const UserContainer = styled.div`
   margin: 0 auto;
   padding: 40px 0 20px;
   border-radius: 50px;
-  box-shadow: 0.1rem 0.1rem 1.5rem #ffe5ad, -0.1rem -0.1rem 1.5rem #ffe5ad;
+  box-shadow: 0.1rem 0.1rem 1.5rem #FDFDFD, -0.1rem -0.1rem 1.5rem #eccce1;
 `
 export const UserImg = styled.div`
   width: 120px;
@@ -92,7 +92,7 @@ export const UserOrder = styled.div`
     padding: 10px 20px;
     cursor: pointer;
     :hover {
-      background: #ffe5ad;
+      background: #eccce1;
     }
   }
 `
@@ -121,7 +121,7 @@ export const PointButton = styled.button`
     border-color: none !important;
   }
   :hover {
-    background: #ffe5ad;
+    background: #eccce1; // 커서를 올렸을 때, 버튼 배경색이 바뀜
     color: #222;
   }
 `

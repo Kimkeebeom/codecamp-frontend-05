@@ -1,10 +1,13 @@
 import { useMutation } from "@apollo/client"
 import { Modal } from "antd"
+import * as yup from 'yup'
 import { Router, useRouter } from "next/router"
-import { ChangeEvent, useState } from "react"
+import { ChangeEvent, SetStateAction, useEffect, useState } from "react"
+import { useForm } from "react-hook-form"
 import { IMutation, IMutationCreateUseditemArgs } from "../../../../commons/types/generated/types"
 import ProductWriteUI from "./ProductWrite.presenter"
 import { CREATE_USED_ITEM } from "./ProductWrite.queries"
+import { yupResolver } from "@hookform/resolvers/yup"
 // import ImageProductWrite from "../../../../commons/upload/imageProduct/imageProduct.container"
 // import { v4 as uuidv4 } from "uuid"
 // import { useForm } from "react-hook-form"
@@ -16,6 +19,24 @@ import { CREATE_USED_ITEM } from "./ProductWrite.queries"
 //     contents?: string,
 //     images?: any
 // }
+
+const schema = yup.object().shape({
+    name: yup.string().max(100).required('필수입력'),
+    price: yup.number().min(1).required('필수입력'),
+  })
+
+export interface IFormValues {
+    name?: string
+    remarks?: string
+    price?: number
+    contents?: string
+    title?: string
+    images?: string[]
+    zipcode?: string
+    address?: string
+    addressDetail?: string
+    email?: string
+  }
 
 export default function ProductWrite(props){
     // const { register, handleSubmit, setValue } = useForm({
@@ -33,6 +54,13 @@ export default function ProductWrite(props){
     const [contents, setContents] = useState("")
     const [images, setImages] = useState(["","",""])
 
+    const [isModalVisible, setIsModalVisible] = useState(false);
+    const [address, setAddress] = useState("");
+    const [addressDetail, setAddressDetail] = useState("");
+    const [zipcode, setZipcode] = useState("");
+    const [lat, setLat] = useState(0);
+    const [lng, setLng] = useState(0);
+
     function productWriter(event: ChangeEvent<HTMLInputElement>){
         setName(event.target.value)
     }
@@ -48,6 +76,36 @@ export default function ProductWrite(props){
     function productContents(event: ChangeEvent<HTMLInputElement>){
         setContents(event.target.value)
     }
+
+    const showModal = () => {
+        setIsModalVisible(true)
+    }
+
+    const handleOk = () => {
+        setIsModalVisible(false);
+        //ok 누르면 창이 사라짐
+      };
+
+      const handleCancel = () => {
+        setIsModalVisible(false);
+        //cancle 누르면 창 사라짐
+      };
+
+      const onChangeAddressDetail = (event) => {
+        setAddressDetail(event.target.value);
+      };
+
+      const onCompleteDaumPostCode = (data: any) => {
+        setAddress(data.address);
+        setZipcode(data.zonecode)
+        setIsModalVisible(false);
+      };
+
+      const { register, handleSubmit, formState, setValue } = useForm<IFormValues>({
+        mode: 'onChange',
+        defaultValues: {},
+        resolver: yupResolver(schema),
+      })
 
     // function onChangeImages(image: string, index: number){
     //     const newImages = [...images];
@@ -69,11 +127,18 @@ export default function ProductWrite(props){
             const result = await createUseditem({
                 variables: {
                     createUseditemInput:{
-                        name: name,
-                        remarks: remarks,
+                        name,
+                        remarks,
                         price: Number(price),
-                        contents: contents,
-                        images: images
+                        contents,
+                        images,
+                        useditemAddress: {
+                            zipcode,
+                            address,
+                            addressDetail,
+                            // lat: lat,
+                            // lng: lng,
+                          },
                     }
                 }
             })
@@ -89,14 +154,27 @@ export default function ProductWrite(props){
 
     return(
         <ProductWriteUI
+            isEdit={props.isEdit}
             productWriter={productWriter}
             productTitle={productTitle}
             productPrice={productPrice}
             productContents={productContents}
-            // onChangeImages={onChangeImages}
             onClickSubmit={onClickSubmit}
+            register={register}
+            handleSubmit={handleSubmit}
+            formState={formState}
             images={images}
+            isModalVisible={isModalVisible}
+            zipcode={zipcode}
+            address={address}
+            addressDetail={addressDetail}
             setImages={setImages}
+            showModal={showModal}
+            handleOk={handleOk}
+            handleCancel={handleCancel}
+            onChangeAddressDetail={onChangeAddressDetail}
+            onCompleteDaumPostCode={onCompleteDaumPostCode}
+            // onChangeImages={onChangeImages}
         />
     )
 }

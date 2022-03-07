@@ -44,7 +44,7 @@ const LogoBox = styled.div``
 
 const LoginAuthBox = styled.div``
 
-export default function LayoutHeader() {
+export default function LayoutHeader(props) {
 
     const router = useRouter()
 
@@ -70,7 +70,7 @@ export default function LayoutHeader() {
                 <Span onClick={moveToMyPage}> Mypage </Span>
             </SpanBox>
             <LogoBox></LogoBox>
-            <LoginAuthBox>님 환영합니다!</LoginAuthBox>
+            <LoginAuthBox>{props.data?.fetchUserLoggenIn?.name}님 환영합니다!</LoginAuthBox>
         </NaviWrapper>   
     </Wrapper>
     )
