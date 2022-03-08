@@ -1,0 +1,2 @@
+docker run -d -p 80:80 docker/getting-started
+export DOCKER_SCAN_SUGGEST = false
