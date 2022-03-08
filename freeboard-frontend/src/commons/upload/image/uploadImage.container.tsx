@@ -5,10 +5,16 @@ import { IMutation, IMutationUploadFileArgs } from "../../types/generated/types"
 import { UPLOAD_FILE } from "./uploadImage.queries"
 import * as S from "./uploadImage.styles"
 
-export default function UploadImage(props){
+interface IUploadImage{
+  index: number
+  fileUrl: string
+  onChangeFileUrls: (fileUrl: string, index: number) => void;
+}
+
+export default function UploadImage(props: IUploadImage){
     const fileRef = useRef<HTMLInputElement>(null)
 
-    const [image, setImage] = useState("") // setImage 에러 부분 해결 : <string | undefined> 이렇게도 작성가능
+    // const [image, setImage] = useState("") // setImage 에러 부분 해결 : <string | undefined> 이렇게도 작성가능
     const [uploadFile] = useMutation<
     Pick<IMutation, "uploadFile">, 
     IMutationUploadFileArgs
@@ -26,13 +32,13 @@ export default function UploadImage(props){
                 variables: {file: file}
             })
             console.log("result",result.data?.uploadFile.url) // 파일을 스토리지에서 url로 받아오고 그 url이 result에 저장된다!!!!
-            setImage(result.data?.uploadFile.url)
-            // props.onChangeFileUrls(result.data?.uploadFile.url, props.index) // 이미지가 스트링타입으로 추론이 되었는데 없을 수도 있기때문에 빈문자열로 보여줘! 
+            // setImage(result.data?.uploadFile.url)
+            props.onChangeFileUrls(result.data?.uploadFile.url, props.index) // 이미지가 스트링타입으로 추론이 되었는데 없을 수도 있기때문에 빈문자열로 보여줘! 
         } catch (error: any) {
             alert(error.message);
         }
         console.log("하ㅡㅡ이미지 왜안보이니")
-        console.log('123',image)
+        // console.log('123',image)
     }
 
     const onClickImage = () => {
@@ -41,10 +47,10 @@ export default function UploadImage(props){
 
     return (
         <>
-        {image ? (
+        {props.fileUrl ? (
           <S.ImageUpload
             onClick={onClickImage}
-            src={`https://storage.googleapis.com/${image}`}
+            src={`https://storage.googleapis.com/${props.fileUrl}`}
           />
         ) : (
           <S.UploadImage onClick={onClickImage}>

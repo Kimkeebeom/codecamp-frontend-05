@@ -28,6 +28,11 @@ export const Price = styled.div`
 export const Contents = styled.div`
     color:white;
 `
+export const Address = styled.div`
+    width: 100%;
+    color: white;
+`
+
 // export const AddressWrapper = styled.div``
 // export const Tags = styled.div``
 export const Button = styled.button`

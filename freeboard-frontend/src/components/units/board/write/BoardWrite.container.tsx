@@ -1,15 +1,14 @@
 // 등록 페이지
 import { useMutation } from '@apollo/client'
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import BoardWriteUI from './BoardWrite.presenter'
+import BoardWriteUI, { IBoardWriteUIProps } from './BoardWrite.presenter'
 import { CREATE_BOARD, UPDATE_BOARD } from './BoardWrite.queries'
 import { Modal } from 'antd'
 // import { getFirestore, collection  } from 'firebase/firestore/lite'
 // import { firebaseApp } from '../../../../../pages/_app'
 
-
-export default function BoardWrite (props) {
+export default function BoardWrite (props: IBoardWriteUIProps) {
     const router = useRouter()
 
     const [createMyBoard] = useMutation(CREATE_BOARD)
@@ -130,7 +129,11 @@ export default function BoardWrite (props) {
     }
 
     async function updateBoard(){
-        if(!title && !contents && !youtubeUrl){
+        const currentFiles = JSON.stringify(fileUrls);
+        const defaultFiles = JSON.stringify(props.data.fetchBoard.images);
+        const isChangedFiles = currentFiles !== defaultFiles;
+
+        if(!title && !contents && !youtubeUrl && !isChangedFiles){
             Modal.warning({content: "하나는 입력해야 합니다."})
             return
         }
@@ -144,11 +147,20 @@ export default function BoardWrite (props) {
             title?: string // ?는 없을수도 있고 있을 수도있다는것을 알려주는 기능
             contents?: string
             youtubeUrl?: string
+            boardAddress?: {
+                zipcode?: string;
+                address?: string;
+                addressDetail?: string;
+              };
+            images: string[]
         }
-        const myUpdateBoardInput: IUpdatedBoardInput = {} //비어있기때문에 IUpdateBoardInput타입을 추가해준다.
+        const myUpdateBoardInput: IUpdatedBoardInput = {
+            images: []
+        } //비어있기때문에 IUpdateBoardInput타입을 추가해준다.
         if(title !== "") myUpdateBoardInput.title = title
         if(contents !== "") myUpdateBoardInput.contents = contents
         if(youtubeUrl !== "") myUpdateBoardInput.youtubeUrl = youtubeUrl;
+        if (isChangedFiles) myUpdateBoardInput.images = fileUrls;
 
         console.log(myUpdateBoardInput)
 
@@ -168,6 +180,12 @@ export default function BoardWrite (props) {
             alert(error.message);
           }
     }
+
+    useEffect(() => {
+        if (props.data?.fetchBoard.images?.length) {
+          setFileUrls([...props.data?.fetchBoard.images]);
+        }
+      }, [props.data]);
 
     const MoveToBoardList = () => {
         router.push("/board/list")

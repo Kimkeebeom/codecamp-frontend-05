@@ -1,5 +1,6 @@
 import { useQuery, gql } from "@apollo/client";
 import { useRouter } from "next/router";
+import { ChangeEvent } from "react";
 import { IQuery, IQueryFetchBoardArgs } from "../../../../src/commons/types/generated/types";
 import BoardWrite from "../../../../src/components/units/board/write/BoardWrite.container";
 
@@ -24,6 +25,10 @@ export default function BoardEditPage(){
         variables: { boardId: String(router.query.move) }
       })
 
-    return <BoardWrite isEdit={true} data={data}/>
+    return <BoardWrite isEdit={true} data={data} onChangeYoutubeUrl={function (event: ChangeEvent<HTMLInputElement>): void {
+      throw new Error("Function not implemented.");
+    } } isActive={false} onChangeFileUrls={function (fileUrls: string, index: number): void {
+      throw new Error("Function not implemented.");
+    } } fileUrls={[]}/>
 
 }

@@ -3,8 +3,11 @@ import * as S from './BoardWrite.styles'
 import { v4 as uuidv4 } from "uuid"
 // import { UploadImage } from '../../../../commons/upload/image/uploadImage.styles'
 import UploadImage from '../../../../commons/upload/image/uploadImage.container'
+import { IQuery } from '../../../../commons/types/generated/types';
 
 export interface IBoardWriteUIProps{
+    data?: Pick<IQuery, "fetchBoard">;
+    isEdit?: boolean;
     onChangeYoutubeUrl: (event: ChangeEvent<HTMLInputElement>) => void;
     isActive: boolean;
     onChangeFileUrls: (fileUrls: string, index: number) => void;
@@ -78,7 +81,7 @@ export default function BoardWriteUI(props){
                     <UploadImage
                         key={uuidv4()}
                         index={index}
-                        fileUrls={el} 
+                        fileUrl={el} 
                         // defaultFileUrl={props.data?.fetchBoard.images?.[index]}
                         onChangeFileUrls={props.onChangeFileUrls}   
                     />

@@ -35,13 +35,18 @@ export default function ProductDetail(){
           router.push('/product/list')
         } catch (error) {
           console.log(error.message)
+          alert('삭제 권한이 없습니다!')
         }
       }
+    
+    const onClickMoveToEdit = () => {
+      router.push(`/product/${router.query.move}/edit`)
+    }
 
     const [modalOpen, setModalOpen] = useState(false)
     const onClickCancel = () => {
         setModalOpen(false)
-  }
+    }
     const onClickModalOpenUsePoint = () => {
         setModalOpen(true)
     }
@@ -61,8 +66,12 @@ export default function ProductDetail(){
 
     return(
         <ProductDetailUI
+            lat={data?.fetchUseditem?.useditemAddress?.lat}
+            lng={data?.fetchUseditem?.useditemAddress?.lng}
+            address={data?.fetchUseditem?.useditemAddress?.address}
             data={data}
             modalOpen={modalOpen}
+            onClickMoveToEdit={onClickMoveToEdit}
             onClickDelete={onClickDelete}
             onClickModalOpenUsePoint={onClickModalOpenUsePoint}
             onClickUsePoint={onClickUsePoint}

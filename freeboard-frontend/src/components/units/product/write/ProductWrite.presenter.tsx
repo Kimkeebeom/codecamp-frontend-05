@@ -4,10 +4,18 @@ import { v4 as uuidv4 } from "uuid"
 import { Button, Modal } from 'antd'
 import DaumPostcode from 'react-daum-postcode'
 
+interface IProductWriteUI {
+    isEdit?: boolean;
+    isActive: boolean;
+}
+
 export default function ProductWriteUI(props){
     // console.log("aaa :",props.images)
     return(
         <S.Wrapper>
+            <div style={{color: 'white'}}>
+                {props.isEdit ? "상품 수정" : "상품 등록"}
+            </div>
             {/* <p>상품등록</p>
             <form
                 onSubmit={
@@ -27,16 +35,44 @@ export default function ProductWriteUI(props){
                 />
             ))}  
                 <S.Name>
-                    작성자 : <input type="text" onChange={props.productWriter}/>
+                    작성자 : 
+                        <input type="text" onChange={props.productWriter}
+                            defaultValue={
+                            props.data
+                                ? props.data?.fetchUseditem?.name
+                                : ""
+                            }
+                        />
                 </S.Name>
                 <S.Remarks>
-                    한줄요약 : <input type="text" onChange={props.productTitle}/>
+                    한줄요약 : 
+                        <input type="text" onChange={props.productTitle}
+                            defaultValue={
+                                props.data
+                                    ? props.data?.fetchUseditem?.remarks
+                                    : ""
+                            }
+                        />
                 </S.Remarks>
                 <S.Price>
-                    가격 : <input type="number" onChange={props.productPrice}/>
+                    가격 : 
+                        <input type="number" onChange={props.productPrice}
+                            defaultValue={
+                                props.data
+                                    ? props.data?.fetchUseditem?.price
+                                    : ""
+                            }
+                        />
                 </S.Price>
                 <S.Contents>
-                    상품상세 : <input type="textarea" onChange={props.productContents}/> 
+                    상품상세 : 
+                        <input type="textarea" onChange={props.productContents}
+                            defaultValue={
+                                props.data
+                                    ? props.data?.fetchUseditem?.contents
+                                    : ""
+                            }
+                        /> 
                 </S.Contents>
                 {props.isModalVisible && (
                     <Modal
@@ -52,6 +88,7 @@ export default function ProductWriteUI(props){
                         <div>주소</div>
                         <input
                             type="text"
+                            onChange={props.onChangeZipcode}
                             value={
                             props.zipcode
                                 ? props.zipcode
@@ -62,6 +99,7 @@ export default function ProductWriteUI(props){
                         <br/>
                         <input 
                              type="text"
+                             onChange={props.onChangeAddress}
                              defaultValue={
                              props.address
                                  ? props.address
@@ -74,7 +112,9 @@ export default function ProductWriteUI(props){
                             placeholder="상세주소 입력"
                             onChange={props.onChangeAddressDetail}
                             defaultValue={
-                            props.data?.fetchUseditem?.useditemAddress?.addressDetail
+                            props.addressDetail
+                                ? props.addressDetail
+                                : props.data?.fetchUseditem?.useditemAddress?.addressDetail
                             }
                         />
                     </S.AddressWrapper>

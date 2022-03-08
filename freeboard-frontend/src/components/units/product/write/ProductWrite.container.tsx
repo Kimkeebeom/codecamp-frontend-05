@@ -4,9 +4,9 @@ import * as yup from 'yup'
 import { Router, useRouter } from "next/router"
 import { ChangeEvent, SetStateAction, useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
-import { IMutation, IMutationCreateUseditemArgs } from "../../../../commons/types/generated/types"
+import { IMutation, IMutationCreateUseditemArgs, IMutationUpdateUseditemArgs } from "../../../../commons/types/generated/types"
 import ProductWriteUI from "./ProductWrite.presenter"
-import { CREATE_USED_ITEM } from "./ProductWrite.queries"
+import { CREATE_USED_ITEM, UPDATE_USED_ITEM } from "./ProductWrite.queries"
 import { yupResolver } from "@hookform/resolvers/yup"
 // import ImageProductWrite from "../../../../commons/upload/imageProduct/imageProduct.container"
 // import { v4 as uuidv4 } from "uuid"
@@ -43,10 +43,18 @@ export default function ProductWrite(props){
     //     mode:'onChange'
     // })
     const router = useRouter()
+    
     const [createUseditem] = useMutation<
     Pick<IMutation, 'createUseditem'>,
     IMutationCreateUseditemArgs
     >(CREATE_USED_ITEM)
+
+    const [updateUseditem] = useMutation<
+    Pick<IMutation, "updateUseditem">,
+    IMutationUpdateUseditemArgs
+    >(UPDATE_USED_ITEM)
+
+    const [isActive, setIsActive] = useState(false)
 
     const [name, setName] = useState("")
     const [remarks, setRemarks] = useState("")
@@ -58,8 +66,8 @@ export default function ProductWrite(props){
     const [address, setAddress] = useState("");
     const [addressDetail, setAddressDetail] = useState("");
     const [zipcode, setZipcode] = useState("");
-    const [lat, setLat] = useState(0);
-    const [lng, setLng] = useState(0);
+    // const [lat, setLat] = useState(0);
+    // const [lng, setLng] = useState(0);
 
     function productWriter(event: ChangeEvent<HTMLInputElement>){
         setName(event.target.value)
@@ -91,9 +99,17 @@ export default function ProductWrite(props){
         //cancle 누르면 창 사라짐
       };
 
-      const onChangeAddressDetail = (event) => {
+      const onChangeAddress = (event) => {
+        setAddress(event.target.value)
+      }
+
+      const onChangeAddressDetail = (event: { target: { value: SetStateAction<string> } }) => {
         setAddressDetail(event.target.value);
       };
+
+      const onChangeZipcode = (event) => {
+        setZipcode(event.target.value)
+      }
 
       const onCompleteDaumPostCode = (data: any) => {
         setAddress(data.address);
@@ -101,11 +117,11 @@ export default function ProductWrite(props){
         setIsModalVisible(false);
       };
 
-      const { register, handleSubmit, formState, setValue } = useForm<IFormValues>({
-        mode: 'onChange',
-        defaultValues: {},
-        resolver: yupResolver(schema),
-      })
+      // const { register, handleSubmit, formState, setValue } = useForm<IFormValues>({
+      //   mode: 'onChange',
+      //   defaultValues: {},
+      //   resolver: yupResolver(schema),
+      // })
 
     // function onChangeImages(image: string, index: number){
     //     const newImages = [...images];
@@ -117,12 +133,12 @@ export default function ProductWrite(props){
     // function onChangeImages(value: string){
     //     setValue("images", value === setImages(images) ? value : "")
     // }
-
+console.log("데이터: ",props.data)
     const onClickSubmit = async () => {
-        if(!(name && remarks && price && contents)){
-            Modal.warn({content: "필수 입력 사항입니다!"})
-            return
-          }
+    //     if(!(name && remarks && price && contents)){
+    //         Modal.warn({content: "필수 입력 사항입니다!"})
+    //         return
+    //       }
         try {
             const result = await createUseditem({
                 variables: {
@@ -152,17 +168,79 @@ export default function ProductWrite(props){
         // setValue("images", value === "url" ? "": value)
     }
 
+    const onClickUpdateSubmit = async () => {
+      // const { name, remarks, price, addressDetail } = data
+      interface IAdress {
+        zipcode: string
+        address: string
+        addressDetail?: string
+      }
+      interface IUpdatedUseditemInput{
+        useditemAddress: IAdress
+        images: string[]
+        price: number
+        contents: string
+        remarks: string
+        name: string
+      }
+      const myIUpdatedUseditemInput: IUpdatedUseditemInput = {
+        images: [],
+        price: 0,
+        contents: "",
+        remarks: "",
+        name: "",
+        useditemAddress:{
+          address,
+          addressDetail,
+          zipcode
+        }
+      }
+      if(name !== "") myIUpdatedUseditemInput.name = name
+      if(remarks !== "") myIUpdatedUseditemInput.remarks = remarks
+      if(contents !== "") myIUpdatedUseditemInput.contents = contents
+      if(price !== Number("")) myIUpdatedUseditemInput.price = price
+      if(images !== []) myIUpdatedUseditemInput.images = images
+      if(address) myIUpdatedUseditemInput.useditemAddress.address = address
+      if(addressDetail) myIUpdatedUseditemInput.useditemAddress.addressDetail = addressDetail
+      if(zipcode) myIUpdatedUseditemInput.useditemAddress.zipcode = zipcode
+      try {
+        await updateUseditem({
+          variables: {
+            useditemId: props.data?.fetchUseditem._id,
+            updateUseditemInput: myIUpdatedUseditemInput /*  {
+              name,
+              remarks,
+              contents,
+              price: Number(price),
+              images,
+              useditemAddress: {
+                zipcode,
+                address,
+                addressDetail,
+              },
+            }, */
+          },
+        })
+        router.push(`/product/${router.query.move}`)
+      } catch (error) {
+        alert(error.message)
+      }
+    }
+
     return(
         <ProductWriteUI
+            data={props.data}
             isEdit={props.isEdit}
+            isActive={isActive}
             productWriter={productWriter}
             productTitle={productTitle}
             productPrice={productPrice}
             productContents={productContents}
             onClickSubmit={onClickSubmit}
-            register={register}
-            handleSubmit={handleSubmit}
-            formState={formState}
+            onClickUpdateSubmit={onClickUpdateSubmit}
+            // register={register}
+            // handleSubmit={handleSubmit}
+            // formState={formState}
             images={images}
             isModalVisible={isModalVisible}
             zipcode={zipcode}
@@ -174,6 +252,8 @@ export default function ProductWrite(props){
             handleCancel={handleCancel}
             onChangeAddressDetail={onChangeAddressDetail}
             onCompleteDaumPostCode={onCompleteDaumPostCode}
+            onChangeAddress={onChangeAddress}
+            onChangeZipcode={onChangeZipcode}
             // onChangeImages={onChangeImages}
         />
     )

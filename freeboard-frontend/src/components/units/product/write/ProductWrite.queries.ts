@@ -13,8 +13,8 @@ export const CREATE_USED_ITEM = gql`
                 zipcode
                 address
                 addressDetail
-                # lat
-                # ing
+                lat
+                lng
             }
             images
         }
@@ -42,7 +42,7 @@ export const UPDATE_USED_ITEM = gql`
         address
         addressDetail
         lat
-        ing
+        lng
       }
     }
   }
