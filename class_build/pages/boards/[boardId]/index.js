@@ -16,6 +16,9 @@ export default function BoardsDetailPage(){
                 게시글 ID는 {router.query.boardId}입니다!!
             </div>
         </div>
-        
     )
+}
+
+export const getServerSideProps = () => {
+    // 데이터를 요청할 것!!
 }
