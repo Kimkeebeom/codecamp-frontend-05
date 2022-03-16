@@ -1,6 +1,5 @@
-export default function teamMateDetailPage(){
+import TeamMateDetailUI from './teammateDetail.presenter';
 
-    return(
-        
-    )
+export default function teamMateDetailPage() {
+  return <TeamMateDetailUI />;
 }
