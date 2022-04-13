@@ -61,7 +61,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   }
 
   useEffect(() => {
-    if(localStorage.getItem("accessToken")) {
+    if (localStorage.getItem("accessToken")) {
       setAccessToken(localStorage.getItem("accessToken") || "")
     }
   }, [])

@@ -1,23 +1,23 @@
-import { useMutation, useQuery } from "@apollo/client"
-import { useRouter } from "next/router"
-import { useState } from "react"
-import { IMutation, IMutationDeleteUseditemArgs, IQuery, IQueryFetchUseditemArgs } from "../../../../commons/types/generated/types"
-import ProductDetailUI from "./ProductDetail.presenter"
-import { CREATE_POINT_TRANSACTION_OF_BUYING_AND_SELLING, DELETE_USED_ITEM, FETCH_USED_ITEM } from "./ProductDetail.queries"
+import { useMutation, useQuery } from '@apollo/client'
+import { useRouter } from 'next/router'
+import { useState } from 'react'
+import { IMutation, IMutationDeleteUseditemArgs, IQuery, IQueryFetchUseditemArgs } from '../../../../commons/types/generated/types'
+import ProductDetailUI from './ProductDetail.presenter'
+import { CREATE_POINT_TRANSACTION_OF_BUYING_AND_SELLING, DELETE_USED_ITEM, FETCH_USED_ITEM } from './ProductDetail.queries'
 
-export default function ProductDetail(){
-    const router = useRouter()
+export default function ProductDetail () {
+  const router = useRouter()
 
-    const {data} = useQuery<
-    Pick<IQuery, "fetchUseditem">, 
+  const { data } = useQuery<
+    Pick<IQuery, 'fetchUseditem'>,
     IQueryFetchUseditemArgs
     >(FETCH_USED_ITEM,
-    {
-        variables: {useditemId: String(router.query.move)}
-    })
+  {
+    variables: { useditemId: String(router.query.move) }
+  })
 
     const [deleteUseditem] = useMutation<
-    Pick<IMutation,"deleteUseditem">,
+    Pick<IMutation, "deleteUseditem">,
     IMutationDeleteUseditemArgs
     >(DELETE_USED_ITEM)
 
@@ -64,7 +64,7 @@ export default function ProductDetail(){
     }
   }
 
-    return(
+  return(
         <ProductDetailUI
             lat={data?.fetchUseditem?.useditemAddress?.lat}
             lng={data?.fetchUseditem?.useditemAddress?.lng}
@@ -77,5 +77,5 @@ export default function ProductDetail(){
             onClickUsePoint={onClickUsePoint}
             onClickCancel={onClickCancel}
         />
-    )
+  )
 }

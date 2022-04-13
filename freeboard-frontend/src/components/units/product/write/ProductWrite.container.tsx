@@ -8,17 +8,6 @@ import { IMutation, IMutationCreateUseditemArgs, IMutationUpdateUseditemArgs } f
 import ProductWriteUI from "./ProductWrite.presenter"
 import { CREATE_USED_ITEM, UPDATE_USED_ITEM } from "./ProductWrite.queries"
 import { yupResolver } from "@hookform/resolvers/yup"
-// import ImageProductWrite from "../../../../commons/upload/imageProduct/imageProduct.container"
-// import { v4 as uuidv4 } from "uuid"
-// import { useForm } from "react-hook-form"
-
-// interface IFormdata{
-//     name?: string,
-//     remarks?: string,
-//     price?: number,
-//     contents?: string,
-//     images?: any
-// }
 
 const schema = yup.object().shape({
     name: yup.string().max(100).required('필수입력'),

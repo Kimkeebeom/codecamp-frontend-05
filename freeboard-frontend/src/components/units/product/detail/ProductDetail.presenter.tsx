@@ -9,14 +9,14 @@ declare const window: typeof globalThis & {
     kakao: any
   }
 
-export default function ProductDetailUI(props){
-    useEffect(() => {
-        const script = document.createElement('script') // <script></script> 만들어짐
-        script.src =
+export default function ProductDetailUI (props) {
+  useEffect(() => {
+    const script = document.createElement('script') // <script></script> 만들어짐
+    script.src =
           '//dapi.kakao.com/v2/maps/sdk.js?appkey=8b77aaeac9eee62232cd589f76eb677f&libraries=services&autoload=false' // ?&autoload=false 추가
-        document.head.appendChild(script)
-        
-        script.onload = () => {
+    document.head.appendChild(script)
+
+    script.onload = () => {
           window.kakao.maps.load(function () {
             const mapContainer = document.getElementById('map') // 지도를 표시할 div
     
