@@ -61,7 +61,7 @@ export default function Layout(props : Iprops){
                 <LayoutBody>
                     <LayoutSidebarBasketPick/>
                     {props.children}
-                    </LayoutBody>
+                </LayoutBody>
             </BodyWrapper>
             <LayoutFooter/>
         </Div>

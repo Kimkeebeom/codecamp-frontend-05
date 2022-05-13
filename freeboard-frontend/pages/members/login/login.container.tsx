@@ -111,6 +111,7 @@ export default function loginMainPage(){
                 <L.LogoBox>
                     KB LOGO
                 </L.LogoBox>
+                <L.LoginBox>
                 <L.LoginBox onSubmit={handleSubmit(onClickLogin)}>
                     <L.EmailBox type="text" onChange={onChangeEmail} {...register("email")} placeholder="E-mail"/>    
                         <div style={{color:"white"}}>{formState.errors.email?.message}</div>     

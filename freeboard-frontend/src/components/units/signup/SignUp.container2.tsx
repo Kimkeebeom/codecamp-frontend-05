@@ -34,10 +34,10 @@ const schema = yup.object().shape({
   checkPassword: yup
     .string()
     .oneOf([yup.ref('password'), null], '비밀번호가 일치하지 않습니다')
-    .required('비밀번호가 일치하지 않습니다'),
+    .required('비밀번호가 일치하지 않습니다')
 })
 
-export default function SignUp2() {
+export default function SignUp2 () {
   const router = useRouter()
 
   const [createUser] = useMutation(CREATE_USER)
@@ -47,7 +47,7 @@ export default function SignUp2() {
   const { register, handleSubmit, formState } = useForm<IFormValues>({
     mode: 'onChange',
     defaultValues: {},
-    resolver: yupResolver(schema),
+    resolver: yupResolver(schema)
   })
 
   const onClickCreateButton = async (data) => {
@@ -63,9 +63,9 @@ export default function SignUp2() {
           createUserInput: {
             email,
             password,
-            name,
-          },
-        },
+            name
+          }
+        }
       })
 
       Modal.success({ content: '회원가입이 완료되었습니다.' })

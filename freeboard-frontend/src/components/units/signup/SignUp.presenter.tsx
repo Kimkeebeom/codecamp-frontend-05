@@ -1,6 +1,22 @@
+import {
+  ChangeEventHandler,
+  ReactChild,
+  ReactFragment,
+  ReactPortal
+} from 'react'
 import * as A from './SignUp.styled'
 
-export default function SignUpUI1(props) {
+export default function SignUpUI1 (props: {
+  onChangeEmail: ChangeEventHandler<HTMLInputElement>
+  errorEmail: boolean | ReactChild | ReactFragment | ReactPortal
+  onChangeName: ChangeEventHandler<HTMLInputElement>
+  errorName: boolean | ReactChild | ReactFragment | ReactPortal
+  onChangePassword: ChangeEventHandler<HTMLInputElement>
+  errorPassword: boolean | ReactChild | ReactFragment | ReactPortal
+  onChangeCheckPassword: ChangeEventHandler<HTMLInputElement>
+  errorCheckPassword: boolean | ReactChild | ReactFragment | ReactPortal
+  isActive: any
+}) {
   return (
     <>
       <A.LoginBackground>

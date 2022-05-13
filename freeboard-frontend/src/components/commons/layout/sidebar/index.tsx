@@ -1,8 +1,8 @@
-import styled from "@emotion/styled"
-import router from "next/router"
-import { useContext, useEffect } from "react"
-import { GlobalContext } from "../../../../../pages/_app"
-import { getMyDate, getPrice } from "../../../../commons/libraries/utils"
+import styled from '@emotion/styled'
+import router from 'next/router'
+import { useContext, useEffect } from 'react'
+import { GlobalContext } from '../../../../../pages/_app'
+import { getMyDate, getPrice } from '../../../../commons/libraries/utils'
 
 const Wrapper = styled.div`
   z-index: 2;
@@ -46,56 +46,58 @@ const Items = styled.div`
   }
 `
 
-export default function LayoutSidebarBasketPick(){
-    const {basketItem, setBasketItem} = useContext(GlobalContext)
-    const todayPick = getMyDate(new Date())
+export default function LayoutSidebarBasketPick () {
+  const { basketItem, setBasketItem } = useContext(GlobalContext)
+  const todayPick = getMyDate(new Date())
 
-    useEffect(() => {
-        const baskets = JSON.parse(localStorage.getItem(todayPick) || "[]")
-        if(baskets){
-            setBasketItem(baskets)
-        }
-    }, [])
-
-    const onClickDetail = (el) => () => {
-        router.push(`/product/${el._id}`)
+  useEffect(() => {
+    const baskets = JSON.parse(localStorage.getItem(todayPick) || '[]')
+    if (baskets) {
+      setBasketItem(baskets)
     }
+  }, [])
 
-    return(
-        <>
-            {basketItem ? (
-                <Wrapper>
-                    <>
-                        <p>오늘 본 상품</p>
-                        {basketItem
-                        .map((el) => (
-                            <Items
-                            key={el._id}
-                            onClick={onClickDetail(el)}
-                            style={{ cursor: 'pointer' }}
-                            >
-                            <ImgContainer>
-                                <img
-                                src={`https://storage.googleapis.com/${el.images[0]}`}
-                                onError={(e) => {
-                                    e.currentTarget.src = '/images/product/noimg.jpg'
-                                }}
-                                />
-                            </ImgContainer>
-                            <div>
-                                <div>{el.name}</div>
-                                <div>{getPrice(el.price)}</div>
-                            </div>
-                            </Items>
-                        ))
-                        .filter((el, index) => {
-                            if (index < 5) return el
-                        })}
-                    </>
-                </Wrapper>
-            ) : (
-                <></>
-            )}        
-        </>
-    )
+  const onClickDetail = (el) => () => {
+    router.push(`/product/${el._id}`)
+  }
+
+  return (
+    <>
+      {basketItem
+        ? (
+        <Wrapper>
+          <>
+            <p>오늘 본 상품</p>
+            {basketItem
+              .map((el) => (
+                <Items
+                  key={el._id}
+                  onClick={onClickDetail(el)}
+                  style={{ cursor: 'pointer' }}
+                >
+                  <ImgContainer>
+                    <img
+                      src={`https://storage.googleapis.com/${el.images[0]}`}
+                      onError={(e) => {
+                        e.currentTarget.src = '/images/product/noimg.jpg'
+                      }}
+                    />
+                  </ImgContainer>
+                  <div>
+                    <div>{el.name}</div>
+                    <div>{getPrice(el.price)}</div>
+                  </div>
+                </Items>
+              ))
+              .filter((el, index) => {
+                if (index < 5) return el
+              })}
+          </>
+        </Wrapper>
+          )
+        : (
+        <></>
+          )}
+    </>
+  )
 }

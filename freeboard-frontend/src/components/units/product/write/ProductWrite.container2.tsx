@@ -12,7 +12,7 @@ import draftToHtml from 'draftjs-to-html'
 
 const schema = yup.object().shape({
   name: yup.string().max(100).required('필수입력'),
-  price: yup.number().min(1).required('필수입력'),
+  price: yup.number().min(1).required('필수입력')
   // contents: yup.string().max(1000).required('필수입력'),
   // remarks: yup.string().max(1000).required('필수입력'),
 })
@@ -30,7 +30,7 @@ export interface IFormValues {
   email?: string
 }
 
-export default function ProductWrite2(props: IEditProps) {
+export default function ProductWrite2 (props: IEditProps) {
   const router = useRouter()
 
   const [images, setImages] = useState(['', '', ''])
@@ -47,7 +47,7 @@ export default function ProductWrite2(props: IEditProps) {
   const { register, handleSubmit, formState, setValue } = useForm<IFormValues>({
     mode: 'onChange',
     defaultValues: {},
-    resolver: yupResolver(schema),
+    resolver: yupResolver(schema)
   })
 
   const onChangeFileUrls = (fileUrl: string, index: number) => {
@@ -107,10 +107,10 @@ export default function ProductWrite2(props: IEditProps) {
             useditemAddress: {
               zipcode,
               address,
-              addressDetail,
-            },
-          },
-        },
+              addressDetail
+            }
+          }
+        }
       })
 
       // console.log(result.data?.createUseditem._id)
@@ -135,10 +135,10 @@ export default function ProductWrite2(props: IEditProps) {
             useditemAddress: {
               zipcode,
               address,
-              addressDetail,
-            },
-          },
-        },
+              addressDetail
+            }
+          }
+        }
       })
       router.push(`/product/${router.query.productid}`)
     } catch (error) {

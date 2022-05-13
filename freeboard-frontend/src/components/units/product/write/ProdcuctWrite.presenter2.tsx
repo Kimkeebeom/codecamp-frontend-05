@@ -68,7 +68,7 @@ const ProductDetailUI2 = (props: IProductNewUIProps) => {
                     key={uuidv4}
                     onChangeFileUrls={props.onChangeFileUrls}
                   />
-                ))
+              ))
               : props.images?.map((el, index) => (
                   <ImagesUploadForProduct
                     data={props.data}
@@ -77,7 +77,7 @@ const ProductDetailUI2 = (props: IProductNewUIProps) => {
                     key={uuidv4}
                     onChangeFileUrls={props.onChangeFileUrls}
                   />
-                ))}
+              ))}
           </div>
           {console.log(props.data?.fetchUseditem?.images)}
         </A.InputWrapper>
@@ -94,7 +94,7 @@ const ProductDetailUI2 = (props: IProductNewUIProps) => {
               onEditorStateChange={props.onEditorStateChange}
               placeholder="내용을 작성해주세요."
               localization={{
-                locale: 'ko',
+                locale: 'ko'
               }}
               toolbar={{
                 options: [
@@ -109,7 +109,7 @@ const ProductDetailUI2 = (props: IProductNewUIProps) => {
                   'embedded',
                   'emoji',
                   'image',
-                  'history',
+                  'history'
                 ],
                 inline: { inDropdown: true },
                 list: { inDropdown: true },
@@ -122,8 +122,8 @@ const ProductDetailUI2 = (props: IProductNewUIProps) => {
                   uploadCallback: true,
                   // uploadCallback: uploadImageCallBack,
                   previewImage: true,
-                  alt: { present: false, mandatory: false },
-                },
+                  alt: { present: false, mandatory: false }
+                }
               }}
             />
             {/* <A.ErrorMessage>

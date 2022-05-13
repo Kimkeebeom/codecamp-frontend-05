@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client'
 
 export const UPDATE_USED_ITEM_QUESTION = gql`
   mutation updateUseditemQuestion(
